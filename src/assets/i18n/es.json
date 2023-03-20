@@ -1,0 +1,8 @@
+{
+  "LoginComponent": {
+    "title": "Bienvenido! Introduce tu usuario y contraseña para iniciar sesión",
+    "user-field": "Usuario",
+    "pwd-field": "Contraseña",
+    "submit": "Ingresar"
+  }
+}
