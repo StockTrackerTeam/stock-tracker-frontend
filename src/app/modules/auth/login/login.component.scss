@@ -1,0 +1,101 @@
+.page-background {
+  background: url(../../../../assets/img/fondo-login.jpg) 0 0/100% 100% no-repeat;
+  height: 100vh;
+  width: 100%;
+}
+
+h2 {
+  color:#e43012;
+  text-align:center;
+  margin-top:40px;
+  text-decoration: underline;
+}
+
+h5 {
+  color:#ffffff;
+  font-size:15px;
+}
+
+img {
+  margin-top: 80px;
+}
+
+.login-background {
+  width:35%;
+  padding:10px;
+  // border-radius:30px;
+  // border:2px solid #e43012;
+  margin:0px auto;
+}
+
+@media (max-width: 1300px) {
+  .login-background{
+    width:35%;
+    padding:10px;
+    // border-radius:30px;
+    // border:2px solid #e43012;
+    margin:0px auto;
+  }
+}
+
+@media (max-width: 992px) {
+  .login-background{
+    width:45%;
+    padding:10px;
+    // border-radius:30px;
+    // border:2px solid #e43012;
+    margin:0px auto;
+  }
+}
+
+@media (max-width: 750px) {
+  .login-background{
+    width:55%;
+    padding:10px;
+    // border-radius:30px;
+    // border:2px solid #e43012;
+    margin:0px auto;
+  }
+}
+
+@media (max-width: 575px) {
+  .login-background{
+    width:75%;
+    padding:10px;
+    // border-radius:30px;
+    // border:2px solid #e43012;
+    margin:0px auto;
+  }
+}
+
+.form-group {
+  width: 100%;
+  text-align: center;
+}
+
+mat-form-field {
+  color: white;
+  width: 100%;
+}
+
+::ng-deep .mdc-notched-outline__leading {
+  border-color: white !important;
+}
+::ng-deep .mdc-notched-outline__notch {
+  border-color: white !important;
+}
+::ng-deep .mdc-notched-outline__trailing {
+  border-color: white !important;
+}
+
+::ng-deep .mdc-text-field--invalid .mdc-notched-outline > * {
+  border-color: red !important;
+}
+
+mat-label {
+  color: white;
+}
+
+button {
+  width: 100%;
+}
