@@ -4,5 +4,10 @@
     "user-field": "Usuario",
     "pwd-field": "Contraseña",
     "submit": "Ingresar"
+  },
+  "UserListComponent": {
+    "title": "Usuarios",
+    "search": "Buscar",
+    "new-button": "Crear nuevo usuario"
   }
 }

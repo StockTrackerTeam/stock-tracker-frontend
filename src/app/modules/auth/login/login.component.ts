@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { noop, tap } from 'rxjs';
 import { AuthService } from 'src/app/core/rest/services/auth.service';
 
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   loading = false;
 
   constructor (
+    private readonly router: Router,
     private readonly formBuilder: FormBuilder,
     private readonly authService: AuthService
   ) {}
@@ -45,9 +47,7 @@ export class LoginComponent implements OnInit {
       .pipe(
         tap(() => {
           this.loading = false;
-          // TODO: we should redirect to the home page
-          console.log('OK');
-          
+          this.router.navigate(['/users']);    
         })
       )
       .subscribe({

@@ -7,10 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './modules/home/home.component';
+import { NavBarComponent } from './modules/nav-bar/nav-bar.component';
+import { MaterialModule } from 'src/shared/material/material.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,8 @@ import { AppComponent } from './app.component';
         },
         deps: [HttpClient]
       }
-    })
+    }),
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

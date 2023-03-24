@@ -1,0 +1,13 @@
+<div class="container-div mat-typography">
+  <ng-container>
+    <app-nav-bar #navList>
+      <ng-container *ngTemplateOutlet="contentBody"></ng-container>
+    </app-nav-bar>
+  </ng-container>
+
+  <ng-template #contentBody>
+    <div class="content-body calculated-content-body">
+      <router-outlet></router-outlet>
+    </div>
+  </ng-template>
+</div>

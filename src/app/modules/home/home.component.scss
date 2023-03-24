@@ -1,0 +1,17 @@
+@import '../../styles/ng-variables';
+
+$header-width-border-bottom: 2px;
+$header-container-height: 64px;
+$content-body-padding: 36px;
+$base-height: $header-container-height;
+$regular-content-body-height: calc(100vh - #{$base-height});
+
+.container-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.calculated-content-body {
+  height: $regular-content-body-height;
+  padding: $content-body-padding;
+}

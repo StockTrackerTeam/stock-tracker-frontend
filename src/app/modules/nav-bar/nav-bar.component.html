@@ -1,0 +1,25 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav class="sidenav-container" [fixedInViewport]="true" [mode]="'side'" [opened]="true">
+    <mat-nav-list fxLayout="column" fxFlex="100%">
+      <span class="logo-container">
+        <a href="/">
+          <img alt="StockTracker Logo" class="logo" src="/assets/img/logo.png" />
+        </a>
+      </span>
+
+      <a
+        mat-list-item
+        class="nav-link"
+        [routerLink]="['users']"
+        routerLinkActive="sidebar__nav-link&#45;&#45;active"
+      >
+        <mat-icon>person</mat-icon>
+        <div class="nav-link-text">{{ 'UserListComponent.title' | translate }}</div>
+      </a>
+
+      <section class="nav-list-section-footer">
+        <span class="copyright"><mat-icon class="copyright-icon">copyright</mat-icon> 2023 StockTracker Project</span>
+      </section>
+    </mat-nav-list>
+  </mat-sidenav>
+</mat-sidenav-container>
