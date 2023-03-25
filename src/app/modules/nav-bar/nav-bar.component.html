@@ -13,7 +13,7 @@
         [routerLink]="['users']"
         routerLinkActive="sidebar__nav-link&#45;&#45;active"
       >
-        <mat-icon>person</mat-icon>
+        <mat-icon>group</mat-icon>
         <div class="nav-link-text">{{ 'UserListComponent.title' | translate }}</div>
       </a>
 
@@ -22,4 +22,8 @@
       </section>
     </mat-nav-list>
   </mat-sidenav>
+
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
 </mat-sidenav-container>

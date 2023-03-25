@@ -78,18 +78,15 @@ mat-form-field {
   width: 100%;
 }
 
-::ng-deep .mdc-notched-outline__leading {
-  border-color: white !important;
-}
-::ng-deep .mdc-notched-outline__notch {
-  border-color: white !important;
-}
-::ng-deep .mdc-notched-outline__trailing {
-  border-color: white !important;
-}
-
-::ng-deep .mdc-text-field--invalid .mdc-notched-outline > * {
-  border-color: red !important;
+::ng-deep {
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: white;
+  }
+  mat-form-field {
+    .mat-hint, input, ::placeholder, .mat-form-field-label {
+        color: white;
+    }
+  }
 }
 
 mat-label {
