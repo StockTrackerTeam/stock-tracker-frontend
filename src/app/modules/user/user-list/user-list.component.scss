@@ -61,9 +61,6 @@ $content-left-margin: 30px;
     }
 
     &__header {
-      &__checkbox {
-        width: 40px;
-      }
 
       &__id {
         width: 60px;
@@ -77,29 +74,6 @@ $content-left-margin: 30px;
       &__email {
         width: 150px;
         padding-right: 10px;
-      }
-
-      &__last-updated {
-        width: 150px;
-      }
-
-      &__device {
-        width: 100px;
-      }
-
-      &__os {
-        width: 70px;
-      }
-
-      &__status {
-        width: 130px;
-      }
-      &__cross-device {
-        width: 130px;
-      }
-
-      &__test-suites {
-        min-width: 200px;
       }
 
       &__actions {

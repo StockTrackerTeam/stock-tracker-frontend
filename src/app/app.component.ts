@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.setLanguage();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/users']);
   }
 
   setLanguage(): void {

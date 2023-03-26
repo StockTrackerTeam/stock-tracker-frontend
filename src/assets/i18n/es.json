@@ -8,6 +8,13 @@
   "UserListComponent": {
     "title": "Usuarios",
     "search": "Buscar",
-    "new-button": "Crear nuevo usuario"
+    "new-button": "Crear nuevo usuario",
+    "table": {
+      "id": "ID",
+      "name": "Nombre",
+      "email": "Email",
+      "role": "Rol",
+      "status": "Estado"
+    }
   }
 }

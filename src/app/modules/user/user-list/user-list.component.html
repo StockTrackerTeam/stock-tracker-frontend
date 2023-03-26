@@ -12,7 +12,7 @@
     </div> -->
   </div>
 
-  <div class="page-tabs users-list-container__tabs" role="tablist">
+  <!-- <div class="page-tabs users-list-container__tabs" role="tablist">
     <div
     class="page-tabs__tab" [class.page-tabs__tab--selected]="showActiveusers"
     (click)="getActiveusers()" role="tab">
@@ -23,7 +23,7 @@
     (click)="getInactiveusers()" role="tab">
       {{ 'UserListComponent.inactive' | translate }}
     </div>
-  </div>
+  </div> -->
 
 
   <div fxLayout="row" class="users-list-container__content-block">
@@ -32,14 +32,11 @@
         <table stTable class="users-list-container__table">
           <thead>
           <tr>
-            <th class="users-list-container__table__header__checkbox"></th>
-            <th class="users-list-container__table__header__id"></th>
-            <th class="users-list-container__table__header__name"></th>
-            <th class="users-list-container__table__header__country"></th>
-            <th class="users-list-container__table__header__address"></th>
-            <th class="users-list-container__table__header__city"></th>
-            <th class="users-list-container__table__header__province"></th>
-            <th class="users-list-container__table__header__country"></th>                
+            <th class="users-list-container__table__header__id">{{ 'UserListComponent.table.id' | translate }}</th>
+            <th class="users-list-container__table__header__name">{{ 'UserListComponent.table.name' | translate }}</th>
+            <th class="users-list-container__table__header__email">{{ 'UserListComponent.table.email' | translate }}</th>
+            <th class="users-list-container__table__header__role">{{ 'UserListComponent.table.role' | translate }}</th>
+            <th class="users-list-container__table__header__status">{{ 'UserListComponent.table.status' | translate }}</th>             
           </tr>
           </thead>
 
