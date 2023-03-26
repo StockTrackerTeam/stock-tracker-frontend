@@ -1,0 +1,9 @@
+<div *ngIf="isLoading; else content"
+     class="spinner-wrapper"
+     fxLayout="row"
+     fxLayoutAlign="center center">
+  <mat-spinner [diameter]="30"></mat-spinner> {{ text }}
+</div>
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>

@@ -17,6 +17,7 @@
       "status": "ESTADO"
     },
     "statusActive": "ACTIVO",
-    "statusInactive": "INACTIVO"
+    "statusInactive": "INACTIVO",
+    "no-users-created": "Todavía no se ha creado ningún usuario"
   }
 }

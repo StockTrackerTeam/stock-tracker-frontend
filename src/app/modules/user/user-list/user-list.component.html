@@ -27,44 +27,58 @@
 
 
   <div fxLayout="row" class="users-list-container__content-block">
-    <div fxFlex>              
-      <div class="responsive-table-container">
-        <table stTable class="users-list-container__table">
-          <thead>
-          <tr>
-            <th width='20px'></th>
-            <th class="users-list-container__table__header__id">{{ 'UserListComponent.table.id' | translate }}</th>
-            <th class="users-list-container__table__header__name">{{ 'UserListComponent.table.name' | translate }}</th>
-            <th class="users-list-container__table__header__email">{{ 'UserListComponent.table.email' | translate }}</th>
-            <th class="users-list-container__table__header__role">{{ 'UserListComponent.table.role' | translate }}</th>
-            <th class="users-list-container__table__header__status">{{ 'UserListComponent.table.status' | translate }}</th>             
-          </tr>
-          </thead>
+    <div fxFlex>
+      <app-loading-indicator [isLoading]="loading">
+        <ng-container *ngIf="usersList && usersList.length > 0; else emptyList">
+          <div class="responsive-table-container">
+            <table stTable class="users-list-container__table">
+              <thead>
+              <tr>
+                <th width='20px'></th>
+                <th class="users-list-container__table__header__id">{{ 'UserListComponent.table.id' | translate }}</th>
+                <th class="users-list-container__table__header__name">{{ 'UserListComponent.table.name' | translate }}</th>
+                <th class="users-list-container__table__header__email">{{ 'UserListComponent.table.email' | translate }}</th>
+                <th class="users-list-container__table__header__role">{{ 'UserListComponent.table.role' | translate }}</th>
+                <th class="users-list-container__table__header__status">{{ 'UserListComponent.table.status' | translate }}</th>             
+              </tr>
+              </thead>
 
-          <tbody>
-          <tr *ngFor='let user of usersList'>
+              <tbody>
+              <tr *ngFor='let user of usersList'>
+                <ng-container *ngIf="user">
+                  <td></td>
+                  <td class="users-list-container__users-list__item__property__id">
+                    <span>{{ user.id }}</span>
+                  </td>
+                  <td class="users-list-container__users-list__item__property__name">
+                    <span>{{ user.firstName + " " + user.lastName }}</span>
+                  </td>
+                  <td class="users-list-container__users-list__item__property__email">
+                    <span>{{ user.email }}</span>
+                  </td>
+                  <td class="users-list-container__users-list__item__property__role">
+                    <span>{{ user.role.label }}</span>
+                  </td>
+                  <td class="users-list-container__users-list__item__property__status">
+                    <span>{{ (user.isActive ? 'UserListComponent.statusActive' : 'UserListComponent.statusInactive') | translate }}</span>
+                  </td>             
+                </ng-container>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+
+        <ng-template #emptyList>
+          <ng-template>
             <ng-container>
-              <td></td>
-              <td class="users-list-container__users-list__item__property__id">
-                <span>{{ user.id }}</span>
-              </td>
-              <td class="users-list-container__users-list__item__property__name">
-                <span>{{ user.firstName + " " + user.lastName }}</span>
-              </td>
-              <td class="users-list-container__users-list__item__property__email">
-                <span>{{ user.email }}</span>
-              </td>
-              <td class="users-list-container__users-list__item__property__role">
-                <span>{{ user.role.label }}</span>  <!-- Aca iria el label del rol -->
-              </td>
-              <td class="users-list-container__users-list__item__property__status">
-                <span>{{ (user.isActive ? 'UserListComponent.statusActive' : 'UserListComponent.statusInactive') | translate }}</span>
-              </td>             
+              <div class="users-list-container__empty-list">
+                <p class="users-list-container__empty-list__title">{{ 'UserListComponent.no-users-created' | translate }}</p>
+              </div>
             </ng-container>
-          </tr>
-          </tbody>
-        </table>
-      </div>                      
+          </ng-template>
+        </ng-template>
+      </app-loading-indicator>
     </div>
   </div>
 </div>

@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FlexModule } from '@angular/flex-layout';
 import { ButtonModule } from 'src/shared/directives';
 import { TableModule } from 'src/shared/modules/table/table.module';
+import { LoadingIndicatorModule } from 'src/shared/modules/loading-indicator/loading-indicator.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TableModule } from 'src/shared/modules/table/table.module';
     TranslateModule,
     FlexModule,
     ButtonModule,
-    TableModule
+    TableModule,
+    LoadingIndicatorModule
   ]
 })
 export class UserModule { }

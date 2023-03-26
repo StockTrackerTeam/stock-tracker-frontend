@@ -1,0 +1,10 @@
+@import "../../../app/styles/ng-variables";
+
+.spinner-wrapper {
+  width: 100%;
+  height: 100px;
+}
+
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: $st-blue-600;
+}
