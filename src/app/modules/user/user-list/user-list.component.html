@@ -12,7 +12,7 @@
     </div> -->
   </div>
 
-  <!-- <div class="page-tabs users-list-container__tabs" role="tablist">
+  <div class="page-tabs users-list-container__tabs" role="tablist">
     <div
     class="page-tabs__tab" [class.page-tabs__tab--selected]="showActiveusers"
     (click)="getActiveusers()" role="tab">
@@ -27,78 +27,55 @@
 
 
   <div fxLayout="row" class="users-list-container__content-block">
-    <div fxFlex>
-      <app-loading-indicator [isLoading]="loading$ | async">
-        <ng-container *ngIf="users && users.length > 0; else emptyList">
-          <div class="responsive-table-container">
-            <table stTable class="users-list-container__table">
-              <thead>
-              <tr>
-                <th class="users-list-container__table__header__checkbox"></th>
-                <th class="users-list-container__table__header__id">{{ 'CommonTableHeaders.id' | translate }}</th>
-                <th class="users-list-container__table__header__name">{{ 'UserListComponent.table-header-name' | translate }}</th>
-                <th class="users-list-container__table__header__country">{{ 'UserListComponent.table-header-email' | translate }}</th>
-                <th class="users-list-container__table__header__address">{{ 'UserListComponent.table-header-address' | translate }}</th>
-                <th class="users-list-container__table__header__city">{{ 'UserListComponent.table-header-city' | translate }}</th>
-                <th class="users-list-container__table__header__province">{{ 'UserListComponent.table-header-province' | translate }}</th>
-                <th class="users-list-container__table__header__country">{{ 'UserListComponent.table-header-country' | translate }}</th>
-                <th class="users-list-container__table__header__actions">{{ 'CommonTableHeaders.actions' | translate }}</th>
-              </tr>
-              </thead>
+    <div fxFlex>              
+      <div class="responsive-table-container">
+        <table stTable class="users-list-container__table">
+          <thead>
+          <tr>
+            <th class="users-list-container__table__header__checkbox"></th>
+            <th class="users-list-container__table__header__id"></th>
+            <th class="users-list-container__table__header__name"></th>
+            <th class="users-list-container__table__header__country"></th>
+            <th class="users-list-container__table__header__address"></th>
+            <th class="users-list-container__table__header__city"></th>
+            <th class="users-list-container__table__header__province"></th>
+            <th class="users-list-container__table__header__country"></th>                
+          </tr>
+          </thead>
 
-              <tbody>
-              <tr *ngFor="let subscriber of users | filterSubscriber: searchText; let subscriberIndex = index">
-                <ng-container *ngIf="subscriber">
-                  <td>
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                    </div>
-                  </td>
-                  <td class="users-list-container__users-list__item__property__id">
-                    <span [matTooltip]="subscriber.id.toString()">{{ subscriber.id }}</span>
-                  </td>
-                  <td class="users-list-container__users-list__item__property__name" (click)="handleEditSubscriber(subscriber)">
-                    <span [matTooltip]="subscriber.firstName">{{ subscriber.firstName + ' ' +subscriber.lastName }}</span>
-                  </td>
-                  <td class="users-list-container__users-list__item__property__email">
-                    <span [matTooltip]="subscriber.email">{{ subscriber.email }}</span>
-                  </td>
-                  <td>
-                    <span [matTooltip]="subscriber.address">{{ subscriber.address }}</span>
-                  </td>
-                  <td>
-                    <span [matTooltip]="subscriber.city">{{ subscriber.city }}</span>
-                  </td>
-                  <td>
-                    <span [matTooltip]="subscriber.province">{{ subscriber.province }}</span>
-                  </td>
-                  <td>
-                    <span [matTooltip]="subscriber.country">{{ subscriber.country }}</span>
-                  </td>
-                  <td class="variables-table__actions" *ngIf="hasAnyActionAvailable">
-                    <app-collapsible-action-bar [row]="subscriber" [inlineActions]="subscriberActions"></app-collapsible-action-bar>
-                  </td>
-                </ng-container>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </ng-container>
-
-        <ng-template #emptyList>
-          <ng-container *ngIf="searchText && searchText.length > 0; else createNewTest">
-            <div class="users-list-container__empty-list">
-              <app-no-results-found></app-no-results-found>
-            </div>
-          </ng-container>
-          <ng-template #createNewTest>
+          <tbody>
+          <tr>
             <ng-container>
-              <div class="users-list-container__empty-list">
-                <p class="users-list-container__empty-list__title">{{ 'UserListComponent.no-users-created' | translate }}</p>
-              </div>
+              <td>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                </div>
+              </td>
+              <td class="users-list-container__users-list__item__property__id">
+                <span></span>
+              </td>
+              <td class="users-list-container__users-list__item__property__name">
+                <span></span>
+              </td>
+              <td class="users-list-container__users-list__item__property__email">
+                <span></span>
+              </td>
+              <td>
+                <span></span>
+              </td>
+              <td>
+                <span></span>
+              </td>
+              <td>
+                <span></span>
+              </td>
+              <td>
+                <span></span>
+              </td>                  
             </ng-container>
-          </ng-template>
-        </ng-template>
-      </app-loading-indicator>
+          </tr>
+          </tbody>
+        </table>
+      </div>                      
     </div>
-  </div> -->
+  </div>
 </div>
