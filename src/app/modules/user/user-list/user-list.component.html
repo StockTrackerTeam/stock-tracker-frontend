@@ -41,33 +41,27 @@
           </thead>
 
           <tbody>
-          <tr>
+          <tr *ngFor='let user of usersList'>
             <ng-container>
-              <td>
+              <!-- <td>
                 <div fxLayout="row" fxLayoutAlign="center center">
                 </div>
-              </td>
+              </td> -->
               <td class="users-list-container__users-list__item__property__id">
-                <span></span>
+                <span>{{user.id}}</span>
               </td>
               <td class="users-list-container__users-list__item__property__name">
-                <span></span>
+                <span>{{user.firstName + " " + user.lastName}}</span>
               </td>
               <td class="users-list-container__users-list__item__property__email">
-                <span></span>
+                <span>{{user.email}}</span>
               </td>
-              <td>
-                <span></span>
+              <td class="users-list-container__users-list__item__property__role">
+                <span>{{user.roleId}}</span>  <!-- Aca iria el label del rol -->
               </td>
-              <td>
-                <span></span>
-              </td>
-              <td>
-                <span></span>
-              </td>
-              <td>
-                <span></span>
-              </td>                  
+              <td class="users-list-container__users-list__item__property__status">
+                <span>{{user.isActive}}</span>
+              </td>             
             </ng-container>
           </tr>
           </tbody>

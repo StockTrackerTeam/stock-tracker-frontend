@@ -152,21 +152,6 @@ $content-left-margin: 30px;
             text-overflow: ellipsis;
           }
         }
-
-        &__last-updated {
-          position: relative;
-          top: -8px;
-        }
-
-        &__title {
-          font-weight: bold;
-        }
-
-        &__icons-container {
-          &__icon {
-            cursor: pointer;
-          }
-        }
       }
     }
   }

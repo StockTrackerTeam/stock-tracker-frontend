@@ -11,10 +11,10 @@
     "new-button": "Crear nuevo usuario",
     "table": {
       "id": "ID",
-      "name": "Nombre",
-      "email": "Email",
-      "role": "Rol",
-      "status": "Estado"
+      "name": "NOMBRE",
+      "email": "EMAIL",
+      "role": "ROL",
+      "status": "ESTADO"
     }
   }
 }
