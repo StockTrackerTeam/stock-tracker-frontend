@@ -1,0 +1,115 @@
+@import "../../../app/styles/ng-variables";
+@import "../../../app/styles/fonts";
+
+$border: 1px solid $st-grey-100;
+
+table[stTable] {
+  width: 100%;
+  border: $border;
+  border-radius: 4px;
+  border-collapse: separate;
+  table-layout: fixed;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+  @include font-base();
+
+  tr {
+    th, td {
+      padding-left: 32px;
+      border-bottom: $border;
+      font-weight: inherit;
+
+      &:last-of-type {
+        padding-right: 20px;
+      }
+    }
+  }
+
+  thead {
+    tr {
+      height: 56px;
+
+      th {
+        background-color: $white;
+        color: $st-grey-600;
+      }
+    }
+
+    ngf-sort-icon svg {
+      height: 12px;
+    }
+  }
+
+  tbody {
+    tr {
+      height: 52px;
+
+      &:nth-child(odd) {
+        td {
+          background-color: $white;
+        }
+      }
+
+      &:nth-child(even) {
+        td {
+          background-color: #FAFAFA;
+        }
+      }
+
+      &:last-of-type {
+        th, td {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  &[small] {
+    @include font-small();
+
+    ngf-pseudo-checkbox .checkbox-btn {
+      width: 14px;
+      height: 14px;
+
+      mat-icon {
+        width: 10px;
+        height: 10px;
+        font-size: 10px;
+      }
+    }
+
+    tr {
+      th, td {
+        border-bottom: none;
+      }
+    }
+
+    thead {
+      tr {
+        height: 23px;
+
+        th {
+          background-color: $st-grey-200;
+          color: $st-text;
+        }
+      }
+
+      ngf-sort-icon svg {
+        height: 10px;
+      }
+    }
+
+    tbody {
+      tr {
+        height: 22px;
+
+        &:nth-child(even) {
+          td {
+            background-color: $st-grey-50;
+          }
+        }
+      }
+    }
+  }
+}
+
+
