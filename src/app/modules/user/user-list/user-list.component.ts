@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { noop, Subscription, tap } from 'rxjs';
 import { UserEntity } from 'src/app/core/models/user-entity.model';
 import { UserService } from 'src/app/core/rest/services/user.service';
@@ -16,7 +17,7 @@ export class UserListComponent {
 
   constructor (
     private readonly userService: UserService,
-    private readonly changeDetectorRef: ChangeDetectorRef
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +26,6 @@ export class UserListComponent {
       tap(data => {
         this.usersList = data;
         this.loading = false;
-        this.changeDetectorRef.detectChanges();
       })
     ).subscribe({
       next: noop,
@@ -34,7 +34,7 @@ export class UserListComponent {
   }
 
   handleNewUser() {
-    console.log('New User');
+    this.router.navigate(['users', 'create']);
   }
 
   ngOnDestroy(): void {

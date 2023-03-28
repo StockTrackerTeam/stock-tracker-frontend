@@ -8,11 +8,13 @@ import { FlexModule } from '@angular/flex-layout';
 import { ButtonModule } from 'src/shared/directives';
 import { TableModule } from 'src/shared/modules/table/table.module';
 import { LoadingIndicatorModule } from 'src/shared/modules/loading-indicator/loading-indicator.module';
+import { NewUserComponent } from './new-user/new-user.component';
 
 
 @NgModule({
   declarations: [
-    UserListComponent
+    UserListComponent,
+    NewUserComponent
   ],
   imports: [
     CommonModule,
