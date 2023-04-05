@@ -1,1 +1,33 @@
-<p>new-user works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
+
+  <p class="h4 mb-4">Sign up</p>
+
+  <input type="text" formControlName="username" id="defaultRegisterFormUsername" class="form-control" placeholder="Username">
+
+  <input type="password" formControlName="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password">
+  <input type="password" formControlName="confirmPassword" id="defaultRegisterFormConfirmPassword" class="form-control" placeholder="Confirm Password">
+
+  <div class="form-row mb-4">
+      <div class="col">
+          <input type="text" formControlName="firstName" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
+      </div>
+      <div class="col">
+          <input type="text" formControlName="lastName" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
+      </div>
+  </div>
+
+  <input type="email" formControlName="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+  <input type="email" formControlName="confirmEmail" id="defaultRegisterFormConfirmEmail" class="form-control mb-4" placeholder="Confirm E-mail">
+
+  
+  <select formControlName="roleId" id="defaultRegisterFormRoleId" class="form-control" placeholder="Role ID">
+    <option *ngFor='let role of roleList' [value]='role.id'>
+      {{ role.label }}
+    </option>
+  </select>
+
+  <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
+
+  <hr>
+
+</form>

@@ -9,6 +9,10 @@ import { ButtonModule } from 'src/shared/directives';
 import { TableModule } from 'src/shared/modules/table/table.module';
 import { LoadingIndicatorModule } from 'src/shared/modules/loading-indicator/loading-indicator.module';
 import { NewUserComponent } from './new-user/new-user.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormErrorsModule } from 'src/shared/components/form-errors/form-errors.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -23,7 +27,11 @@ import { NewUserComponent } from './new-user/new-user.component';
     FlexModule,
     ButtonModule,
     TableModule,
-    LoadingIndicatorModule
+    LoadingIndicatorModule,
+    ReactiveFormsModule,
+    FormErrorsModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class UserModule { }

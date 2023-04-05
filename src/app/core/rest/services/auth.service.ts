@@ -21,7 +21,9 @@ export class AuthService {
       .pipe(
         map((response: any) => {
           this.token = response.data.token;
-          this.currentUser = response.data.user;         
+          this.currentUser = response.data.user;
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          localStorage.setItem('token', response.data.token);       
         }),
         catchError(err => throwError(() => new Error(err)))
       )
