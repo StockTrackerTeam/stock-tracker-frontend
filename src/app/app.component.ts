@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { UserEntity } from './core/models';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent implements OnInit {
   title = 'stock-tracker-frontend';
+  currentUser!: UserEntity;
+  token!: string | null;
 
   constructor (
     private readonly translateService: TranslateService,
@@ -17,7 +20,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.setLanguage();
-    this.router.navigate(['/login']);
+
+    this.token = localStorage.getItem('token');
+    if (this.token !== null && this.token !== undefined) {
+      this.router.navigate(['/users'])
+    } else {
+      this.router.navigate(['/login']);
+    }  
   }
 
   setLanguage(): void {
