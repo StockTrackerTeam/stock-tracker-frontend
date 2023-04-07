@@ -118,11 +118,13 @@ export class NewUserComponent implements OnInit {
       email: email === '' ? undefined : email,
       confirmEmail: confirmEmail === '' ? undefined : confirmEmail
     }
-
+    console.log('user: ', data);
+    
     this.userService.createUser(data)
       .pipe(
         tap(() => {
           this.loading = false;
+          console.log('Prueba service-pipe');
         })
       )
       .subscribe({
