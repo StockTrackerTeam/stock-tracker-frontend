@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { noop, tap } from 'rxjs';
+import { UserEntity } from 'src/app/core/models';
 import { AuthService } from 'src/app/core/rest/services/auth.service';
+import { Roles } from 'src/shared/utils/enums';
 
 @Component({
   selector: 'app-login',
@@ -45,9 +47,10 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authService.login(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value)
       .pipe(
-        tap(() => {
-          this.loading = false;
-          this.router.navigate(['/users']);
+        tap((user: UserEntity) => {
+          this.loading = false;   
+          if (user.roleId === Roles.ADMIN) this.router.navigate(['/users']);
+          else this.router.navigate(['']);  // TODO - we should remove this conditional and let the authguard do the role-based redirecting
         })
       )
       .subscribe({
