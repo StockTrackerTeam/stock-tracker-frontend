@@ -5,13 +5,22 @@ import { environment } from 'src/environments/environment';
 import { UserEntity } from '../../models';
 import { UserCreateDTO } from 'src/app/modules/user/dtos/user-create.dto';
 
+interface IUserResponse {
+  data: {
+    result: UserEntity | UserEntity[],
+    count?: number
+  },
+  resultKeys: string[]
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private readonly baseUrl = environment.API_URL;
+
   constructor (
-    private readonly http: HttpClient,
+    private readonly http: HttpClient
   ) {}
 
   getUsers (): Observable<UserEntity[]> {
@@ -22,11 +31,10 @@ export class UserService {
       )
   }
 
-  createUser (newUser: UserCreateDTO): Observable<UserEntity> {
+  createUser (newUser: UserCreateDTO): Observable<IUserResponse> {
     return this.http.post<any>(`${this.baseUrl}/users/`, newUser)
       .pipe(
-        map(response => response.data.result),
-        catchError(err => throwError(() => new Error(err)))
+        map(response => response)
       )
   }
 }
