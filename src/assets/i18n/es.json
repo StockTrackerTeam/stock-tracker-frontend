@@ -19,5 +19,8 @@
     "statusActive": "ACTIVO",
     "statusInactive": "INACTIVO",
     "no-users-created": "Todavía no se ha creado ningún usuario"
+  },
+  "ProviderListComponent": {
+    "title": "Proveedores"
   }
 }

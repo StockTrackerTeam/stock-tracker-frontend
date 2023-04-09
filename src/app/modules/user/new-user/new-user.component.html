@@ -2,10 +2,25 @@
 
   <p class="h4 mb-4">Sign up</p>
 
-  <input type="text" formControlName="username" id="defaultRegisterFormUsername" class="form-control" placeholder="Username">
+  <input type="text" formControlName="username" id="defaultRegisterFormUsername" class="form-control" placeholder="Username"
+          [class.field-error]='registerForm.controls["username"].invalid  && (registerForm.controls["username"].dirty || registerForm.controls["username"].touched)'>
+  <div [hidden]='registerForm.controls["username"].valid || registerForm.controls["username"].untouched'
+        class='alert alert-danger'>
+    Enter a valid Username.
+  </div>
 
-  <input type="password" formControlName="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password">
-  <input type="password" formControlName="confirmPassword" id="defaultRegisterFormConfirmPassword" class="form-control" placeholder="Confirm Password">
+  <input type="password" formControlName="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
+          [class.field-error]='registerForm.controls["password"].invalid  && (registerForm.controls["password"].dirty || registerForm.controls["password"].touched)'>
+  <div [hidden]='registerForm.controls["password"].valid || registerForm.controls["password"].untouched'
+        class='alert alert-danger'>
+    Password must have a minimun of 8 characters, at least one lowercase letter, one uppercase and a number.
+  </div>
+  <input type="password" formControlName="confirmPassword" id="defaultRegisterFormConfirmPassword" class="form-control" placeholder="Confirm Password"
+          [class.field-error]='registerForm.controls["confirmPassword"].invalid  && (registerForm.controls["confirmPassword"].dirty || registerForm.controls["confirmPassword"].touched)'>
+  <div [hidden]='registerForm.controls["confirmPassword"].value === registerForm.controls["password"].value || registerForm.controls["confirmPassword"].untouched'
+        class='alert alert-danger'>
+    Passwords must match.
+  </div>
 
   <div class="form-row mb-4">
       <div class="col">
@@ -16,8 +31,19 @@
       </div>
   </div>
 
-  <input type="email" formControlName="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
-  <input type="email" formControlName="confirmEmail" id="defaultRegisterFormConfirmEmail" class="form-control mb-4" placeholder="Confirm E-mail">
+  <input type="email" formControlName="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail"
+          [class.field-error]='registerForm.controls["email"].invalid  && (registerForm.controls["email"].dirty || registerForm.controls["email"].touched)'>
+  <div [hidden]='registerForm.controls["email"].valid || registerForm.controls["email"].untouched'
+        class='alert alert-danger'>
+    Enter a valid Email.  
+  </div>
+
+  <input type="email" formControlName="confirmEmail" id="defaultRegisterFormConfirmEmail" class="form-control mb-4" placeholder="Confirm E-mail"
+          [class.field-error]='registerForm.controls["confirmEmail"].invalid  && (registerForm.controls["confirmEmail"].dirty || registerForm.controls["confirmEmail"].touched)'>
+  <div [hidden]='registerForm.controls["confirmEmail"].value === registerForm.controls["email"].value || registerForm.controls["confirmEmail"].untouched'
+        class='alert alert-danger'>
+    Email does not match.   
+  </div>
 
   
   <select formControlName="roleId" id="defaultRegisterFormRoleId" class="form-control" placeholder="Role ID">
@@ -25,8 +51,12 @@
       {{ role.label }}
     </option>
   </select>
+  <div [hidden]='registerForm.controls["roleId"].valid || registerForm.controls["roleId"].untouched'
+        class='alert alert-danger'>
+    Please, select a role.
+  </div>
 
-  <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
+  <button class="btn btn-info my-4 btn-block" type="submit">Submit</button>
 
   <hr>
 

@@ -118,7 +118,7 @@ export class NewUserComponent implements OnInit {
       email: email === '' ? undefined : email,
       confirmEmail: confirmEmail === '' ? undefined : confirmEmail
     }
-
+    
     this.userService.createUser(data)
       .pipe(
         tap(() => {
