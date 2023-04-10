@@ -76,3 +76,10 @@
     }
   }
 }
+
+::ng-deep .mdc-list-item__primary-text {
+  color: white !important;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+}
