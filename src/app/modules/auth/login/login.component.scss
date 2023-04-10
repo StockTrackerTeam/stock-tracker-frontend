@@ -78,15 +78,23 @@ mat-form-field {
   width: 100%;
 }
 
-::ng-deep {
-  .mat-form-field-appearance-outline .mat-form-field-outline {
-    color: white;
-  }
-  mat-form-field {
-    .mat-hint, input, ::placeholder, .mat-form-field-label {
-        color: white;
-    }
-  }
+
+::ng-deep .mdc-notched-outline__leading {
+  border-color: white !important;
+}
+::ng-deep .mdc-notched-outline__notch {
+  border-color: white !important;
+}
+::ng-deep .mdc-notched-outline__trailing {
+  border-color: white !important;
+}
+
+::ng-deep .mdc-text-field--invalid .mdc-notched-outline > * {
+  border-color: red !important;
+}
+
+.loginInput {
+  color: white!important;
 }
 
 mat-label {
