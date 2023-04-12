@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { noop, tap } from 'rxjs';
 import { RoleEntity } from 'src/app/core/models';
+import { NotificationService } from 'src/app/core/rest/services/notification.service';
 import { RoleService } from 'src/app/core/rest/services/role.service';
 import { UserService } from 'src/app/core/rest/services/user.service';
-import { UserCreateDTO } from '../dtos/user-create.dto';
 
 @Component({
   selector: 'app-new-user',
@@ -20,7 +22,10 @@ export class NewUserComponent implements OnInit {
   constructor (
     private readonly formBuilder: FormBuilder,
     private readonly userService: UserService,
-    private readonly roleService: RoleService
+    private readonly roleService: RoleService,
+    private readonly notificationService: NotificationService,
+    private readonly router: Router,
+    private readonly translate: TranslateService
   ) {}
 
   buildRegisterForm() {
@@ -51,6 +56,7 @@ export class NewUserComponent implements OnInit {
       }),
       firstName: new FormControl('', {
           validators: [
+            Validators.minLength(2),
             Validators.maxLength(50),
             Validators.required
           ],
@@ -58,6 +64,7 @@ export class NewUserComponent implements OnInit {
       }),
       lastName: new FormControl('', {
           validators: [
+            Validators.minLength(2),
             Validators.maxLength(50),
             Validators.required
           ],
@@ -105,6 +112,10 @@ export class NewUserComponent implements OnInit {
 
   onSubmit(): void {
     if (this.registerForm?.invalid) {
+      const notificationTitle = this.translate.instant('NewUserComponent.errorNotificationTitle');
+      const notificationMessage = this.translate.instant('NewUserComponent.errorNotificationMessage');
+
+      this.notificationService.showError(notificationMessage, notificationTitle);
       return;
     }
 
@@ -121,15 +132,27 @@ export class NewUserComponent implements OnInit {
     
     this.userService.createUser(data)
       .pipe(
-        tap(() => {
+        tap((result) => {
           this.loading = false;
+          const notificationTitle = this.translate.instant('NewUserComponent.successNotificationTitle');
+          const notificationMessage = this.translate.instant('NewUserComponent.' + result.resultKeys);
+
+          this.notificationService.showSuccess(notificationMessage, notificationTitle);
+          this.router.navigate(['/users']);
         })
       )
       .subscribe({
         next: noop,
-        error: (err) => {
+        error: (err) => {       
           this.loading = false;
-          console.log('Error: ', err);
+          
+          const notificationTitle = this.translate.instant('NewUserComponent.errorNotificationTitle');
+          let notificationMessage = '';
+          for(const key of err.error.resultKeys) {
+            notificationMessage += `<span>${this.translate.instant('NewUserComponent.' + key)}</span> <br />`;
+          }
+          
+          this.notificationService.showError(notificationMessage, notificationTitle);
         }
       })
   }
