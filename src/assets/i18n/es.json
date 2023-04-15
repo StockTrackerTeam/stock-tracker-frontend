@@ -23,24 +23,28 @@
   "NewUserComponent": {
     "title": "Crear Usuario",
     "userData": "Datos de Cuenta",
+    "personalData": "Datos personales",
+    "contactData": "Datos de contacto",
     "username-field": "Nombre de usuario",
-    "role": "Rol de usuario",
-    "password": "Contraseña",
-    "confirm-password": "Confirmar contraseña",
+    "firstName-field": "Nombre",
+    "lastName-field": "Apellido",
+    "role-field": "Rol de usuario",
+    "password-field": "Contraseña",
+    "confirm-password-field": "Confirmar contraseña",
+    "email-field": "Email",
+    "confirmEmail-field": "Confirmar Email",
     "username-and-email-already-registered": "Nombre de usuario y Email ya registrados.",
     "username-already-registered": "Nombre de usuario ya registrado, intente con uno diferente.",
     "email-already-registered": "Nombre de email ya registrado, intente con uno diferente.",
     "username-unsupported-characters": "Nombre de usuario no puede contener caracteres especiales.",
     "firstname-unsupported-characters": "Nombre no puede contener números o caracteres especiales.",
     "lastname-unsupported-characters": "Apellido no puede contener números o caracteres especiales.",
-    "firstName-min-length": "El nombre debe contener 2 caracteres o más.",
-    "lastName-min-length": "El apellido debe contener 2 caracteres o más.",
     "password-not-match": "Las contraseñas no coinciden, por favor intente de nuevo.",
-    "email-not-match": "El email no coincide, por favor intente de nuevo.",
     "ok": "El usuario ha sido creado exitosamente!",
     "successNotificationTitle": "¡Todo salio según lo planeado!",
     "errorNotificationTitle": "¡Hubo un problema!",
-    "errorNotificationMessage": "Por favor, revisa que las casillas requeridas estén completadas correctamente."
+    "errorNotificationMessage": "Por favor, revisa que las casillas requeridas estén completadas correctamente.",
+    "submit": "Enviar"
   },
   "ProviderListComponent": {
     "title": "Proveedores"
@@ -51,6 +55,10 @@
     "username-max-length": "El nombre usuario debe contener como máximo 20 caracteres.",
     "password-min-length": "La contraseña debe contener como mínimo 8 caracteres.",
     "password-max-length": "La contraseña debe contener como máximo 20 caracteres.",
-    "password-not-match": "Las contraseñas deben coincidir"
+    "password-not-match": "Las contraseñas deben coincidir",
+    "firstName-min-length": "El nombre debe contener 2 caracteres o más.",
+    "lastName-min-length": "El apellido debe contener 2 caracteres o más.",
+    "email": "Ingrese un email valido.",
+    "email-not-match": "El email debe coincidir."
   }
 }

@@ -52,6 +52,24 @@ export class NewUserComponent implements OnInit {
       customKey: 'password-not-match'
     }
   ];
+  customFirstNameErrorMsgs = [
+    {
+      key: 'minlength',
+      customKey: 'firstName-min-length'
+    }
+  ];
+  customLastNameErrorMsgs = [
+    {
+      key: 'minlength',
+      customKey: 'lastName-min-length'
+    }
+  ];
+  customConfirmEmailErrorMsgs = [
+    {
+      key: 'email-not-match',
+      customKey: 'email-not-match'
+    }
+  ];
 
   get role(): FormControl {
     return this.registerForm.get('role') as FormControl;
@@ -157,6 +175,36 @@ export class NewUserComponent implements OnInit {
         next: noop,
         error: err => console.log(err)
       });
+
+      this.registerForm.get('confirmEmail')?.valueChanges
+      .pipe(
+        tap(value => {
+          const emailValue = this.registerForm.get('email')?.value;
+          if (emailValue !== value) 
+            this.registerForm.get('confirmEmail')?.setErrors({'email-not-match': true});          
+        })
+      )
+      .subscribe({
+        next: noop,
+        error: err => console.log(err)
+      });
+
+      this.registerForm.get('email')?.valueChanges
+      .pipe(
+        tap(value => {
+          const confirmEmailValue = this.registerForm.get('confirmEmail')?.value;
+          if (confirmEmailValue !== value) {
+            this.registerForm.get('confirmEmail')?.setErrors({'email-not-match': true});
+          } else {
+            this.registerForm.get('confirmEmail')?.setErrors({'email-not-match': null});
+            this.registerForm.get('confirmEmail')?.updateValueAndValidity();
+          }
+        })
+      )
+      .subscribe({
+        next: noop,
+        error: err => console.log(err)
+      });
   }
 
   ngOnInit(): void {
@@ -195,6 +243,8 @@ export class NewUserComponent implements OnInit {
           this.loading = false;
           const notificationTitle = this.translate.instant('NewUserComponent.successNotificationTitle');
           const notificationMessage = this.translate.instant('NewUserComponent.' + result.resultKeys);
+          console.log(('PRUEBA2'));
+          
 
           this.notificationService.showSuccess(notificationMessage, notificationTitle);
           this.router.navigate(['/users']);
