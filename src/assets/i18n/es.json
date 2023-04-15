@@ -14,7 +14,8 @@
       "name": "NOMBRE",
       "email": "EMAIL",
       "role": "ROL",
-      "status": "ESTADO"
+      "status": "ESTADO",
+      "actions": "ACCIONES"
     },
     "statusActive": "ACTIVO",
     "statusInactive": "INACTIVO",

@@ -39,7 +39,8 @@
                 <th class="users-list-container__table__header__name">{{ 'UserListComponent.table.name' | translate }}</th>
                 <th class="users-list-container__table__header__email">{{ 'UserListComponent.table.email' | translate }}</th>
                 <th class="users-list-container__table__header__role">{{ 'UserListComponent.table.role' | translate }}</th>
-                <th class="users-list-container__table__header__status">{{ 'UserListComponent.table.status' | translate }}</th>             
+                <th class="users-list-container__table__header__status">{{ 'UserListComponent.table.status' | translate }}</th>
+                <th class="users-list-container__table__header__actions">{{ 'UserListComponent.table.actions' | translate }}</th>          
               </tr>
               </thead>
 
@@ -61,7 +62,13 @@
                   </td>
                   <td class="users-list-container__users-list__item__property__status">
                     <span>{{ (user.isActive ? 'UserListComponent.statusActive' : 'UserListComponent.statusInactive') | translate }}</span>
-                  </td>             
+                  </td>
+                  <td class="users-list-container__table__header__actions">
+                    <mat-icon [routerLink]='["/users", user.id, "view"]'>visibility</mat-icon>
+                    <mat-icon [routerLink]='["/users", user.id, "delete"]'>close</mat-icon>
+                    <mat-icon [routerLink]='["/users", user.id, "inactivate"]' *ngIf='user.isActive'>lock</mat-icon>
+                    <mat-icon [routerLink]='["/users", user.id, "inactivate"]' *ngIf='user.isActive === false'>lock_open</mat-icon>
+                  </td>           
                 </ng-container>
               </tr>
               </tbody>

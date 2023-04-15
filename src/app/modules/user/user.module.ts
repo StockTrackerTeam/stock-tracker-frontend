@@ -13,12 +13,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormErrorsModule } from 'src/shared/components/form-errors/form-errors.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { UserDataComponent } from './user-data/user-data.component';
+import { DeleteUserComponent } from './user-delete/user-delete.component';
+import { InactivateUserComponent } from './user-inactivate/user-inactivate.component';
 
 
 @NgModule({
   declarations: [
     UserListComponent,
-    NewUserComponent
+    NewUserComponent,
+    UserDataComponent,
+    DeleteUserComponent,
+    InactivateUserComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +38,8 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     FormErrorsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule
   ]
 })
 export class UserModule { }
