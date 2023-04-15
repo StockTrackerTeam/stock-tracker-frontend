@@ -21,6 +21,12 @@
     "no-users-created": "Todavía no se ha creado ningún usuario"
   },
   "NewUserComponent": {
+    "title": "Crear Usuario",
+    "userData": "Datos de Cuenta",
+    "username-field": "Nombre de usuario",
+    "role": "Rol de usuario",
+    "password": "Contraseña",
+    "confirm-password": "Confirmar contraseña",
     "username-and-email-already-registered": "Nombre de usuario y Email ya registrados.",
     "username-already-registered": "Nombre de usuario ya registrado, intente con uno diferente.",
     "email-already-registered": "Nombre de email ya registrado, intente con uno diferente.",
@@ -38,5 +44,13 @@
   },
   "ProviderListComponent": {
     "title": "Proveedores"
+  },
+  "form-errors": {
+    "required": "El campo # es requerido.",
+    "username-min-length": "El nombre usuario debe contener como mínimo 6 caracteres.",
+    "username-max-length": "El nombre usuario debe contener como máximo 20 caracteres.",
+    "password-min-length": "La contraseña debe contener como mínimo 8 caracteres.",
+    "password-max-length": "La contraseña debe contener como máximo 20 caracteres.",
+    "password-not-match": "Las contraseñas deben coincidir"
   }
 }

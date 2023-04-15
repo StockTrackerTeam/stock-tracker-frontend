@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormErrorsModule } from 'src/shared/components/form-errors/form-errors.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
+import { FormSelectModule } from 'src/shared/controls/form-select/form-select.module';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     FormErrorsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDividerModule,
+    FormSelectModule
   ]
 })
 export class UserModule { }

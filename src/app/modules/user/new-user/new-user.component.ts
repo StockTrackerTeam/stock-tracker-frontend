@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { noop, tap } from 'rxjs';
+import { Observable, noop, tap } from 'rxjs';
 import { RoleEntity } from 'src/app/core/models';
 import { NotificationService } from 'src/app/core/rest/services/notification.service';
 import { RoleService } from 'src/app/core/rest/services/role.service';
@@ -17,7 +17,45 @@ export class NewUserComponent implements OnInit {
   registerForm!: FormGroup;
   errorMessage = '';
   loading = false;
-  roleList!: RoleEntity[];
+  roles$!: Observable<RoleEntity[]>;
+  customUsernameErrorMsgs = [
+    {
+      key: 'minlength',
+      customKey: 'username-min-length'
+    },
+    {
+      key: 'maxlength',
+      customKey: 'username-max-length'
+    }
+  ];
+  customPasswordErrorMsgs = [
+    {
+      key: 'minlength',
+      customKey: 'password-min-length'
+    },
+    {
+      key: 'maxlength',
+      customKey: 'password-max-length'
+    }
+  ];
+  customConfirmPasswordErrorMsgs = [
+    {
+      key: 'minlength',
+      customKey: 'password-min-length'
+    },
+    {
+      key: 'maxlength',
+      customKey: 'password-max-length'
+    },
+    {
+      key: 'password-not-match',
+      customKey: 'password-not-match'
+    }
+  ];
+
+  get role(): FormControl {
+    return this.registerForm.get('role') as FormControl;
+  }
 
   constructor (
     private readonly formBuilder: FormBuilder,
@@ -82,28 +120,49 @@ export class NewUserComponent implements OnInit {
           ],
           updateOn: 'change'
       }),
-      roleId: new FormControl('', {
+      role: new FormControl('', {
           validators: [
             Validators.required
           ],
           updateOn: 'change'
       })
-    })
+    });
+
+    this.registerForm.get('confirmPassword')?.valueChanges
+      .pipe(
+        tap(value => {
+          const passwordValue = this.registerForm.get('password')?.value;
+          if (passwordValue !== value) 
+            this.registerForm.get('confirmPassword')?.setErrors({'password-not-match': true});          
+        })
+      )
+      .subscribe({
+        next: noop,
+        error: err => console.log(err)
+      });
+
+      this.registerForm.get('password')?.valueChanges
+      .pipe(
+        tap(value => {
+          const confirmPasswordValue = this.registerForm.get('confirmPassword')?.value;
+          if (confirmPasswordValue !== value) {
+            this.registerForm.get('confirmPassword')?.setErrors({'password-not-match': true});
+          } else {
+            this.registerForm.get('confirmPassword')?.setErrors({'password-not-match': null});
+            this.registerForm.get('confirmPassword')?.updateValueAndValidity();
+          }
+        })
+      )
+      .subscribe({
+        next: noop,
+        error: err => console.log(err)
+      });
   }
 
   ngOnInit(): void {
     this.buildRegisterForm()
 
-    this.roleService.getRoles()
-      .pipe(
-        tap(data => 
-          this.roleList = data
-        )
-      )
-      .subscribe({
-        next: noop,
-        error: err => this.errorMessage = err
-      })
+    this.roles$ = this.roleService.getRoles();
   }
 
   getControlValue (controlName: string): string {
@@ -125,7 +184,7 @@ export class NewUserComponent implements OnInit {
     const confirmEmail = this.getControlValue('confirmEmail');
     const data = {
       ...this.registerForm.value,
-      roleId: Number(this.getControlValue('roleId')),
+      roleId: Number(this.getControlValue('role')),
       email: email === '' ? undefined : email,
       confirmEmail: confirmEmail === '' ? undefined : confirmEmail
     }

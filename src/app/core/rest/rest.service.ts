@@ -14,4 +14,19 @@ export class RestService<T extends BaseEntity> {
   ) {
     this.url = `${this.baseUrl}/${this.resource}`
   }
+
+  protected buildURL(): string {
+    return `${this.baseUrl}/${this.resource}`;
+  }
+
+  all(): Observable<Array<T>> {
+    return this.http.get<Array<T>>(this.buildURL())
+      .pipe(
+        map(response => this.mapArray(response))
+      );
+  }
+
+  mapArray(value: any): Array<T> {
+    return value.data.result;
+  }
 }

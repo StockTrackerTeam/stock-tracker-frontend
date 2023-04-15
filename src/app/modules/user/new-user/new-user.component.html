@@ -1,26 +1,75 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
-
-  <p class="h4 mb-4">Sign up</p>
-
-  <input type="text" formControlName="username" id="defaultRegisterFormUsername" class="form-control" placeholder="Username"
-          [class.field-error]='registerForm.controls["username"].invalid  && (registerForm.controls["username"].dirty || registerForm.controls["username"].touched)'>
-  <div [hidden]='registerForm.controls["username"].valid || registerForm.controls["username"].untouched'
-        class='alert alert-danger'>
-    Enter a valid Username.
+<div class="new-user-container" fxLayout="column">
+  <div fxFlex="50%">
+    <h1 class="page-header">{{ 'NewUserComponent.title' | translate }}</h1>
   </div>
 
-  <input type="password" formControlName="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
-          [class.field-error]='registerForm.controls["password"].invalid  && (registerForm.controls["password"].dirty || registerForm.controls["password"].touched)'>
-  <div [hidden]='registerForm.controls["password"].valid || registerForm.controls["password"].untouched'
-        class='alert alert-danger'>
-    Password must have a minimun of 8 characters, at least one lowercase letter, one uppercase and a number.
+  <div>
+    <div *ngIf="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()" fxLayout="column" fxFlex="50">
+      <div fxLayout="column" fxFlex="100" style="margin-top: 3%; width: 100%">
+        <label class="label-title">{{ 'NewUserComponent.userData' | translate }}</label>
+        <mat-divider class="form-group-divider"></mat-divider>
+
+        <div>
+          <div fxLayout="row">
+            <div class="input-container" fxFlex="50%" style="width: 100%">
+              <mat-form-field class="input" appearance="outline">
+                <mat-label>{{ 'NewUserComponent.username-field' | translate }}</mat-label>
+                <input matInput type="text" autocomplete="off" formControlName="username">
+                <app-form-errors
+                  fieldName="{{ 'NewUserComponent.username-field' | translate }}"
+                  [control]="registerForm.get('username')"
+                  [customErrorMsg]="customUsernameErrorMsgs"
+                >
+                </app-form-errors>
+              </mat-form-field>
+            </div>
+            <app-form-select 
+              *ngIf="role"
+              [items]="roles$ | async"
+              [formControl]="role"
+              valueKey="id"
+              optionKey="label"
+            >
+              <mat-label label-content>{{ 'NewUserComponent.role' | translate }}</mat-label>
+              <app-form-errors error-content fieldName="{{ 'NewUserComponent.role' | translate }}" [control]="registerForm.get('role')"></app-form-errors>
+            </app-form-select>            
+          </div>
+
+          <div fxLayout="row">
+            <div class="input-container" fxFlex="50%" style="width: 100%">
+              <mat-form-field class="input" appearance="outline">
+                <mat-label>{{ 'NewUserComponent.password' | translate }}</mat-label>
+                <input matInput type="password" autocomplete="off" formControlName="password">
+                <app-form-errors
+                  fieldName="{{ 'NewUserComponent.password' | translate }}"
+                  [control]="registerForm.get('password')"
+                  [customErrorMsg]="customPasswordErrorMsgs"
+                >
+                </app-form-errors>
+              </mat-form-field>
+            </div>
+
+            <div class="input-container" fxFlex="50%" style="width: 100%">
+              <mat-form-field class="input" appearance="outline">
+                <mat-label>{{ 'NewUserComponent.confirm-password' | translate }}</mat-label>
+                <input matInput type="password" autocomplete="off" formControlName="confirmPassword">
+                <app-form-errors
+                  fieldName="{{ 'NewUserComponent.confirm-password' | translate }}"
+                  [control]="registerForm.get('confirmPassword')"
+                  [customErrorMsg]="customPasswordErrorMsgs"
+                >
+                </app-form-errors>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <input type="password" formControlName="confirmPassword" id="defaultRegisterFormConfirmPassword" class="form-control" placeholder="Confirm Password"
-          [class.field-error]='registerForm.controls["confirmPassword"].invalid  && (registerForm.controls["confirmPassword"].dirty || registerForm.controls["confirmPassword"].touched)'>
-  <div [hidden]='registerForm.controls["confirmPassword"].value === registerForm.controls["password"].value || registerForm.controls["confirmPassword"].untouched'
-        class='alert alert-danger'>
-    Passwords must match.
-  </div>
+</div>
+
+<!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
+
 
   <div class="form-row mb-4">
       <div class="col">
@@ -45,20 +94,9 @@
     Email does not match.   
   </div>
 
-  
-  <select formControlName="roleId" id="defaultRegisterFormRoleId" class="form-control" placeholder="Role ID">
-    <option *ngFor='let role of roleList' [value]='role.id'>
-      {{ role.label }}
-    </option>
-  </select>
-  <div [hidden]='registerForm.controls["roleId"].valid || registerForm.controls["roleId"].untouched'
-        class='alert alert-danger'>
-    Please, select a role.
-  </div>
-
   <button class="btn btn-info my-4 btn-block" type="submit">Submit</button>
 
   <hr>
   <div class="reminder-note">*Password must have a minimum of 8 characters alpha-numerics, including at least one uppercase letter.</div>
 
-</form>
+</form> -->

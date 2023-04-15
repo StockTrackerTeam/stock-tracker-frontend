@@ -12,7 +12,7 @@ export class FormErrorsComponent implements OnInit, OnDestroy, OnChanges {
   @Input() control!: FormControl | AbstractControl | null;
   @Input() fieldName!: string;
   @Input() type: 'small' | 'mat' | 'none' = 'mat';
-  @Input() customErrorMsg: { key: string, customKey: string } | null = null;
+  @Input() customErrorMsg: Array<{ key: string, customKey: string }> | null = null;
 
   subscription!: Subscription;
 
@@ -52,8 +52,9 @@ export class FormErrorsComponent implements OnInit, OnDestroy, OnChanges {
       // Loop through errors, first match gets shown.
       for (const keyError of keys) {
         if (this.customErrorMsg) {
-          if (keyError === this.customErrorMsg.key) {
-            return this.errorMessages.getFormErrorMessage(this.customErrorMsg.customKey);
+          const customKey = (this.customErrorMsg.find(item => item.key === keyError))?.customKey;          
+          if (customKey) {
+            return this.errorMessages.getFormErrorMessage(customKey);
           } else {
             return this.getErrorMsg(keyError);
           }
