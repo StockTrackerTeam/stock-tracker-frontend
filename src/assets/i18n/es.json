@@ -44,7 +44,8 @@
     "successNotificationTitle": "¡Todo salio según lo planeado!",
     "errorNotificationTitle": "¡Hubo un problema!",
     "errorNotificationMessage": "Por favor, revisa que las casillas requeridas estén completadas correctamente.",
-    "submit": "Enviar"
+    "submit": "Crear",
+    "cancel": "Cancelar"
   },
   "ProviderListComponent": {
     "title": "Proveedores"

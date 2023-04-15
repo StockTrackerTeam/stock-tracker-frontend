@@ -207,7 +207,7 @@ export class NewUserComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this.buildRegisterForm()
 
     this.roles$ = this.roleService.getRoles();
@@ -217,7 +217,11 @@ export class NewUserComponent implements OnInit {
     return this.registerForm.controls[controlName].value;
   }
 
-  onSubmit(): void {
+  onCancel (): void {
+    this.router.navigate(['/users']);
+  }
+
+  onSubmit (): void {
     if (this.registerForm?.invalid) {
       const notificationTitle = this.translate.instant('NewUserComponent.errorNotificationTitle');
       const notificationMessage = this.translate.instant('NewUserComponent.errorNotificationMessage');
@@ -243,8 +247,6 @@ export class NewUserComponent implements OnInit {
           this.loading = false;
           const notificationTitle = this.translate.instant('NewUserComponent.successNotificationTitle');
           const notificationMessage = this.translate.instant('NewUserComponent.' + result.resultKeys);
-          console.log(('PRUEBA2'));
-          
 
           this.notificationService.showSuccess(notificationMessage, notificationTitle);
           this.router.navigate(['/users']);

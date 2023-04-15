@@ -4,7 +4,7 @@
   </div>
 
   <div>
-    <form *ngIf="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()" fxLayout="column" fxFlex="50">
+    <div *ngIf="registerForm" [formGroup]="registerForm" fxLayout="column" fxFlex="50">
       <div fxLayout="column" fxFlex="100" style="margin-top: 3%; width: 100%">
         <label class="label-title">{{ 'NewUserComponent.userData' | translate }}</label>
         <mat-divider class="form-group-divider"></mat-divider>
@@ -122,11 +122,19 @@
         </div>
 
         <mat-divider class="form-group-divider"></mat-divider>
-        <div fxLayout='row' fxFlex="50%" style="width: 25%">
-          <button class="btn btn-info my-4 btn-block" type="submit">{{ 'NewUserComponent.submit' | translate }}</button>
+        <div fxLayout="row" fxLayoutAlign="flex-end" fxFlex="50%">
+          <button 
+            stPrimaryBtn
+            (click)="onSubmit()"
+            [disabled]='registerForm.invalid'
+            style="margin-right: 15px;"
+          >
+            {{ 'NewUserComponent.submit' | translate }}
+          </button>
+          <button stGhostBtn (click)='onCancel()'>{{ 'NewUserComponent.cancel' | translate }}</button>
         </div>
       </div>
-    </form>
+    </div>
   </div>
 </div>
 
