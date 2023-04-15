@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { FormSelectModule } from 'src/shared/controls/form-select/form-select.module';
+import { CollapsibleActionBarModule } from 'src/shared/components/collapsible-action-bar/collapsible-action-bar.module';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { FormSelectModule } from 'src/shared/controls/form-select/form-select.mo
     MatFormFieldModule,
     MatInputModule,
     MatDividerModule,
-    FormSelectModule
+    FormSelectModule,
+    CollapsibleActionBarModule
   ]
 })
 export class UserModule { }

@@ -1,0 +1,34 @@
+@import '../../../app/styles/ng-mixins';
+@import '../../../app/styles/ng-variables';
+
+.collapsible-action-bar {
+  &__expanded-bar {
+    display: var(--collapsible-action-bar__expanded-bar__display);
+
+    &--collapse-disabled {
+      display: flex;
+    }
+  }
+
+  &__collapsed-bar {
+    display: var(--collapsible-action-bar__collapsed-bar__display);
+    padding-left: 12px;
+
+    &__item {
+      color: $st-black;
+
+      &:disabled {
+        color: lighten($st-black, 50%);
+      }
+
+      &:hover {
+        background-color: $st-grey-300;
+      }
+
+      .mat-icon {
+        margin-right: 10px;
+        @include font-xl;
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<ng-template 
+  cdkConnectedOverlay
+  cdkConnectedOverlayLockPosition
+  [cdkConnectedOverlayOpen]="isOpen"
+  [cdkConnectedOverlayOrigin]="origin"
+  [cdkConnectedOverlayMinWidth]="0"
+  [cdkConnectedOverlayPositions]="positions"
+>
+  <div class="st-menu">
+    <ng-content></ng-content>
+  </div>
+</ng-template>

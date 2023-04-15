@@ -14,11 +14,16 @@
       "name": "NOMBRE",
       "email": "EMAIL",
       "role": "ROL",
-      "status": "ESTADO"
+      "status": "ESTADO",
+      "actions": "ACCIONES"      
     },
     "statusActive": "ACTIVO",
     "statusInactive": "INACTIVO",
-    "no-users-created": "Todavía no se ha creado ningún usuario"
+    "no-users-created": "Todavía no se ha creado ningún usuario",
+    "view-user": "Ver información de usario",
+    "remove-user": "Eliminar usuario",
+    "disable-user": "Deshabilitar usuario",
+    "enable-user": "Habilitar usuario"
   },
   "NewUserComponent": {
     "title": "Crear Usuario",

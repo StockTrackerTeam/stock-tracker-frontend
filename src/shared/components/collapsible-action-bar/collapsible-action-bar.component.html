@@ -1,0 +1,40 @@
+<div class="collapsible-action-bar" fxLayout="row" fxLayoutAlign="left">
+  <div class="collapsible-action-bar__expanded-bar" [class.collapsible-action-bar__expanded-bar--collapse-disabled]="disableCollapse">
+    <ng-container *ngFor="let action of inlineActions">
+      <button
+        *ngIf="action.show(row)"
+        type="button"
+        mat-icon-button
+        [attr.aria-label]="action.description"
+        [matTooltip]="action.description"
+        [disabled]="action.disableCriteria(row)"
+        [ngStyle]="action.customStyles"
+        (click)="action.onClick(row)"
+      >
+        <mat-icon>{{ action.icon }}</mat-icon>
+      </button>
+    </ng-container>
+  </div>
+  <div class="collapsible-action-bar__collapsed-bar" *ngIf="!disableCollapse">
+    <app-menu-ellipsis [menu]="actionMenu"></app-menu-ellipsis>
+    <app-menu #actionMenu>
+      <ng-container *ngFor="let action of inlineActions">
+        <button
+          *ngIf="action.show(row)"
+          class="collapsible-action-bar__collapsed-bar__item"
+          fxLayoutAlign="start center"
+          type="button"
+          stIconBtn=""
+          [disabled]="action.disableCriteria(row)"
+          [ngStyle]="action.customStyles"
+          (click)="action.onClick(row)"
+        >
+          <mat-icon fxLayout="row" fxLayoutAlign="center center" class="action-icon" inline="true">
+            {{ action.icon }}
+          </mat-icon>
+          {{ action.description }}
+        </button>
+      </ng-container>
+    </app-menu>
+  </div>
+</div>

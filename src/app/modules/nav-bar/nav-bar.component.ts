@@ -1,6 +1,4 @@
-import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { UserEntity } from 'src/app/core/models';
 import { AuthService } from 'src/app/core/rest/services/auth.service';
 import { Roles } from 'src/shared/utils/enums';
 
@@ -9,8 +7,7 @@ import { Roles } from 'src/shared/utils/enums';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit {
-  currentUser!: UserEntity;
+export class NavBarComponent {
 
   constructor (
     private readonly authService: AuthService
@@ -20,7 +17,7 @@ export class NavBarComponent implements OnInit {
     const admittedRoles = [
       Roles.ADMIN
     ];
-    return this.authService.checkUserPermissions(admittedRoles, this.currentUser.roleId);
+    return this.authService.checkUserPermissions(admittedRoles);
   }
 
   get canAccessProviderModule (): boolean {
@@ -28,10 +25,6 @@ export class NavBarComponent implements OnInit {
       Roles.ADMIN,
       Roles.EMPLOYEE
     ];
-    return this.authService.checkUserPermissions(admittedRoles, this.currentUser.roleId);
-  }
-  
-  ngOnInit(): void {
-    this.currentUser = JSON.parse(localStorage.getItem('user') as string);
+    return this.authService.checkUserPermissions(admittedRoles);
   }
 }

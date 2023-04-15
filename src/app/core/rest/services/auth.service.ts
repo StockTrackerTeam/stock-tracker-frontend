@@ -31,7 +31,8 @@ export class AuthService {
       )
   }
 
-  checkUserPermissions (roles: Roles[], roleId: number): boolean {
-    return roles.includes(roleId);
+  checkUserPermissions (roles: Roles[]): boolean {
+    const user: UserEntity = JSON.parse(localStorage.getItem('user') as string);
+    return roles.includes(user.roleId);
   }
 }
