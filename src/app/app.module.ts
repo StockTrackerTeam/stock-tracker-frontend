@@ -12,12 +12,14 @@ import { NavBarComponent } from './modules/nav-bar/nav-bar.component';
 import { MaterialModule } from 'src/shared/material/material.module';
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 import { ToastrModule } from 'ngx-toastr';
+import { UserViewComponent } from './modules/user-view/user-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavBarComponent
+    NavBarComponent,
+    UserViewComponent
   ],
   imports: [
     BrowserModule,
