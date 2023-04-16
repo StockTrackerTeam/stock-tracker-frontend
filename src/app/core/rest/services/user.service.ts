@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -33,6 +33,20 @@ export class UserService {
 
   createUser (newUser: UserCreateDTO): Observable<IUserResponse> {
     return this.http.post<any>(`${this.baseUrl}/users/`, newUser)
+      .pipe(
+        map(response => response)
+      )
+  }
+
+  deleteUser (id: number): Observable<IUserResponse> {
+    return this.http.delete<any>(`${this.baseUrl}/users/${id}`)
+      .pipe(
+        map(response => response)
+      )
+  }
+
+  changeUserState (id: number): Observable<IUserResponse> {
+    return this.http.patch<any>(`${this.baseUrl}/users/${id}/state`, {})
       .pipe(
         map(response => response)
       )

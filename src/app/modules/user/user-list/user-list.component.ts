@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { noop, Subscription, tap } from 'rxjs';
 import { UserEntity } from 'src/app/core/models/user-entity.model';
 import { AuthService } from 'src/app/core/rest/services/auth.service';
+import { NotificationService } from 'src/app/core/rest/services/notification.service';
 import { UserService } from 'src/app/core/rest/services/user.service';
 import { alwaysEnabled, InlineActions } from 'src/shared/components/collapsible-action-bar/collapsible-action-bar.model';
 import { Roles } from 'src/shared/utils/enums';
@@ -61,42 +62,114 @@ export class UserListComponent {
     return this.authenticationService.checkUserPermissions(admittedRoles);
   }
 
-  private canDisableUser(): boolean {
+  private canDisableUser(user: UserEntity): boolean {
     const admittedRoles = [Roles.ADMIN];
-    return this.authenticationService.checkUserPermissions(admittedRoles);
+    
+    if (!this.authenticationService.checkUserPermissions(admittedRoles)) {
+      return false;
+    }
+    return user.isActive ? true : false;
   }
 
-  private canEnableUser(): boolean {
+  private canEnableUser(user: UserEntity): boolean {
     const admittedRoles = [Roles.ADMIN];
-    return this.authenticationService.checkUserPermissions(admittedRoles);
+    if (!this.authenticationService.checkUserPermissions(admittedRoles)) {
+      return false;
+    }
+    return user.isActive ? false : true;
   }
 
-  private handleViewUser(): void {
-    console.log('view')
+  private handleViewUser(user: UserEntity): void {
+    this.router.navigate(['users', user.id, 'view'])
   }
 
-  private handleDeleteUser(): void {
-    console.log('delete')
+  private handleDeleteUser(user: UserEntity): void {
+    this.loading = true;
+    this.userService.deleteUser(user.id)
+      .pipe(
+        tap((result) => {
+          this.loading = false;
+          this.onSuccess('UserListComponent.successNotificationTitle', 'UserListComponent.delete.' + result.resultKeys);
+        })
+      )
+      .subscribe({
+        next: noop,
+        error: (err) => {
+          this.loading = false;
+          this.onFailure('UserListComponent.errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
+        }
+      })
   }
 
-  private handleDisableUser(): void {
-    console.log('disable')
+  private handleDisableUser(user: UserEntity): void {
+    this.loading = true;
+    this.userService.changeUserState(user.id)
+      .pipe(
+        tap((result) => {
+          this.loading = false;
+          this.onSuccess('UserListComponent.successNotificationTitle', 'UserListComponent.inactivate.' + result.resultKeys)
+        })
+      )
+      .subscribe({
+        next: noop,
+        error: (err) => {
+          this.loading = false;
+          this.onFailure('UserListComponent.errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
+        }
+      })
   }
 
-  private handleEnableUser(): void {
-    console.log('enable')
+  private handleEnableUser(user: UserEntity): void {
+    this.loading = true;
+    this.userService.changeUserState(user.id)
+      .pipe(
+        tap((result) => {
+          this.loading = false;
+          this.onSuccess('UserListComponent.successNotificationTitle', 'UserListComponent.activate.' + result.resultKeys)
+        })
+      )
+      .subscribe({
+        next: noop,
+        error: (err) => {
+          this.loading = false;
+          this.onFailure('UserListComponent.errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
+        }
+      })
   }
 
   constructor (
     private readonly userService: UserService,
     private readonly router: Router,
     private readonly translateService: TranslateService,
-    private readonly authenticationService: AuthService
+    private readonly authenticationService: AuthService,
+    private readonly translate: TranslateService,
+    private readonly notificationService: NotificationService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this.loading = true;
-    this.sub = this.userService.getUsers().pipe(
+    this.sub = this.getUsers()
+  }
+
+  onSuccess (title: string, message: string): void {
+    const notificationTitle = this.translate.instant(title);
+    const notificationMessage = this.translate.instant(message);
+
+    this.notificationService.showSuccess(notificationMessage, notificationTitle);
+
+    this.loading = true;
+    this.getUsers();
+  }
+
+  onFailure (title: string, message: string): void {
+    const notificationTitle = this.translate.instant(title);
+    const notificationMessage = this.translate.instant(message);
+
+    this.notificationService.showError(notificationMessage, notificationTitle);
+  }
+
+  getUsers (): Subscription {
+    return this.userService.getUsers().pipe(
       tap(data => {
         this.usersList = data;
         this.loading = false;
@@ -107,11 +180,11 @@ export class UserListComponent {
     });
   }
 
-  handleNewUser() {
+  handleNewUser (): void {
     this.router.navigate(['users', 'create']);
   }
 
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
+  ngOnDestroy (): void { 
+    this.sub.unsubscribe;
   }
 }

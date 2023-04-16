@@ -23,7 +23,20 @@
     "view-user": "Ver información de usario",
     "remove-user": "Eliminar usuario",
     "disable-user": "Deshabilitar usuario",
-    "enable-user": "Habilitar usuario"
+    "enable-user": "Habilitar usuario",
+    "successNotificationTitle": "¡Todo salio según lo planeado!",
+    "errorNotificationTitle": "¡Hubo un problema!",
+    "delete": {
+      "ok": "El usuario ha sido eliminado exitosamente!"
+    },
+    "activate": {
+      "ok": "El usuario ha sido habilitado exitosamente!"
+    },
+    "inactivate": {
+      "ok": "El usuario ha sido deshabilitado exitosamente!"
+    },
+    "user-not-found": "Usuario no encontrado.",
+    "undefined": "Usuario no encontrado."
   },
   "NewUserComponent": {
     "title": "Crear Usuario",
