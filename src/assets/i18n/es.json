@@ -79,5 +79,9 @@
     "lastName-min-length": "El apellido debe contener 2 caracteres o más.",
     "email": "Ingrese un email valido.",
     "email-not-match": "El email debe coincidir."
+  },
+  "UserDropdownComponent": {
+    "account-settings": "Configuración",
+    "logout": "Cerrar sesión"
   }
 }

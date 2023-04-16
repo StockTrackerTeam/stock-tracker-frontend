@@ -16,12 +16,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { FormSelectModule } from 'src/shared/controls/form-select/form-select.module';
 import { CollapsibleActionBarModule } from 'src/shared/components/collapsible-action-bar/collapsible-action-bar.module';
+import { UserSettingsComponent } from './user-settings/user-settings.component';
 
 
 @NgModule({
   declarations: [
     UserListComponent,
-    NewUserComponent
+    NewUserComponent,
+    UserSettingsComponent
   ],
   imports: [
     CommonModule,

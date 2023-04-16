@@ -13,6 +13,8 @@ import { MaterialModule } from 'src/shared/material/material.module';
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { UserViewComponent } from './modules/user-view/user-view.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { UserDropdownModule } from 'src/shared/modules/user-dropdown/user-dropdown.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { UserViewComponent } from './modules/user-view/user-view.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatToolbarModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
@@ -36,7 +39,8 @@ import { UserViewComponent } from './modules/user-view/user-view.component';
         deps: [HttpClient]
       }
     }),
-    MaterialModule
+    MaterialModule,
+    UserDropdownModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

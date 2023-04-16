@@ -1,0 +1,19 @@
+<div class="current-user-info">
+  <div class="menu-trigger-content">
+    <button type="button" class="user-dropdown-button" [matMenuTriggerFor]="actionMenu"><mat-icon>account_circle</mat-icon></button>
+  </div>
+  <mat-menu #actionMenu>
+    <div class="action-menu">
+      <span class="user-name">{{ currentUserFullName }}</span>
+      <span class="user-company-name">A&A Dietetica</span>
+      <a
+        mat-list-item
+        class="nav-link"
+        [routerLink]="['/user-settings']"
+      >
+        <div class="nav-link-text">{{ 'UserDropdownComponent.account-settings' | translate }}</div>
+      </a>
+      <button type="button" (click)="logout()">{{ 'UserDropdownComponent.logout' | translate }}</button>
+    </div>
+  </mat-menu>
+</div>
