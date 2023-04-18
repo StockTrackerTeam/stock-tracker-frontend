@@ -1,0 +1,112 @@
+<div class="user-view-container" fxLayout="column">
+  <div fxFlex="50%">
+    <h1 class="page-header">{{ 'UserViewComponent.title' | translate }}</h1>
+  </div>
+
+  <div>
+    <div *ngIf="userDataForm" [formGroup]="userDataForm" fxLayout="column" fxFlex="50">
+      <div fxLayout="column" fxFlex="100" style="margin-top: 3%; width: 100%">
+        <label class="label-title">{{ 'UserViewComponent.userData' | translate }}</label>
+        <mat-divider class="form-group-divider"></mat-divider>
+
+        <div>
+          <div fxLayout="row">
+            <div class="input-container" fxFlex="50%" style="width: 100%">
+              <mat-form-field class="input" appearance="outline">
+                <mat-label>{{ 'UserViewComponent.username-field' | translate }}</mat-label>
+                <input matInput type="text" formControlName="username" readonly>
+              </mat-form-field>
+            </div>
+
+            <div class="input-container" fxFlex="50%" style="width: 100%">
+              <mat-form-field class="input" appearance="outline">
+                <mat-label>{{ 'UserViewComponent.role-field' | translate }}</mat-label>
+                <input matInput type="text" formControlName="role" readonly>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div fxLayout="row">
+            <div class="input-container" fxFlex="50%" style="width: 100%">
+              <mat-form-field class="input" appearance="outline">
+                <mat-label>{{ 'UserViewComponent.isActive-field' | translate }}</mat-label>
+                <mat-slide-toggle
+                  class="example-margin"
+                  [color]="toggleColor"
+                  [checked]="currentUser.isActive ? true : false"
+                  [disabled]="disableToggleSlide()"
+                  (change)="handleUserStatus()"
+                  labelPosition="before"
+                  style="margin-right: 30px;"
+                >
+                <input
+                  matInput
+                  type="text"
+                  formControlName="isActive"
+                  readonly
+                  style="margin-top: 7px; margin-left: 30px;">
+                </mat-slide-toggle>
+              </mat-form-field>
+              <!-- <ng-container *ngFor="let action of userActions">
+                <button
+                  *ngIf="action.show(currentUser)"
+                  type="button"
+                  mat-icon-button
+                  [attr.aria-label]="action.description"
+                  [disabled]="action.disableCriteria(currentUser)"
+                  [ngStyle]="action.customStyles"
+                  (click)="action.onClick(currentUser)"
+                  style="position: absolute; margin-left: 5px; margin-top: 5px;"
+                >
+                  <mat-icon>{{ action.icon }}</mat-icon>
+                </button>
+              </ng-container> -->
+            </div>
+          </div>
+        </div>
+
+        <label class="label-title">{{ 'UserViewComponent.personalData' | translate }}</label>
+        <mat-divider class="form-group-divider"></mat-divider>
+
+        <div fxLayout="row">
+          <div class="input-container" fxFlex="50%" style="width: 100%">
+            <mat-form-field class="input" appearance="outline">
+              <mat-label>{{ 'UserViewComponent.firstName-field' | translate }}</mat-label>
+              <input matInput type="text" formControlName="firstName" readonly>
+            </mat-form-field>
+          </div>
+
+          <div class="input-container" fxFlex="50%" style="width: 100%">
+            <mat-form-field class="input" appearance="outline">
+              <mat-label>{{ 'UserViewComponent.lastName-field' | translate }}</mat-label>
+              <input matInput type="text" formControlName="lastName" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <label class="label-title">{{ 'UserViewComponent.contactData' | translate }}</label>
+        <mat-divider class="form-group-divider"></mat-divider>
+
+        <div fxLayout="row">
+          <div class="input-container" fxFlex="50%" style="width: 100%">
+            <mat-form-field class="input" appearance="outline">
+              <mat-label>{{ 'UserViewComponent.email-field' | translate }}</mat-label>
+              <input matInput type="text" formControlName="email" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <mat-divider class="form-group-divider"></mat-divider>
+        <div fxLayout="row" fxFlex="50%">
+          <button 
+            stPrimaryBtn
+            (click)="onCancel()"
+            style="margin-right: 15px;"
+          >
+          {{ 'UserViewComponent.goBack' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

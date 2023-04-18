@@ -30,6 +30,13 @@ export class UserService {
         catchError(err => throwError(() => new Error(err)))
       )
   }
+  
+  getUser (id: number): Observable<UserEntity> {
+    return this.http.get<any>(`${this.baseUrl}/users/${id}`)
+      .pipe(
+        map(response => response.data.result)
+      )
+  }
 
   createUser (newUser: UserCreateDTO): Observable<IUserResponse> {
     return this.http.post<any>(`${this.baseUrl}/users/`, newUser)
