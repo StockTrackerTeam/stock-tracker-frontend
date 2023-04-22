@@ -1,5 +1,5 @@
-import { HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { noop, Subscription, tap } from 'rxjs';
@@ -15,7 +15,7 @@ import { Roles } from 'src/shared/utils/enums';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
-export class UserListComponent {
+export class UserListComponent implements OnInit, OnDestroy {
   usersList: UserEntity[] = [];
   errorMessage: string = '';
   sub!: Subscription;
@@ -142,7 +142,6 @@ export class UserListComponent {
     private readonly router: Router,
     private readonly translateService: TranslateService,
     private readonly authenticationService: AuthService,
-    private readonly translate: TranslateService,
     private readonly notificationService: NotificationService
   ) {}
 
@@ -152,8 +151,8 @@ export class UserListComponent {
   }
 
   onSuccess (title: string, message: string): void {
-    const notificationTitle = this.translate.instant(title);
-    const notificationMessage = this.translate.instant(message);
+    const notificationTitle = this.translateService.instant(title);
+    const notificationMessage = this.translateService.instant(message);
 
     this.notificationService.showSuccess(notificationMessage, notificationTitle);
 
@@ -162,8 +161,8 @@ export class UserListComponent {
   }
 
   onFailure (title: string, message: string): void {
-    const notificationTitle = this.translate.instant(title);
-    const notificationMessage = this.translate.instant(message);
+    const notificationTitle = this.translateService.instant(title);
+    const notificationMessage = this.translateService.instant(message);
 
     this.notificationService.showError(notificationMessage, notificationTitle);
   }

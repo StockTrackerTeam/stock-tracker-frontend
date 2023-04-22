@@ -17,13 +17,18 @@ import { MatDividerModule } from '@angular/material/divider';
 import { FormSelectModule } from 'src/shared/controls/form-select/form-select.module';
 import { CollapsibleActionBarModule } from 'src/shared/components/collapsible-action-bar/collapsible-action-bar.module';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { UserViewComponent } from './user-view/user-view.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
   declarations: [
     UserListComponent,
     NewUserComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    UserViewComponent
   ],
   imports: [
     CommonModule,
@@ -38,8 +43,11 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
     MatFormFieldModule,
     MatInputModule,
     MatDividerModule,
+    MatIconModule,
+    MatButtonModule,
     FormSelectModule,
-    CollapsibleActionBarModule
+    CollapsibleActionBarModule,
+    MatSlideToggleModule
   ]
 })
 export class UserModule { }

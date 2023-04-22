@@ -83,5 +83,21 @@
   "UserDropdownComponent": {
     "account-settings": "Configuración",
     "logout": "Cerrar sesión"
+  },
+  "UserViewComponent": {
+    "title": "Información de Usuario",
+    "userData": "Datos de cuenta",
+    "personalData": "Datos personales",
+    "contactData": "Datos de contacto",
+    "username-field": "Nombre de usuario",
+    "role-field": "Rol",
+    "email-field": "Email",
+    "firstName-field": "Nombre",
+    "lastName-field": "Apellido",
+    "isActive-field": "Estado",
+    "noEmail": "Usuario sin Email",
+    "isActive": "Deshabilitar",
+    "isInactive": "Habilitar",
+    "goBack": "Volver"
   }
 }
