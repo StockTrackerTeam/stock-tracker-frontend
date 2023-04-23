@@ -33,7 +33,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'user-settings',
+    path: 'settings',
     component: UserSettingsComponent
   }
 ];

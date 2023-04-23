@@ -256,14 +256,7 @@ export class NewUserComponent implements OnInit {
         next: noop,
         error: (err) => {       
           this.loading = false;
-          
-          const notificationTitle = this.translate.instant('NewUserComponent.errorNotificationTitle');
-          let notificationMessage = '';
-          for(const key of err.error.resultKeys) {
-            notificationMessage += `<span>${this.translate.instant('NewUserComponent.' + key)}</span> <br />`;
-          }
-          
-          this.notificationService.showError(notificationMessage, notificationTitle);
+          this.notificationService.showErrorNotification('NewUserComponent', err.error.resultKeys);
         }
       })
   }

@@ -23,7 +23,7 @@ export class AuthService {
         map((response: any) => {
           this.token = response.data.token;
           this.currentUser = response.data.result;
-          localStorage.setItem('user', JSON.stringify(response.data.result));
+          this.setCurrentUser(response.data.result);
           localStorage.setItem('token', response.data.token);    
           return this.currentUser;       
         }),
@@ -31,8 +31,16 @@ export class AuthService {
       )
   }
 
+  setCurrentUser (user: UserEntity): void {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  getCurrentUser (): UserEntity {
+    return JSON.parse(localStorage.getItem('user') as string);
+  }
+
   checkUserPermissions (roles: Roles[]): boolean {
-    const user: UserEntity = JSON.parse(localStorage.getItem('user') as string);
+    const user: UserEntity = this.getCurrentUser();
     return roles.includes(user.roleId);
   }
 }
