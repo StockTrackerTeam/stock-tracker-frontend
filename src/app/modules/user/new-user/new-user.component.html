@@ -6,84 +6,89 @@
   <div>
     <div *ngIf="registerForm" [formGroup]="registerForm" fxLayout="column" fxFlex="50">
       <div fxLayout="column" fxFlex="100" style="margin-top: 3%; width: 100%">
-        <label class="label-title">{{ 'NewUserComponent.userData' | translate }}</label>
-        <mat-divider class="form-group-divider"></mat-divider>
+        <app-loading-indicator [isLoading]="loading">
+          <label class="label-title">{{ 'NewUserComponent.userData' | translate }}</label>
+          <mat-divider class="form-group-divider"></mat-divider>
 
-        <div>
+          <div>
+            <div fxLayout="row">
+              <div class="input-container" fxFlex="50%" style="width: 100%">
+                <mat-form-field class="input" appearance="outline">
+                  <mat-label>{{ 'NewUserComponent.username-field' | translate }}</mat-label>
+                  <input matInput type="text" autocomplete="off" formControlName="username">
+                  <app-form-errors
+                    fieldName="{{ 'NewUserComponent.username-field' | translate }}"
+                    [control]="registerForm.get('username')"
+                    [customErrorMsg]="customUsernameErrorMsgs"
+                  >
+                  </app-form-errors>
+                </mat-form-field>
+              </div>
+              <app-form-select 
+                *ngIf="role"
+                [items]="roles$ | async"
+                [formControl]="role"
+                valueKey="id"
+                optionKey="label"
+              >
+                <mat-label label-content>{{ 'NewUserComponent.role-field' | translate }}</mat-label>
+                <app-form-errors
+                  error-content fieldName="{{ 'NewUserComponent.role-field' | translate }}"
+                  [control]="registerForm.get('role')"
+                >
+                </app-form-errors>
+              </app-form-select>            
+            </div>
+
+            <div fxLayout="row">
+              <div class="input-container" fxFlex="50%" style="width: 100%">
+                <mat-form-field class="input" appearance="outline">
+                  <mat-label>{{ 'NewUserComponent.password-field' | translate }}</mat-label>
+                  <input matInput type="password" autocomplete="off" formControlName="password">
+                  <app-form-errors
+                    fieldName="{{ 'NewUserComponent.password-field' | translate }}"
+                    [control]="registerForm.get('password')"
+                    [customErrorMsg]="customPasswordErrorMsgs"
+                  >
+                  </app-form-errors>
+                </mat-form-field>
+              </div>
+
+              <div class="input-container" fxFlex="50%" style="width: 100%">
+                <mat-form-field class="input" appearance="outline">
+                  <mat-label>{{ 'NewUserComponent.confirm-password-field' | translate }}</mat-label>
+                  <input matInput type="password" autocomplete="off" formControlName="confirmPassword">
+                  <app-form-errors
+                    fieldName="{{ 'NewUserComponent.confirm-password-field' | translate }}"
+                    [control]="registerForm.get('confirmPassword')"
+                    [customErrorMsg]="customPasswordErrorMsgs"
+                  >
+                  </app-form-errors>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          
+          <label class="label-title">{{ 'NewUserComponent.personalData' | translate }}</label>
+          <mat-divider class="form-group-divider"></mat-divider>
+          
           <div fxLayout="row">
             <div class="input-container" fxFlex="50%" style="width: 100%">
               <mat-form-field class="input" appearance="outline">
-                <mat-label>{{ 'NewUserComponent.username-field' | translate }}</mat-label>
-                <input matInput type="text" autocomplete="off" formControlName="username">
-                <app-form-errors
-                  fieldName="{{ 'NewUserComponent.username-field' | translate }}"
-                  [control]="registerForm.get('username')"
-                  [customErrorMsg]="customUsernameErrorMsgs"
-                >
-                </app-form-errors>
-              </mat-form-field>
-            </div>
-            <app-form-select 
-              *ngIf="role"
-              [items]="roles$ | async"
-              [formControl]="role"
-              valueKey="id"
-              optionKey="label"
-            >
-              <mat-label label-content>{{ 'NewUserComponent.role-field' | translate }}</mat-label>
-              <app-form-errors error-content fieldName="{{ 'NewUserComponent.role-field' | translate }}" [control]="registerForm.get('role')"></app-form-errors>
-            </app-form-select>            
-          </div>
-
-          <div fxLayout="row">
-            <div class="input-container" fxFlex="50%" style="width: 100%">
-              <mat-form-field class="input" appearance="outline">
-                <mat-label>{{ 'NewUserComponent.password-field' | translate }}</mat-label>
-                <input matInput type="password" autocomplete="off" formControlName="password">
-                <app-form-errors
-                  fieldName="{{ 'NewUserComponent.password-field' | translate }}"
-                  [control]="registerForm.get('password')"
-                  [customErrorMsg]="customPasswordErrorMsgs"
-                >
-                </app-form-errors>
+                <mat-label>{{ 'NewUserComponent.firstName-field' | translate }}</mat-label>
+                  <input matInput type="text" autocomplete="off" formControlName="firstName">
+                  <app-form-errors
+                    fieldName="{{ 'NewUserComponent.firstName-field' | translate }}"
+                    [control]="registerForm.get('firstName')"
+                    [customErrorMsg]="customFirstNameErrorMsgs"
+                  >
+                  </app-form-errors>
               </mat-form-field>
             </div>
 
             <div class="input-container" fxFlex="50%" style="width: 100%">
               <mat-form-field class="input" appearance="outline">
-                <mat-label>{{ 'NewUserComponent.confirm-password-field' | translate }}</mat-label>
-                <input matInput type="password" autocomplete="off" formControlName="confirmPassword">
-                <app-form-errors
-                  fieldName="{{ 'NewUserComponent.confirm-password-field' | translate }}"
-                  [control]="registerForm.get('confirmPassword')"
-                  [customErrorMsg]="customPasswordErrorMsgs"
-                >
-                </app-form-errors>
-              </mat-form-field>
-            </div>
-          </div>
-        </div>
-        
-        <label class="label-title">{{ 'NewUserComponent.personalData' | translate }}</label>
-        <mat-divider class="form-group-divider"></mat-divider>
-        
-        <div fxLayout="row">
-          <div class="input-container" fxFlex="50%" style="width: 100%">
-            <mat-form-field class="input" appearance="outline">
-              <mat-label>{{ 'NewUserComponent.firstName-field' | translate }}</mat-label>
-                <input matInput type="text" autocomplete="off" formControlName="firstName">
-                <app-form-errors
-                  fieldName="{{ 'NewUserComponent.firstName-field' | translate }}"
-                  [control]="registerForm.get('firstName')"
-                  [customErrorMsg]="customFirstNameErrorMsgs"
-                >
-                </app-form-errors>
-            </mat-form-field>
-          </div>
-
-          <div class="input-container" fxFlex="50%" style="width: 100%">
-            <mat-form-field class="input" appearance="outline">
-              <mat-label>{{ 'NewUserComponent.lastName-field' | translate }}</mat-label>
+                <mat-label>{{ 'NewUserComponent.lastName-field' | translate }}</mat-label>
                 <input matInput type="text" autocomplete="off" formControlName="lastName">
                 <app-form-errors
                   fieldName="{{ 'NewUserComponent.lastName-field' | translate }}"
@@ -91,48 +96,53 @@
                   [customErrorMsg]="customLastNameErrorMsgs"
                 >
                 </app-form-errors>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <label class="label-title">{{ 'NewUserComponent.contactData' | translate }}</label>
-        <mat-divider class="form-group-divider"></mat-divider>
-
-        <div fxLayout='row'>
-          <div class="input-container" fxFlex="50%" style="width: 100%">
-            <mat-form-field class="input" appearance="outline">
-              <mat-label>{{ 'NewUserComponent.email-field' | translate }}</mat-label>
-              <input matInput type="email" autocomplete="off" formControlName="email">
-              <app-form-errors error-content fieldName="{{ 'NewUserComponent.email-field' | translate }}" [control]="registerForm.get('email')"></app-form-errors>
-            </mat-form-field>
+              </mat-form-field>
+            </div>
           </div>
 
-          <div class="input-container" fxFlex="50%" style="width: 100%">
-            <mat-form-field class="input" appearance="outline">
-              <mat-label>{{ 'NewUserComponent.confirmEmail-field' | translate }}</mat-label>
-              <input matInput type="email" autocomplete="off" formControlName="confirmEmail">
-              <app-form-errors error-content 
-                fieldName="{{ 'NewUserComponent.confirmEmail-field' | translate }}"
-                [control]="registerForm.get('confirmEmail')"
-                [customErrorMsg]="customConfirmEmailErrorMsgs"
-              >
-              </app-form-errors>
-            </mat-form-field>
-          </div>
-        </div>
+          <label class="label-title">{{ 'NewUserComponent.contactData' | translate }}</label>
+          <mat-divider class="form-group-divider"></mat-divider>
 
-        <mat-divider class="form-group-divider"></mat-divider>
-        <div fxLayout="row" fxLayoutAlign="flex-end" fxFlex="50%">
-          <button 
-            stPrimaryBtn
-            (click)="onSubmit()"
-            [disabled]='registerForm.invalid'
-            style="margin-right: 15px;"
-          >
-            {{ 'NewUserComponent.submit' | translate }}
-          </button>
-          <button stGhostBtn (click)='onCancel()'>{{ 'NewUserComponent.cancel' | translate }}</button>
-        </div>
+          <div fxLayout='row'>
+            <div class="input-container" fxFlex="50%" style="width: 100%">
+              <mat-form-field class="input" appearance="outline">
+                <mat-label>{{ 'NewUserComponent.email-field' | translate }}</mat-label>
+                <input matInput type="email" autocomplete="off" formControlName="email">
+                <app-form-errors
+                  error-content fieldName="{{ 'NewUserComponent.email-field' | translate }}"
+                  [control]="registerForm.get('email')"
+                >
+                </app-form-errors>
+              </mat-form-field>
+            </div>
+
+            <div class="input-container" fxFlex="50%" style="width: 100%">
+              <mat-form-field class="input" appearance="outline">
+                <mat-label>{{ 'NewUserComponent.confirmEmail-field' | translate }}</mat-label>
+                <input matInput type="email" autocomplete="off" formControlName="confirmEmail">
+                <app-form-errors error-content 
+                  fieldName="{{ 'NewUserComponent.confirmEmail-field' | translate }}"
+                  [control]="registerForm.get('confirmEmail')"
+                  [customErrorMsg]="customConfirmEmailErrorMsgs"
+                >
+                </app-form-errors>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <mat-divider class="form-group-divider"></mat-divider>
+          <div fxLayout="row" fxLayoutAlign="flex-end" fxFlex="50%">
+            <button 
+              stPrimaryBtn
+              (click)="onSubmit()"
+              [disabled]='registerForm.invalid'
+              style="margin-right: 15px;"
+            >
+              {{ 'NewUserComponent.submit' | translate }}
+            </button>
+            <button stGhostBtn (click)='onCancel()'>{{ 'NewUserComponent.cancel' | translate }}</button>
+          </div>
+        </app-loading-indicator>
       </div>
     </div>
   </div>

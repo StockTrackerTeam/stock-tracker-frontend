@@ -4,6 +4,8 @@ import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserEntity } from '../../models';
 import { UserCreateDTO } from 'src/app/modules/user/dtos/user-create.dto';
+import { UserSettingsDTO } from 'src/app/modules/user/dtos/user-settings.dto';
+import { AuthService } from './auth.service';
 
 interface IUserResponse {
   data: {
@@ -20,7 +22,8 @@ export class UserService {
   private readonly baseUrl = environment.API_URL;
 
   constructor (
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private readonly authService: AuthService
   ) {}
 
   getUsers (): Observable<UserEntity[]> {
@@ -49,6 +52,16 @@ export class UserService {
     return this.http.delete<any>(`${this.baseUrl}/users/${id}`)
       .pipe(
         map(response => response)
+      )
+  }
+
+  updateUser (id: number, user: UserSettingsDTO): Observable<IUserResponse> {
+    return this.http.put<any>(`${this.baseUrl}/users/${id}`, user)
+      .pipe(
+        map((response) => {
+          this.authService.setCurrentUser(response.data.result);
+          return response;
+        })
       )
   }
 
