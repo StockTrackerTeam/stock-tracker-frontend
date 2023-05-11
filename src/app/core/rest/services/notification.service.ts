@@ -31,7 +31,9 @@ export class NotificationService {
     const notificationTitle = this.translate.instant(`${component}.errorNotificationTitle`);
     let notificationMessage = '';
     for(const key of resultKeys) {
-      notificationMessage += `<span>${this.translate.instant(`${component}.` + key)}</span> <br />`;
+      if (!(component === "NewUserComponent" && key === "confirmPassword-validate-password")) {
+        notificationMessage += `<span>${this.translate.instant(`${component}.` + key)}</span> <br />`;
+      }  
     }
     
     this.showError(notificationMessage, notificationTitle);

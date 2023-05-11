@@ -58,6 +58,8 @@
     "firstname-unsupported-characters": "Nombre no puede contener números o caracteres especiales.",
     "lastname-unsupported-characters": "Apellido no puede contener números o caracteres especiales.",
     "password-not-match": "Las contraseñas no coinciden, por favor intente de nuevo.",
+    "password-validate-password": "La contraseña debe tener al menos una mayúscula, una minúscula y un número.",
+    "confirmPassword-validate-password": "La contraseña debe tener al menos una mayúscula, una minúscula y un número.",
     "ok": "El usuario ha sido creado exitosamente!",
     "successNotificationTitle": "¡Todo salio según lo planeado!",
     "errorNotificationTitle": "¡Hubo un problema!",
