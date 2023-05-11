@@ -56,12 +56,20 @@ export class NewUserComponent implements OnInit {
     {
       key: 'minlength',
       customKey: 'firstName-min-length'
+    },
+    {
+      key: 'maxlength',
+      customKey: 'firstName-max-length'
     }
   ];
   customLastNameErrorMsgs = [
     {
       key: 'minlength',
       customKey: 'lastName-min-length'
+    },
+    {
+      key: 'maxlength',
+      customKey: 'lastName-max-length'
     }
   ];
   customConfirmEmailErrorMsgs = [
