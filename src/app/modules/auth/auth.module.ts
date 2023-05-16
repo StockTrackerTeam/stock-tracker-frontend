@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormErrorsModule } from 'src/shared/components/form-errors/form-errors.module';
 import { ButtonModule } from 'src/shared/directives';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 
@@ -23,6 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatFormFieldModule,
     FormErrorsModule,
     ButtonModule,
+    MatCheckboxModule,
     TranslateModule.forChild()
   ]
 })

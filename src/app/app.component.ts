@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Roles } from 'src/shared/utils/enums';
 import { UserEntity } from './core/models';
+import { AuthService } from './core/rest/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -16,15 +17,16 @@ export class AppComponent implements OnInit {
 
   constructor (
     private readonly translateService: TranslateService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.setLanguage();
 
-    this.token = localStorage.getItem('token');
+    this.token = this.authService.getCurrentToken();
     if (this.token !== null && this.token !== undefined) {
-      this.currentUser = JSON.parse(localStorage.getItem('user') as string);
+      this.currentUser = this.authService.getCurrentUser();
     } else {
       this.router.navigate(['/login']);
     }  
