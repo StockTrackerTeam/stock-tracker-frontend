@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../app/core/rest/services/auth.service';
 
 @Component({
   selector: 'app-user-dropdown',
@@ -8,10 +10,11 @@ import { Component } from '@angular/core';
 export class UserDropdownComponent {
   currentUserFullName = 'Test';
 
-  constructor () {}
+  constructor (
+    private readonly authService: AuthService
+  ) {}
 
-  logout () {
-    console.log('Cerrar sesion');
-    
+  logout (): void {
+    this.authService.logout();
   }
 }
