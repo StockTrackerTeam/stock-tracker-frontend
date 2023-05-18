@@ -4,6 +4,7 @@ import { catchError, map, Observable, pipe, throwError } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Roles } from 'src/shared/utils/enums';
 import { UserEntity } from '../../models';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class AuthService {
   currentUser!: UserEntity;
 
   constructor (
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private readonly router: Router
   ) {}
 
   login (username: string, password: string): Observable<any> {
@@ -29,6 +31,12 @@ export class AuthService {
         }),
         catchError(err => throwError(() => new Error(err)))
       )
+  }
+
+  logout (): void {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 
   setCurrentUser (user: UserEntity): void {
