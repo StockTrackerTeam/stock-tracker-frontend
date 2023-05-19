@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, noop, tap } from 'rxjs';
 import { RoleEntity } from 'src/app/core/models';
-import { NotificationService } from 'src/app/core/rest/services/notification.service';
+import { NotificationService } from 'src/shared/services/notification.service';
 import { RoleService } from 'src/app/core/rest/services/role.service';
 import { UserService } from 'src/app/core/rest/services/user.service';
 

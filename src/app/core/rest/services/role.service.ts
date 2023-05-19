@@ -9,13 +9,14 @@ import { RoleEntity } from '../../models';
 })
 export class RoleService {
   private readonly baseUrl = environment.API_URL;
+  private readonly ROLES = 'roles';
 
   constructor(
     private readonly http: HttpClient
   ) {}
 
   getRoles (): Observable<RoleEntity[]> {
-    return this.http.get<any>(`${this.baseUrl}/roles`)
+    return this.http.get<any>(`${this.baseUrl}/${this.ROLES}`)
       .pipe(
         map(response => response.data.result),
         catchError(err => throwError(() => new Error (err)))
