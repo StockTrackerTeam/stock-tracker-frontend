@@ -124,5 +124,21 @@
     "submit": "Guardar cambios",
     "errorNotificationTitle": "¡Hubo un problema!",
     "ok": "La informacion ha sido actualizada exitosamente!"
-  }
+  },
+  "AssetLevelListComponent": {
+    "title": "Nivel de activo",
+    "new-button": "Crear nuevo nivel de activo",
+    "table": {
+      "id": "ID",
+      "description": "DESCRIPCION"
+    },
+    "no-assetLevel-created": "Todavía no se ha creado ningun nivel de activo.",
+    "edit-assetLevel": "Editar nivel",
+    "delete-assetLevel": "Eliminar nivel",
+    "delete": {
+      "ok": "El nivel de activo ha sido eliminado exitosamente!"
+    }
+  },
+  "successNotificationTitle": "¡Todo salió según lo planeado!",
+  "errorNotificationTitle": "¡Hubo un problema!"
 }

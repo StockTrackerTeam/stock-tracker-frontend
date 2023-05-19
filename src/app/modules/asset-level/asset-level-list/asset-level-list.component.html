@@ -1,0 +1,55 @@
+<div class="assetLevels-list-container">
+  <h1 class="page-header">{{ 'AssetLevelListComponent.title' | translate }}</h1>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="assetLevels-list-container__options">
+    <button type="button" stPrimaryBtn (click)="handleNewAssetLevel()">
+      {{ 'AssetLevelListComponent.new-button' | translate }}
+    </button>
+  </div>
+
+  <div fxLayout="row" class="assetLevels-list-container__content-block">
+    <div fxFlex>
+      <app-loading-indicator [isLoading]="loading">
+        <ng-container *ngIf="assetLevelsList && assetLevelsList.length > 0; else emptyList">
+          <div class="responsive-table-container">
+            <table stTable class="assetLevels-list-container__table">
+              <thead>
+                <tr>
+                  <th width="20px"></th>
+                  <th class="assetLevels-list-container__table_header__id">{{ 'AssetLevelListComponent.table.id' | translate }}</th>
+                  <th class="assetLevels-list-container__table_header__description">{{ 'AssetLevelListComponent.table.description' | translate }}</th>  
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let assetLevel of assetLevelsList">
+                  <ng-container *ngIf="assetLevel">
+                    <td></td>
+                    <td class="assetLevels-list-container__assetLevels-list__item__property__id">
+                      <span>{{ assetLevel.id }}</span>
+                    </td>
+                    <td class="assetLevels-list-container__assetLevels-list__item__property__description">
+                      <span>{{ assetLevel.description }}</span>
+                    </td>
+                    <td class="assetLevels-table__actions" *ngIf="true">
+                      <app-collapsible-action-bar [row]="assetLevel" [inlineActions]="assetLevelActions"></app-collapsible-action-bar>
+                    </td>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+
+        <ng-template #emptyList>
+          <ng-template>
+            <ng-container>
+              <div class="users-list-container__empty-list">
+                <p class="users-list-container__empty-list__title">{{ 'AssetLevelListComponent.no-assetLevel-created' | translate }}</p>
+              </div>
+            </ng-container>
+          </ng-template>
+        </ng-template>
+      </app-loading-indicator>
+    </div>
+  </div>
+</div>

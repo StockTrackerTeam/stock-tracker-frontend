@@ -14,6 +14,10 @@ const routes: Routes = [
       {
         path: 'providers',
         loadChildren: () => import('./modules/provider/provider.module').then(m => m.ProviderModule)
+      },
+      {
+        path: 'asset-levels',
+        loadChildren: () => import('./modules/asset-level/asset-level.module').then(m => m.AssetLevelModule)
       }
     ]
   },

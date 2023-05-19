@@ -8,7 +8,7 @@
       </span>
 
       <a
-        *ngIf='canAccessUserModule'
+        *ngIf="canAccessUserModule"
         mat-list-item
         class="nav-link"
         [routerLink]="['users']"
@@ -19,7 +19,7 @@
       </a>
 
       <a
-        *ngIf='canAccessProviderModule'
+        *ngIf="canAccessProviderModule"
         mat-list-item
         class="nav-link"
         [routerLink]="['providers']"
@@ -27,6 +27,17 @@
       >
         <mat-icon>group</mat-icon>
         <div class="nav-link-text">{{ 'ProviderListComponent.title' | translate }}</div>
+      </a>
+
+      <a
+        *ngIf="canAccessAssetLevelModule"
+        mat-list-item
+        class="nav-link"
+        [routerLink]="['asset-levels']"
+        routerLinkActive="sidebar__nav-link&#45;&#45;active"
+      >
+        <mat-icon>group</mat-icon>
+        <div class="nav-link-text">{{ 'AssetLevelListComponent.title' | translate }}</div>
       </a>
 
       <section class="nav-list-section-footer">

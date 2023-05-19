@@ -27,4 +27,11 @@ export class NavBarComponent {
     ];
     return this.authService.checkUserPermissions(admittedRoles);
   }
+
+  get canAccessAssetLevelModule (): boolean {
+    const admittedRoles = [
+      Roles.ADMIN
+    ];
+    return this.authService.checkUserPermissions(admittedRoles);
+  }
 }
