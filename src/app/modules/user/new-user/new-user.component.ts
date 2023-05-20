@@ -92,7 +92,7 @@ export class NewUserComponent implements OnInit {
     private readonly translate: TranslateService
   ) {}
 
-  buildRegisterForm() {
+  buildRegisterForm (): void {
     this.registerForm = this.formBuilder.group({
       username: new FormControl('', {
         validators: [
@@ -216,7 +216,7 @@ export class NewUserComponent implements OnInit {
   }
 
   ngOnInit (): void {
-    this.buildRegisterForm()
+    this.buildRegisterForm();
 
     this.roles$ = this.roleService.getRoles();
   }
@@ -231,7 +231,7 @@ export class NewUserComponent implements OnInit {
 
   onSubmit (): void {
     if (this.registerForm?.invalid) {
-      const notificationTitle = this.translate.instant('NewUserComponent.errorNotificationTitle');
+      const notificationTitle = this.translate.instant('GeneralMessages.errorNotificationTitle');
       const notificationMessage = this.translate.instant('NewUserComponent.errorNotificationMessage');
 
       this.notificationService.showError(notificationMessage, notificationTitle);
@@ -253,7 +253,7 @@ export class NewUserComponent implements OnInit {
       .pipe(
         tap((result) => {
           this.loading = false;
-          const notificationTitle = this.translate.instant('NewUserComponent.successNotificationTitle');
+          const notificationTitle = this.translate.instant('GeneralMessages.successNotificationTitle');
           const notificationMessage = this.translate.instant('NewUserComponent.' + result.resultKeys);
 
           this.notificationService.showSuccess(notificationMessage, notificationTitle);

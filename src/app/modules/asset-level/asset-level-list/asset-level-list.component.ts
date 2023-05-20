@@ -8,6 +8,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { Roles } from '../../../../shared/utils/enums';
 import { AuthService } from '../../../core/rest/services/auth.service';
 import { NotificationService } from '../../../core/rest/services/notification.service';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { AssetLevelCreateComponent } from '../asset-level-create/asset-level-create.component';
 
 @Component({
   selector: 'app-asset-level-list',
@@ -18,6 +20,7 @@ export class AssetLevelListComponent implements OnInit {
   assetLevelsList: AssetLevelEntity[] = []
   errorMessage!: string;
   loading = false;
+  modalCreateAssetLevel: MdbModalRef<AssetLevelCreateComponent> | null = null;
 
   readonly assetLevelActions: InlineActions[] = [
     {
@@ -41,7 +44,8 @@ export class AssetLevelListComponent implements OnInit {
     private readonly router: Router,
     private readonly translateService: TranslateService,
     private readonly authService: AuthService,
-    private readonly notificationService: NotificationService
+    private readonly notificationService: NotificationService,
+    private readonly modalService: MdbModalService
   ) {}
 
   private canHandleAssetLevel (): boolean {
@@ -107,6 +111,8 @@ export class AssetLevelListComponent implements OnInit {
   }
 
   handleNewAssetLevel (): void {
-
+    // this.router.navigate(['asset-levels', 'create']);
+    this.modalCreateAssetLevel = this.modalService.open(AssetLevelCreateComponent);
+    this.modalCreateAssetLevel.onClose.subscribe(() => this.getAssetLevels());
   }
 }

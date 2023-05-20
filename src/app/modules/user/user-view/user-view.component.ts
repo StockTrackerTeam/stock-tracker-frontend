@@ -80,15 +80,15 @@ export class UserViewComponent implements OnInit, OnDestroy {
       .pipe(
         tap((result) => {
           if (this.currentUser.isActive) {
-            return this.onSuccess('UserListComponent.successNotificationTitle', 'UserListComponent.inactivate.' + result.resultKeys);
+            return this.onSuccess('GeneralMessages.successNotificationTitle', 'UserListComponent.inactivate.' + result.resultKeys);
           }
-          return this.onSuccess('UserListComponent.successNotificationTitle', 'UserListComponent.activate.' + result.resultKeys);
+          return this.onSuccess('GeneralMessages.successNotificationTitle', 'UserListComponent.activate.' + result.resultKeys);
         })
       )
       .subscribe({
         next: noop,
         error: (err) => {
-          this.onFailure('UserListComponent.errorNotificationTitle', 'UserListComponent.' + err.resultKeys);
+          this.onFailure('GeneralMessages.errorNotificationTitle', 'UserListComponent.' + err.resultKeys);
         }
       })
   }

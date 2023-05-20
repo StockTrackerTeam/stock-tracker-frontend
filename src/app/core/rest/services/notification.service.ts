@@ -28,7 +28,7 @@ export class NotificationService {
   }
 
   showErrorNotification (component: string, resultKeys: string[]): void {
-    const notificationTitle = this.translate.instant(`${component}.errorNotificationTitle`);
+    const notificationTitle = this.translate.instant(`GeneralMessages.errorNotificationTitle`);
     let notificationMessage = '';
     for(const key of resultKeys) {
       notificationMessage += `<span>${this.translate.instant(`${component}.` + key)}</span> <br />`;
