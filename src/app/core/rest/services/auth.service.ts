@@ -75,11 +75,9 @@ export class AuthService {
   }
 
   getCurrentToken (): string {
-    let token = localStorage.getItem('token') as string;
-    if (token === null || token === undefined) {
-      token = sessionStorage.getItem('token') as string;
-    }
-    return token;
+    return this.isLoggedIn()
+      ? localStorage.getItem('token') as string
+      : sessionStorage.getItem('token') as string;
   }
 
   checkUserPermissions (roles: Roles[]): boolean {
