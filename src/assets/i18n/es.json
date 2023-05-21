@@ -3,7 +3,8 @@
     "title": "Bienvenido! Introduce tu usuario y contraseña para iniciar sesión",
     "user-field": "Usuario",
     "pwd-field": "Contraseña",
-    "submit": "Ingresar"
+    "submit": "Ingresar",
+    "keep-session-open": "Mantener la sesión iniciada"
   },
   "UserListComponent": {
     "title": "Usuarios",

@@ -78,6 +78,21 @@ mat-form-field {
   width: 100%;
 }
 
+::ng-deep label {
+  margin-bottom: 0;
+}
+
+::ng-deep .mdc-checkbox {
+  padding-right: 3px!important;
+
+  .mdc-checkbox__background {
+    border-color: #ffffff!important;
+  }
+  
+  .mdc-checkbox__ripple {
+    position: initial;
+  }
+}
 
 ::ng-deep .mdc-notched-outline__leading {
   border-color: white !important;

@@ -59,7 +59,7 @@ export class UserService {
     return this.http.put<any>(`${this.baseUrl}/users/${id}`, user)
       .pipe(
         map((response) => {
-          this.authService.setCurrentUser(response.data.result);
+          this.authService.updateCurrentUser(response.data.result);
           return response;
         })
       )
