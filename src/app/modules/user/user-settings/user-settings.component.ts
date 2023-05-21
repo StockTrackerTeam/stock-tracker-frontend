@@ -206,7 +206,7 @@ export class UserSettingsComponent implements OnInit {
       ...this.userSettingsForm.value,
       email: email === '' ? null : email,
       confirmEmail: confirmEmail === '' ? null : confirmEmail
-    }
+    };
 
     this.userService.updateUser(this.currentUser.id, data)
       .pipe(

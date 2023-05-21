@@ -77,7 +77,9 @@
     "password-max-length": "La contraseña debe contener como máximo 20 caracteres.",
     "password-not-match": "Las contraseñas deben coincidir",
     "firstName-min-length": "El nombre debe contener 2 caracteres o más.",
+    "firstName-max-length": "El nombre puede contener un máximo de 60 caracteres.",
     "lastName-min-length": "El apellido debe contener 2 caracteres o más.",
+    "lastName-max-length": "El apellido puede contener un máximo de 60 caracteres.",
     "email": "Ingrese un email valido.",
     "email-not-match": "El email debe coincidir."
   },
