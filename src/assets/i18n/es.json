@@ -25,8 +25,6 @@
     "remove-user": "Eliminar usuario",
     "disable-user": "Deshabilitar usuario",
     "enable-user": "Habilitar usuario",
-    "successNotificationTitle": "¡Todo salio según lo planeado!",
-    "errorNotificationTitle": "¡Hubo un problema!",
     "delete": {
       "ok": "El usuario ha sido eliminado exitosamente!"
     },
@@ -60,14 +58,9 @@
     "lastname-unsupported-characters": "Apellido no puede contener números o caracteres especiales.",
     "password-not-match": "Las contraseñas no coinciden, por favor intente de nuevo.",
     "ok": "El usuario ha sido creado exitosamente!",
-    "successNotificationTitle": "¡Todo salio según lo planeado!",
-    "errorNotificationTitle": "¡Hubo un problema!",
     "errorNotificationMessage": "Por favor, revisa que las casillas requeridas estén completadas correctamente.",
     "submit": "Crear",
     "cancel": "Cancelar"
-  },
-  "ProviderListComponent": {
-    "title": "Proveedores"
   },
   "form-errors": {
     "required": "El campo # es requerido.",
@@ -123,7 +116,24 @@
     "confirmPassword-validate-password": "La contraseña debe tener un minimo de 8 caracteres alfanumericos, incluyendo por lo menos una Mayuscula y una Minuscula.",
     "empty-current-password": "Para cambiar la contraseña, debe proporcionar la contraseña actual.",
     "submit": "Guardar cambios",
-    "errorNotificationTitle": "¡Hubo un problema!",
     "ok": "La informacion ha sido actualizada exitosamente!"
+  },
+  "AssetLevelListComponent": {
+    "title": "Nivel de activo",
+    "new-button": "Crear nuevo nivel de activo",
+    "table": {
+      "id": "ID",
+      "description": "DESCRIPCION"
+    },
+    "no-assetLevel-created": "Todavía no se ha creado ningun nivel de activo.",
+    "edit-assetLevel": "Editar nivel",
+    "delete-assetLevel": "Eliminar nivel",
+    "delete": {
+      "ok": "El nivel de activo ha sido eliminado exitosamente!"
+    }
+  },
+  "GeneralMessages": {
+    "successNotificationTitle": "¡Todo salió según lo planeado!",
+    "errorNotificationTitle": "¡Hubo un problema!"
   }
 }

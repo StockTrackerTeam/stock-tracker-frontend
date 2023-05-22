@@ -20,6 +20,7 @@ interface IUserResponse {
 })
 export class UserService {
   private readonly baseUrl = environment.API_URL;
+  private readonly USERS = 'users';
 
   constructor (
     private readonly http: HttpClient,
@@ -27,7 +28,7 @@ export class UserService {
   ) {}
 
   getUsers (): Observable<UserEntity[]> {
-    return this.http.get<any>(`${this.baseUrl}/users/`)
+    return this.http.get<any>(`${this.baseUrl}/${this.USERS}/`)
       .pipe(
         map(response => response.data.result),
         catchError(err => throwError(() => new Error(err)))
@@ -35,28 +36,28 @@ export class UserService {
   }
   
   getUser (id: number): Observable<UserEntity> {
-    return this.http.get<any>(`${this.baseUrl}/users/${id}`)
+    return this.http.get<any>(`${this.baseUrl}/${this.USERS}/${id}`)
       .pipe(
         map(response => response.data.result)
       )
   }
 
   createUser (newUser: UserCreateDTO): Observable<IUserResponse> {
-    return this.http.post<any>(`${this.baseUrl}/users/`, newUser)
+    return this.http.post<any>(`${this.baseUrl}/${this.USERS}/`, newUser)
       .pipe(
         map(response => response)
       )
   }
 
   deleteUser (id: number): Observable<IUserResponse> {
-    return this.http.delete<any>(`${this.baseUrl}/users/${id}`)
+    return this.http.delete<any>(`${this.baseUrl}/${this.USERS}/${id}`)
       .pipe(
         map(response => response)
       )
   }
 
   updateUser (id: number, user: UserSettingsDTO): Observable<IUserResponse> {
-    return this.http.put<any>(`${this.baseUrl}/users/${id}`, user)
+    return this.http.put<any>(`${this.baseUrl}/${this.USERS}/${id}`, user)
       .pipe(
         map((response) => {
           this.authService.updateCurrentUser(response.data.result);
@@ -66,7 +67,7 @@ export class UserService {
   }
 
   changeUserState (id: number): Observable<IUserResponse> {
-    return this.http.patch<any>(`${this.baseUrl}/users/${id}/state`, {})
+    return this.http.patch<any>(`${this.baseUrl}/${this.USERS}/${id}/state`, {})
       .pipe(
         map(response => response)
       )

@@ -20,10 +20,9 @@ export class NavBarComponent {
     return this.authService.checkUserPermissions(admittedRoles);
   }
 
-  get canAccessProviderModule (): boolean {
+  get canAccessAssetLevelModule (): boolean {
     const admittedRoles = [
-      Roles.ADMIN,
-      Roles.EMPLOYEE
+      Roles.ADMIN
     ];
     return this.authService.checkUserPermissions(admittedRoles);
   }

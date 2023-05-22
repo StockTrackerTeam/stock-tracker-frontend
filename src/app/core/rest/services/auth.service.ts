@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private readonly baseUrl = environment.API_URL;
   token!: string;
+  private readonly AUTH = 'auth';
   currentUser!: UserEntity;
 
 
@@ -21,7 +22,7 @@ export class AuthService {
   ) {}
 
   login (username: string, password: string, keepSessionOpen: boolean): Observable<any> {
-    return this.http.post(`${this.baseUrl}/auth/login`, { username, password })
+    return this.http.post(`${this.baseUrl}/${this.AUTH}/login`, { username, password })
       .pipe(
         map((response: any) => {
           this.token = response.data.token;

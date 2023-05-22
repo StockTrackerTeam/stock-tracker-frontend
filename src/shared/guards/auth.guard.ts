@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UserEntity } from '../core/models';
-import { AuthService } from '../core/rest/services/auth.service';
+import { UserEntity } from '../../app/core/models';
+import { AuthService } from '../../app/core/rest/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +32,4 @@ export class AuthGuard implements CanActivate {
     this.router.navigate(['']);
     return false;
   }
-  
 }
