@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AssetLevelService } from '../../../core/rest/services/asset-level.service';
 import { tap, noop, Subscription } from 'rxjs';
 import { AssetLevelEntity } from '../../../core/models/asset-level-entity.model';
-import { Router } from '@angular/router';
 import { InlineActions, alwaysEnabled } from '../../../../shared/components/collapsible-action-bar/collapsible-action-bar.model';
 import { TranslateService } from '@ngx-translate/core';
 import { Roles } from '../../../../shared/utils/enums';
 import { AuthService } from '../../../core/rest/services/auth.service';
-import { NotificationService } from '../../../core/rest/services/notification.service';
+import { NotificationService } from '../../../../shared/services/notification.service';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { AssetLevelCreateComponent } from '../asset-level-create/asset-level-create.component';
 
@@ -17,10 +16,9 @@ import { AssetLevelCreateComponent } from '../asset-level-create/asset-level-cre
   styleUrls: ['./asset-level-list.component.scss']
 })
 export class AssetLevelListComponent implements OnInit {
-  assetLevelsList: AssetLevelEntity[] = []
+  assetLevels: AssetLevelEntity[] = []
   errorMessage!: string;
   loading = false;
-  modalCreateAssetLevel: MdbModalRef<AssetLevelCreateComponent> | null = null;
 
   readonly assetLevelActions: InlineActions[] = [
     {
@@ -41,7 +39,6 @@ export class AssetLevelListComponent implements OnInit {
 
   constructor (
     private readonly assetLevelService: AssetLevelService,
-    private readonly router: Router,
     private readonly translateService: TranslateService,
     private readonly authService: AuthService,
     private readonly notificationService: NotificationService,
@@ -62,14 +59,14 @@ export class AssetLevelListComponent implements OnInit {
       .pipe(
         tap((result) => {
           this.loading = false;
-          this.onSuccess('successNotificationTitle', 'AssetLevelListComponent.delete.' + result.resultKeys)
+          this.onSuccess('GeneralMessages.successNotificationTitle', 'AssetLevelListComponent.delete.' + result.resultKeys)
         })
       )
       .subscribe({
         next: noop,
         error: (err) => {
           this.loading = false;
-          this.onFailure('errorNotificationTitle', 'AssetLevelListComponent.' + err.resultKeys)
+          this.onFailure('GeneralMessages.errorNotificationTitle', 'AssetLevelListComponent.' + err.resultKeys)
         }
       })
   }
@@ -83,7 +80,7 @@ export class AssetLevelListComponent implements OnInit {
     return this.assetLevelService.getAssetLevels()
       .pipe(
         tap(data => {
-          this.assetLevelsList = data;
+          this.assetLevels = data;
           this.loading = false;
         })
       )
@@ -111,8 +108,8 @@ export class AssetLevelListComponent implements OnInit {
   }
 
   handleNewAssetLevel (): void {
-    // this.router.navigate(['asset-levels', 'create']);
-    this.modalCreateAssetLevel = this.modalService.open(AssetLevelCreateComponent);
-    this.modalCreateAssetLevel.onClose.subscribe(() => this.getAssetLevels());
+    this.modalService
+      .open(AssetLevelCreateComponent)
+      .onClose.subscribe(() => this.getAssetLevels());
   }
 }

@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { noop, Subscription, tap } from 'rxjs';
 import { UserEntity } from 'src/app/core/models/user-entity.model';
 import { AuthService } from 'src/app/core/rest/services/auth.service';
-import { NotificationService } from 'src/app/core/rest/services/notification.service';
+import { NotificationService } from 'src/shared/services/notification.service';
 import { UserService } from 'src/app/core/rest/services/user.service';
 import { alwaysEnabled, InlineActions } from 'src/shared/components/collapsible-action-bar/collapsible-action-bar.model';
 import { Roles } from 'src/shared/utils/enums';

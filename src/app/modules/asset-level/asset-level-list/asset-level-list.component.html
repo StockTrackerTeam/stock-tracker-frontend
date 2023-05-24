@@ -9,7 +9,7 @@
   <div fxLayout="row" class="assetLevels-list-container__content-block">
     <div fxFlex>
       <app-loading-indicator [isLoading]="loading">
-        <ng-container *ngIf="assetLevelsList && assetLevelsList.length > 0; else emptyList">
+        <ng-container *ngIf="assetLevels && assetLevels.length > 0; else emptyList">
           <div class="responsive-table-container">
             <table stTable class="assetLevels-list-container__table">
               <thead>
@@ -21,7 +21,7 @@
               </thead>
 
               <tbody>
-                <tr *ngFor="let assetLevel of assetLevelsList">
+                <tr *ngFor="let assetLevel of assetLevels">
                   <ng-container *ngIf="assetLevel">
                     <td></td>
                     <td class="assetLevels-list-container__assetLevels-list__item__property__id">

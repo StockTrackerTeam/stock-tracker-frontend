@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UserEntity } from '../core/models';
+import { UserEntity } from '../../app/core/models';
+import { AuthService } from '../../app/core/rest/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,15 @@ import { UserEntity } from '../core/models';
 export class AuthGuard implements CanActivate {
 
   constructor (
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly authService: AuthService
   ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
-    const userLogged: UserEntity = JSON.parse(localStorage.getItem('user') as string);
+    const userLogged: UserEntity = this.authService.getCurrentUser();
 
     if (userLogged !== null && userLogged !== undefined) {
       if (route.data['roleId'].includes(userLogged.roleId)) {
@@ -30,5 +32,4 @@ export class AuthGuard implements CanActivate {
     this.router.navigate(['']);
     return false;
   }
-  
 }

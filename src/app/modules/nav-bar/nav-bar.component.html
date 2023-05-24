@@ -19,17 +19,6 @@
       </a>
 
       <a
-        *ngIf="canAccessProviderModule"
-        mat-list-item
-        class="nav-link"
-        [routerLink]="['providers']"
-        routerLinkActive="sidebar__nav-link&#45;&#45;active"
-      >
-        <mat-icon>group</mat-icon>
-        <div class="nav-link-text">{{ 'ProviderListComponent.title' | translate }}</div>
-      </a>
-
-      <a
         *ngIf="canAccessAssetLevelModule"
         mat-list-item
         class="nav-link"

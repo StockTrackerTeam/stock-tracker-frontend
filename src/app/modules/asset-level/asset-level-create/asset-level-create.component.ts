@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { NotificationService } from '../../../core/rest/services/notification.service';
+import { NotificationService } from '../../../../shared/services/notification.service';
 import { AssetLevelService } from '../../../core/rest/services/asset-level.service';
 import { noop, tap } from 'rxjs';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
@@ -52,7 +52,7 @@ export class AssetLevelCreateComponent implements OnInit {
   onSubmit (): void {
     if (this.createForm?.invalid) {
       const notificationTitle = this.translate.instant('GeneralMessages.errorNotificationTitle');
-      const notificationMessage = this.translate.instant('AssetLevelCreateComponent.errorNotificationMessage');
+      const notificationMessage = this.translate.instant('GeneralMessages.errorNotificationMessage');
 
       this.notificationService.showError(notificationMessage, notificationTitle);
       return;

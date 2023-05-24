@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { noop, Subscription, tap } from 'rxjs';
 import { UserEntity } from 'src/app/core/models';
 import { AuthService } from 'src/app/core/rest/services/auth.service';
-import { NotificationService } from 'src/app/core/rest/services/notification.service';
+import { NotificationService } from 'src/shared/services/notification.service';
 import { UserService } from 'src/app/core/rest/services/user.service';
 
 @Component({
@@ -180,7 +180,7 @@ export class UserSettingsComponent implements OnInit {
   onSubmit (): void {
     if (this.userSettingsForm?.invalid) {
       const notificationTitle = this.translate.instant('GeneralMessages.errorNotificationTitle');
-      const notificationMessage = this.translate.instant('UserSettingsComponent.errorNotificationMessage');
+      const notificationMessage = this.translate.instant('GeneralMessages.errorNotificationMessage');
 
       this.notificationService.showError(notificationMessage, notificationTitle);
       return;

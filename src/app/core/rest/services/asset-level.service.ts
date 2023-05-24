@@ -18,20 +18,21 @@ interface IAssetLevelResponse {
 })
 export class AssetLevelService {
   private readonly baseUrl = environment.API_URL;
+  private readonly ASSET_LEVELS = 'asset-levels';
 
   constructor(
     private readonly http: HttpClient
   ) {}
 
   createAssetLevel (newAssetLevel: AssetLevelDTO): Observable<IAssetLevelResponse> {
-    return this.http.post<any>(`${this.baseUrl}/asset-levels/`, newAssetLevel)
+    return this.http.post<any>(`${this.baseUrl}/${this.ASSET_LEVELS}/`, newAssetLevel)
       .pipe(
         map(response => response)
       )
   }
 
   getAssetLevels (): Observable<AssetLevelEntity[]> {
-    return this.http.get<any>(`${this.baseUrl}/asset-levels`)
+    return this.http.get<any>(`${this.baseUrl}/${this.ASSET_LEVELS}`)
       .pipe(
         map(response => response.data.result),
         catchError(err => throwError(() => new Error(err)))
@@ -39,7 +40,7 @@ export class AssetLevelService {
   }
 
   deleteAssetLevel (id: number): Observable<IAssetLevelResponse> {
-    return this.http.delete<any>(`${this.baseUrl}/asset-levels/${id}`)
+    return this.http.delete<any>(`${this.baseUrl}/${this.ASSET_LEVELS}/${id}`)
       .pipe(
         map(response => response)
       ) 

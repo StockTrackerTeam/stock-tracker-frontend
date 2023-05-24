@@ -3,7 +3,8 @@
     "title": "Bienvenido! Introduce tu usuario y contraseña para iniciar sesión",
     "user-field": "Usuario",
     "pwd-field": "Contraseña",
-    "submit": "Ingresar"
+    "submit": "Ingresar",
+    "keep-session-open": "Mantener la sesión iniciada"
   },
   "UserListComponent": {
     "title": "Usuarios",
@@ -57,12 +58,8 @@
     "lastname-unsupported-characters": "Apellido no puede contener números o caracteres especiales.",
     "password-not-match": "Las contraseñas no coinciden, por favor intente de nuevo.",
     "ok": "El usuario ha sido creado exitosamente!",
-    "errorNotificationMessage": "Por favor, revisa que las casillas requeridas estén completadas correctamente.",
     "submit": "Crear",
     "cancel": "Cancelar"
-  },
-  "ProviderListComponent": {
-    "title": "Proveedores"
   },
   "form-errors": {
     "required": "El campo # es requerido.",
@@ -140,10 +137,12 @@
     "description-field": "Descripción",
     "submit": "Crear",
     "cancel": "Cancelar",
-    "errorNotificationMessage": "Por favor, revisa que las casillas requeridas estén completadas correctamente.",
     "description-is-not-empty": "La descripción del activo no puede estar vacía.",
     "ok": "¡El nivel de activo se creó con éxito!"
   },
-  "successNotificationTitle": "¡Todo salió según lo planeado!",
-  "errorNotificationTitle": "¡Hubo un problema!"
+  "GeneralMessages": {
+    "successNotificationTitle": "¡Todo salió según lo planeado!",
+    "errorNotificationTitle": "¡Hubo un problema!",
+    "errorNotificationMessage": "Por favor, revisa que los campos requeridos estén completados correctamente."
+  }
 }
