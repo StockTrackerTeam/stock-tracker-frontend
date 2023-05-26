@@ -179,8 +179,8 @@ export class UserSettingsComponent implements OnInit {
 
   onSubmit (): void {
     if (this.userSettingsForm?.invalid) {
-      const notificationTitle = this.translate.instant('NewUserComponent.errorNotificationTitle');
-      const notificationMessage = this.translate.instant('UserSettingsComponent.errorNotificationMessage');
+      const notificationTitle = this.translate.instant('GeneralMessages.errorNotificationTitle');
+      const notificationMessage = this.translate.instant('GeneralMessages.errorNotificationMessage');
 
       this.notificationService.showError(notificationMessage, notificationTitle);
       return;
@@ -212,7 +212,7 @@ export class UserSettingsComponent implements OnInit {
       .pipe(
         tap((result) => {
           this.loading = false;
-          const notificationTitle = this.translate.instant('NewUserComponent.successNotificationTitle');
+          const notificationTitle = this.translate.instant('GeneralMessages.successNotificationTitle');
           const notificationMessage = this.translate.instant('UserSettingsComponent.' + result.resultKeys);
           this.notificationService.showSuccess(notificationMessage, notificationTitle);
           this.router.navigate(['/users']);

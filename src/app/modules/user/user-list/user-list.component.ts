@@ -89,14 +89,14 @@ export class UserListComponent implements OnInit, OnDestroy {
       .pipe(
         tap((result) => {
           this.loading = false;
-          this.onSuccess('UserListComponent.successNotificationTitle', 'UserListComponent.delete.' + result.resultKeys);
+          this.onSuccess('GeneralMessages..successNotificationTitle', 'UserListComponent.delete.' + result.resultKeys);
         })
       )
       .subscribe({
         next: noop,
         error: (err) => {
           this.loading = false;
-          this.onFailure('UserListComponent.errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
+          this.onFailure('GeneralMessages..errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
         }
       })
   }
@@ -107,14 +107,14 @@ export class UserListComponent implements OnInit, OnDestroy {
       .pipe(
         tap((result) => {
           this.loading = false;
-          this.onSuccess('UserListComponent.successNotificationTitle', 'UserListComponent.inactivate.' + result.resultKeys)
+          this.onSuccess('GeneralMessages..successNotificationTitle', 'UserListComponent.inactivate.' + result.resultKeys)
         })
       )
       .subscribe({
         next: noop,
         error: (err) => {
           this.loading = false;
-          this.onFailure('UserListComponent.errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
+          this.onFailure('GeneralMessages..errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
         }
       })
   }
@@ -125,14 +125,14 @@ export class UserListComponent implements OnInit, OnDestroy {
       .pipe(
         tap((result) => {
           this.loading = false;
-          this.onSuccess('UserListComponent.successNotificationTitle', 'UserListComponent.activate.' + result.resultKeys)
+          this.onSuccess('GeneralMessages.successNotificationTitle', 'UserListComponent.activate.' + result.resultKeys)
         })
       )
       .subscribe({
         next: noop,
         error: (err) => {
           this.loading = false;
-          this.onFailure('UserListComponent.errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
+          this.onFailure('GeneralMessages.errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
         }
       })
   }

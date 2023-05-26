@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './modules/home/home.component';
 import { NavBarComponent } from './modules/nav-bar/nav-bar.component';
 import { MaterialModule } from 'src/shared/material/material.module';
-import { AuthInterceptor } from './http-interceptors/auth-interceptor';
+import { AuthInterceptor } from '../shared/http-interceptors/auth-interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { UserDropdownModule } from 'src/shared/modules/user-dropdown/user-dropdown.module';

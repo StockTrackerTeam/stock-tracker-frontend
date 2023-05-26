@@ -4,7 +4,6 @@ import { AssetLevelListComponent } from './asset-level-list/asset-level-list.com
 import { AuthGuard } from '../../../shared/guards/auth.guard';
 import { Roles } from '../../../shared/utils/enums';
 
-
 const routes: Routes = [
   {
     path: '',

@@ -3,6 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { AssetLevelEntity } from '../../models/asset-level-entity.model';
+import { AssetLevelDTO } from '../../../modules/asset-level/dtos/asset-level.dto';
 
 interface IAssetLevelResponse {
   data: {
@@ -22,6 +23,13 @@ export class AssetLevelService {
   constructor(
     private readonly http: HttpClient
   ) {}
+
+  createAssetLevel (newAssetLevel: AssetLevelDTO): Observable<IAssetLevelResponse> {
+    return this.http.post<any>(`${this.baseUrl}/${this.ASSET_LEVELS}/`, newAssetLevel)
+      .pipe(
+        map(response => response)
+      )
+  }
 
   getAssetLevels (): Observable<AssetLevelEntity[]> {
     return this.http.get<any>(`${this.baseUrl}/${this.ASSET_LEVELS}`)

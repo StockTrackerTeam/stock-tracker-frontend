@@ -17,13 +17,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { FormSelectModule } from '../../../shared/controls/form-select/form-select.module';
 import { CollapsibleActionBarModule } from '../../../shared/components/collapsible-action-bar/collapsible-action-bar.module';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
-
+import { AssetLevelCreateComponent } from './asset-level-create/asset-level-create.component';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 
 @NgModule({
   declarations: [
-    AssetLevelListComponent
+    AssetLevelListComponent,
+    AssetLevelCreateComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +42,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatIconModule,
     FormSelectModule,
     CollapsibleActionBarModule,
-    MatSlideToggleModule
+    MdbModalModule
   ]
 })
 export class AssetLevelModule { }

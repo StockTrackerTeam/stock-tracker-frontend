@@ -58,7 +58,6 @@
     "lastname-unsupported-characters": "Apellido no puede contener números o caracteres especiales.",
     "password-not-match": "Las contraseñas no coinciden, por favor intente de nuevo.",
     "ok": "El usuario ha sido creado exitosamente!",
-    "errorNotificationMessage": "Por favor, revisa que las casillas requeridas estén completadas correctamente.",
     "submit": "Crear",
     "cancel": "Cancelar"
   },
@@ -74,7 +73,8 @@
     "lastName-min-length": "El apellido debe contener 2 caracteres o más.",
     "lastName-max-length": "El apellido puede contener un máximo de 60 caracteres.",
     "email": "Ingrese un email valido.",
-    "email-not-match": "El email debe coincidir."
+    "email-not-match": "El email debe coincidir.",
+    "description-max-length": "La descripción del nivel puede contener un máximo de 200 caracteres."
   },
   "UserDropdownComponent": {
     "account-settings": "Configuración",
@@ -132,8 +132,17 @@
       "ok": "El nivel de activo ha sido eliminado exitosamente!"
     }
   },
+  "AssetLevelCreateComponent": {
+    "title": "Crear nuevo nivel de activo",
+    "description-field": "Descripción",
+    "submit": "Crear",
+    "cancel": "Cancelar",
+    "description-is-not-empty": "La descripción del activo no puede estar vacía.",
+    "ok": "¡El nivel de activo se creó con éxito!"
+  },
   "GeneralMessages": {
     "successNotificationTitle": "¡Todo salió según lo planeado!",
-    "errorNotificationTitle": "¡Hubo un problema!"
+    "errorNotificationTitle": "¡Hubo un problema!",
+    "errorNotificationMessage": "Por favor, revisa que los campos requeridos estén completados correctamente."
   }
 }
