@@ -39,6 +39,21 @@ export class AssetLevelService {
       )
   }
 
+  getAssetLevel (assetLevelId: number): Observable<AssetLevelEntity> {
+    return this.http.get<any>(`${this.baseUrl}/${this.ASSET_LEVELS}/${assetLevelId}`)
+      .pipe(
+        map(response => response.data.result),
+        catchError(err => throwError(() => new Error(err)))
+      )
+  }
+
+  updateAssetLevel (id: number, assetLevelDTO: AssetLevelDTO): Observable<IAssetLevelResponse> {
+    return this.http.put<any>(`${this.baseUrl}/${this.ASSET_LEVELS}/${id}`, assetLevelDTO)
+      .pipe(
+        map(response => response)
+      )
+  }
+
   deleteAssetLevel (id: number): Observable<IAssetLevelResponse> {
     return this.http.delete<any>(`${this.baseUrl}/${this.ASSET_LEVELS}/${id}`)
       .pipe(

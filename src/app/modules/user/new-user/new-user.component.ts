@@ -231,10 +231,10 @@ export class NewUserComponent implements OnInit {
 
   onSubmit (): void {
     if (this.registerForm?.invalid) {
-      const notificationTitle = this.translate.instant('GeneralMessages.errorNotificationTitle');
-      const notificationMessage = this.translate.instant('GeneralMessages.errorNotificationMessage');
-
-      this.notificationService.showError(notificationMessage, notificationTitle);
+      this.notificationService.failureNotification(
+        'GeneralMessages.errorNotificationTitle',
+        'GeneralMessages.errorNotificationMessage'
+      );
       return;
     }
 
@@ -253,10 +253,10 @@ export class NewUserComponent implements OnInit {
       .pipe(
         tap((result) => {
           this.loading = false;
-          const notificationTitle = this.translate.instant('GeneralMessages.successNotificationTitle');
-          const notificationMessage = this.translate.instant('NewUserComponent.' + result.resultKeys);
-
-          this.notificationService.showSuccess(notificationMessage, notificationTitle);
+          this.notificationService.successNotification(
+            'GeneralMessages.successNotificationTitle',
+            'NewUserComponent.' + result.resultKeys
+          );
           this.router.navigate(['/users']);
         })
       )

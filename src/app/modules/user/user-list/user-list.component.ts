@@ -89,14 +89,22 @@ export class UserListComponent implements OnInit, OnDestroy {
       .pipe(
         tap((result) => {
           this.loading = false;
-          this.onSuccess('GeneralMessages..successNotificationTitle', 'UserListComponent.delete.' + result.resultKeys);
+          this.notificationService.successNotification(
+            'GeneralMessages..successNotificationTitle',
+            'UserListComponent.delete.' + result.resultKeys
+          );
+          this.loading = true;
+          this.getUsers();
         })
       )
       .subscribe({
         next: noop,
         error: (err) => {
           this.loading = false;
-          this.onFailure('GeneralMessages..errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
+          this.notificationService.failureNotification(
+            'GeneralMessages..errorNotificationTitle',
+            'UserListComponent.' + err.resultKeys
+          );
         }
       })
   }
@@ -107,14 +115,22 @@ export class UserListComponent implements OnInit, OnDestroy {
       .pipe(
         tap((result) => {
           this.loading = false;
-          this.onSuccess('GeneralMessages..successNotificationTitle', 'UserListComponent.inactivate.' + result.resultKeys)
+          this.notificationService.successNotification(
+            'GeneralMessages..successNotificationTitle',
+            'UserListComponent.inactivate.' + result.resultKeys
+          );
+          this.loading = true;
+          this.getUsers();
         })
       )
       .subscribe({
         next: noop,
         error: (err) => {
           this.loading = false;
-          this.onFailure('GeneralMessages..errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
+          this.notificationService.failureNotification(
+            'GeneralMessages..errorNotificationTitle',
+            'UserListComponent.' + err.resultKeys
+          );
         }
       })
   }
@@ -125,14 +141,22 @@ export class UserListComponent implements OnInit, OnDestroy {
       .pipe(
         tap((result) => {
           this.loading = false;
-          this.onSuccess('GeneralMessages.successNotificationTitle', 'UserListComponent.activate.' + result.resultKeys)
+          this.notificationService.successNotification(
+            'GeneralMessages.successNotificationTitle',
+            'UserListComponent.activate.' + result.resultKeys
+          );
+          this.loading = true;
+          this.getUsers();
         })
       )
       .subscribe({
         next: noop,
         error: (err) => {
           this.loading = false;
-          this.onFailure('GeneralMessages.errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
+          this.notificationService.failureNotification(
+            'GeneralMessages.errorNotificationTitle',
+            'UserListComponent.' + err.resultKeys
+          );
         }
       })
   }
@@ -148,23 +172,6 @@ export class UserListComponent implements OnInit, OnDestroy {
   ngOnInit (): void {
     this.loading = true;
     this.sub = this.getUsers()
-  }
-
-  onSuccess (title: string, message: string): void {
-    const notificationTitle = this.translateService.instant(title);
-    const notificationMessage = this.translateService.instant(message);
-
-    this.notificationService.showSuccess(notificationMessage, notificationTitle);
-
-    this.loading = true;
-    this.getUsers();
-  }
-
-  onFailure (title: string, message: string): void {
-    const notificationTitle = this.translateService.instant(title);
-    const notificationMessage = this.translateService.instant(message);
-
-    this.notificationService.showError(notificationMessage, notificationTitle);
   }
 
   getUsers (): Subscription {
