@@ -1,0 +1,45 @@
+<div class="asset-level-edit-container" fxLayout="column">
+  <div fxFlex="50%">
+    <h1 *ngIf="currentAssetLevel" class="page-header">{{ 'AssetLevelEditComponent.title' | translate }}</h1>
+  </div>
+
+  <div>
+    <div *ngIf="editLevelForm" [formGroup]="editLevelForm" fxLayout="column" fxFlex="50">
+      <div fxLayout="column" fxFlex="100" style="margin-top: 3%; width: 100%">
+        <app-loading-indicator [isLoading]="loading">
+          <mat-divider class="form-group-divider"></mat-divider>
+
+          <div>
+            <div fxLayout="row">
+              <div class="input-container" fxFlex="50%" style="width: 100%">
+                <mat-form-field class="input" appearance="outline">
+                  <mat-label>{{ 'AssetLevelEditComponent.description-field' | translate }}</mat-label>
+                  <input matInput type="text" autocomplete="off" formControlName="description">
+                  <app-form-errors
+                    fieldName="{{ 'AssetLevelEditComponent.description-field' | translate }}"
+                    [control]="editLevelForm.get('description')"
+                    [customErrorMsg]="customDescriptionErrorMsgs"
+                  >
+                  </app-form-errors>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <mat-divider class="form-group-divider"></mat-divider>
+          <div fxLayout="row" fxLayoutAlign="flex-end" fxFlex="50%" style="position: absolute;">
+            <button 
+              stPrimaryBtn
+              (click)="onSubmit()"
+              [disabled]='editLevelForm.invalid || editLevelForm.pristine'
+              style="margin-right: 15px;"
+            >
+              {{ 'AssetLevelEditComponent.submit' | translate }}
+            </button>
+            <button stGhostBtn (click)='onCancel()'>{{ 'AssetLevelEditComponent.cancel' | translate }}</button>
+          </div>
+        </app-loading-indicator>
+      </div>
+    </div>
+  </div>
+</div>

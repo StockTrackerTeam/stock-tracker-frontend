@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 import { NotificationService } from '../../../../shared/services/notification.service';
 import { AssetLevelService } from '../../../core/rest/services/asset-level.service';
 import { noop, tap } from 'rxjs';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
+import { Roles } from '../../../../shared/utils/enums';
+import { AuthService } from '../../../core/rest/services/auth.service';
 
 @Component({
   selector: 'app-asset-level-create',
@@ -22,11 +23,11 @@ export class AssetLevelCreateComponent implements OnInit {
   ];
 
   constructor (
-    public modalCreateAssetLevel: MdbModalRef<AssetLevelCreateComponent>,
+    private readonly modalCreateAssetLevel: MdbModalRef<AssetLevelCreateComponent>,
     private readonly formBuilder: FormBuilder,
-    private readonly translate: TranslateService,
     private readonly notificationService: NotificationService,
-    private readonly assetLevelService: AssetLevelService
+    private readonly assetLevelService: AssetLevelService,
+    private readonly authService: AuthService
   ) {}
 
   buildCreateForm (): void {
@@ -50,12 +51,18 @@ export class AssetLevelCreateComponent implements OnInit {
   }
 
   onSubmit (): void {
-    if (this.createForm?.invalid) {
-      const notificationTitle = this.translate.instant('GeneralMessages.errorNotificationTitle');
-      const notificationMessage = this.translate.instant('GeneralMessages.errorNotificationMessage');
+    if (this.canCreateAssetLevel() === false) {
+      return this.notificationService.failureNotification(
+        'GeneralMessages.errorNotificationTitle',
+        'GeneralMessages.accessDenied'
+      );
+    }
 
-      this.notificationService.showError(notificationMessage, notificationTitle);
-      return;
+    if (this.createForm?.invalid) {
+      return this.notificationService.failureNotification(
+        'GeneralMessages.errorNotificationTitle',
+        'GeneralMessages.errorNotificationMessage'
+      );
     }
 
     this.loading = true;
@@ -65,10 +72,10 @@ export class AssetLevelCreateComponent implements OnInit {
       .pipe(
         tap((result) => {
           this.loading = false;
-          const notificationTitle = this.translate.instant('GeneralMessages.successNotificationTitle');
-          const notificationMessage = this.translate.instant('AssetLevelCreateComponent.' + result.resultKeys);
-          
-          this.notificationService.showSuccess(notificationMessage, notificationTitle);
+          this.notificationService.successNotification(
+            'GeneralMessages.successNotificationTitle',
+            'AssetLevelCreateComponent.' + result.resultKeys
+          );
           this.modalCreateAssetLevel.close();
         })
       )
@@ -79,5 +86,10 @@ export class AssetLevelCreateComponent implements OnInit {
           this.notificationService.showErrorNotification('AssetLevelCreateComponent', err.error.resultKeys)
         }
       });
+  }
+
+  canCreateAssetLevel (): boolean {
+    const admittedRoles = [Roles.ADMIN];
+    return this.authService.checkUserPermissions(admittedRoles);
   }
 }

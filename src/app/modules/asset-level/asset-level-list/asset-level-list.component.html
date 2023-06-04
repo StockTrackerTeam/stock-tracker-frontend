@@ -1,7 +1,7 @@
 <div class="assetLevels-list-container">
   <h1 class="page-header">{{ 'AssetLevelListComponent.title' | translate }}</h1>
   <div fxLayout="row" fxLayoutAlign="space-between center" class="assetLevels-list-container__options">
-    <button type="button" stPrimaryBtn (click)="handleNewAssetLevel()">
+    <button *ngIf="canHandleAssetLevel()" type="button" stPrimaryBtn (click)="handleNewAssetLevel()">
       {{ 'AssetLevelListComponent.new-button' | translate }}
     </button>
   </div>

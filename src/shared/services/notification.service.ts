@@ -36,4 +36,18 @@ export class NotificationService {
     
     this.showError(notificationMessage, notificationTitle);
   }
+
+  successNotification (ketTitle: string, keyMessage: string): void {
+    const notificationTitle = this.translate.instant(ketTitle);
+    const notificationMessage = this.translate.instant(keyMessage);
+
+    this.showSuccess(notificationMessage, notificationTitle);
+  }
+
+  failureNotification (keyTitle: string, keyMessage: string): void {
+    const notificationTitle = this.translate.instant(keyTitle);
+    const notificationMessage = this.translate.instant(keyMessage);
+
+    this.showError(notificationMessage, notificationTitle);
+  }
 }
