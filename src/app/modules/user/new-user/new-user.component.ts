@@ -60,6 +60,10 @@ export class NewUserComponent implements OnInit {
     {
       key: 'maxlength',
       customKey: 'firstName-max-length'
+    },
+    {
+      key: 'space-at-beginning',
+      customKey: 'firstName-space-at-beginning'
     }
   ];
   customLastNameErrorMsgs = [
@@ -70,6 +74,10 @@ export class NewUserComponent implements OnInit {
     {
       key: 'maxlength',
       customKey: 'lastName-max-length'
+    },
+    {
+      key: 'space-at-beginning',
+      customKey: 'lastName-space-at-beginning'
     }
   ];
   customConfirmEmailErrorMsgs = [
@@ -213,6 +221,30 @@ export class NewUserComponent implements OnInit {
         next: noop,
         error: err => console.log(err)
       });
+
+      this.registerForm.get('firstName')?.valueChanges
+        .pipe(
+          tap((value: string) => {
+            if (value[0] === ' ') this.registerForm.get('firstName')?.setErrors({'firstName-space-at-beginning': true});
+            if (value.trimEnd().length < 2) this.registerForm.get('firstName')?.setErrors({'firstName-min-length': true});
+          })
+        )
+        .subscribe({
+          next: noop,
+          error: err => console.log(err)
+        });
+      
+      this.registerForm.get('lastName')?.valueChanges
+        .pipe(
+          tap((value: string) => {
+            if (value[0] === ' ') this.registerForm.get('lastName')?.setErrors({'lastName-space-at-beginning': true});
+            if (value.trimEnd().length < 2) this.registerForm.get('lastName')?.setErrors({'lastName-min-length': true});
+          })
+        )
+        .subscribe({
+          next: noop,
+          error: err => console.log(err)
+        });
   }
 
   ngOnInit (): void {
