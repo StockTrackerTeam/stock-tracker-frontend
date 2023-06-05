@@ -73,6 +73,8 @@
     "firstName-max-length": "El nombre puede contener un máximo de 60 caracteres.",
     "lastName-min-length": "El apellido debe contener 2 caracteres o más.",
     "lastName-max-length": "El apellido puede contener un máximo de 60 caracteres.",
+    "firstName-space-at-beginning": "El nombre no puede iniciar con un espacio.",
+    "lastName-space-at-beginning": "El apellido no puede iniciar con un espacio.",
     "email": "Ingrese un email valido.",
     "email-not-match": "El email debe coincidir.",
     "description-max-length": "La descripción del nivel puede contener un máximo de 200 caracteres.",
