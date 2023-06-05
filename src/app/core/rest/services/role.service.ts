@@ -22,4 +22,12 @@ export class RoleService {
         catchError(err => throwError(() => new Error (err)))
       )
   }
+
+  checkIfAnyRoleExists (): Observable<boolean> {   
+    return this.http.get<any>(`${this.baseUrl}/${this.ROLES}/get-any-role`)
+      .pipe(
+        map(response => response.result),
+        catchError(err => throwError(() => new Error (err)))
+      )
+  }
 }

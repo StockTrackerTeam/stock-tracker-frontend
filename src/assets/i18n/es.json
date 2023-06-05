@@ -156,6 +156,7 @@
     "successNotificationTitle": "¡Todo salió según lo planeado!",
     "errorNotificationTitle": "¡Hubo un problema!",
     "errorNotificationMessage": "Por favor, revisa que los campos requeridos estén completados correctamente.",
-    "accessDenied": "No posee los permisos necesarios para realizar esta acción."
+    "accessDenied": "No posee los permisos necesarios para realizar esta acción.",
+    "no-roles-in-db": "No se encontraron roles en la base de datos. Por favor, comuníquese con servicio técnico."
   }
 }
