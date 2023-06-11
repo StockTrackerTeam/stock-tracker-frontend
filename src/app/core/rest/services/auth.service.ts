@@ -28,6 +28,7 @@ export class AuthService {
           this.token = response.data.token;
           this.currentUser = response.data.result;
 
+          sessionStorage.setItem('firstLogin', 'true');
           this.storeUserData(keepSessionOpen, response.data.result, response.data.token);
               
           return this.currentUser;       
@@ -44,6 +45,7 @@ export class AuthService {
       sessionStorage.removeItem('user');
       sessionStorage.removeItem('token');
     }
+    sessionStorage.removeItem('firstLogin');
     this.router.navigate(['/login']);
   }
 

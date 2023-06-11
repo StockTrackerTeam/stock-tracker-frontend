@@ -27,6 +27,12 @@ export class AppComponent implements OnInit {
     this.token = this.authService.getCurrentToken();
     if (this.token !== null && this.token !== undefined) {
       this.currentUser = this.authService.getCurrentUser();
+      let firstLogin = sessionStorage.getItem('firstLogin');
+
+      if (firstLogin === null || firstLogin === undefined) {
+        sessionStorage.setItem('firstLogin', 'true');
+        this.router.navigate(['/users']);
+      }
     } else {
       this.router.navigate(['/login']);
     }  
