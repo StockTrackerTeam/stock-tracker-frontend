@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CreateEditModalComponent } from './create-edit-modal.component';
+import { ConfirmCancelModalComponent } from './confirm-cancel-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FlexModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,7 +10,7 @@ import { ButtonModule } from '../../directives';
 
 @NgModule({
   declarations: [
-    CreateEditModalComponent
+    ConfirmCancelModalComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +20,7 @@ import { ButtonModule } from '../../directives';
     ButtonModule
   ],
   exports: [
-    CreateEditModalComponent
+    ConfirmCancelModalComponent
   ]
 })
-export class CreateEditModalModule { }
+export class ConfirmCancelModalModule { }

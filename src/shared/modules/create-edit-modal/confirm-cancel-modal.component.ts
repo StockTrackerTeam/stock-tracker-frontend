@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-create-edit-modal',
-  templateUrl: './create-edit-modal.component.html',
-  styleUrls: ['./create-edit-modal.component.scss']
+  selector: 'app-confirm-cancel-modal',
+  templateUrl: './confirm-cancel-modal.component.html',
+  styleUrls: ['./confirm-cancel-modal.component.scss']
 })
-export class CreateEditModalComponent {
+export class ConfirmCancelModalComponent {
   @Input() title!: string;
   @Input() okButton!: string;
   @Input() cancelButton!: string;

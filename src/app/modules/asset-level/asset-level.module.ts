@@ -20,7 +20,7 @@ import { CollapsibleActionBarModule } from '../../../shared/components/collapsib
 import { AssetLevelCreateComponent } from './asset-level-create/asset-level-create.component';
 import { AssetLevelEditComponent } from './asset-level-edit/asset-level-edit.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { CreateEditModalModule } from '../../../shared/modules/create-edit-modal/create-edit-modal.module';
+import { ConfirmCancelModalModule } from '../../../shared/modules/create-edit-modal/confirm-cancel-modal.module';
 
 
 
@@ -48,7 +48,7 @@ import { CreateEditModalModule } from '../../../shared/modules/create-edit-modal
     FormSelectModule,
     CollapsibleActionBarModule,
     MatDialogModule,
-    CreateEditModalModule
+    ConfirmCancelModalModule
   ]
 })
 export class AssetLevelModule { }

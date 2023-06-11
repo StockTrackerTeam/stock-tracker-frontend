@@ -60,8 +60,14 @@ export class UserSettingsComponent implements OnInit {
 
   buildForm (user: UserEntity): void {
     this.userSettingsForm = this.formBuilder.group({
-      firstName: new FormControl(user.firstName, { updateOn: 'change' }),
-      lastName: new FormControl(user.lastName, { updateOn: 'change' }),
+      firstName: new FormControl({
+        value: user.firstName,
+        disabled: true
+      }, { updateOn: 'change' }),
+      lastName: new FormControl({
+        value: user.lastName,
+        disabled: true
+      }, { updateOn: 'change' }),
       oldPassword: new FormControl(undefined, {
         updateOn: 'change'
       }),
@@ -91,7 +97,10 @@ export class UserSettingsComponent implements OnInit {
         ],
         updateOn: 'change'
       })
-    })
+    });
+
+    
+    this.userSettingsForm.controls['lastName'].disable();
 
     this.userSettingsForm.get('confirmPassword')?.valueChanges
       .pipe(
