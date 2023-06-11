@@ -1,0 +1,28 @@
+[mat-dialog-title] {
+  text-align: end;
+  padding: 0;
+  margin-bottom: 0;
+  background-color: #f3f4f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.body-container {
+  margin-top: 3%;
+  width: 100%;
+}
+
+.body-content {
+  padding-bottom: 0px;
+}
+
+.action-content {
+  padding: 0 24px 8px 8px;
+}
+
+.custom-container .mat-dialog-container {
+  border-radius: 20px !important;
+}

@@ -157,5 +157,9 @@
     "errorNotificationTitle": "¡Hubo un problema!",
     "errorNotificationMessage": "Por favor, revisa que los campos requeridos estén completados correctamente.",
     "accessDenied": "No posee los permisos necesarios para realizar esta acción."
+  },
+  "CreateEditModalComponent": {
+    "okButton": "Aceptar",
+    "cancelButton": "Cancelar"
   }
 }

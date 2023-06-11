@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AssetLevelEntity } from '../../../core/models/asset-level-entity.model';
 import { Subscription, noop, tap } from 'rxjs';
 import { AssetLevelService } from '../../../core/rest/services/asset-level.service';
-import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { NotificationService } from '../../../../shared/services/notification.service';
 import { Roles } from '../../../../shared/utils/enums';
 import { AuthService } from '../../../core/rest/services/auth.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-asset-level-edit',
@@ -27,14 +27,16 @@ export class AssetLevelEditComponent implements OnInit {
   ];
 
   constructor (
+    @Inject(MAT_DIALOG_DATA) private data: { assetLevelId: number },
+    private readonly dialogRef: MatDialogRef<AssetLevelEditComponent>,
     private readonly formBuilder: FormBuilder,
     private readonly assetLevelService: AssetLevelService,
-    private readonly modalEditAssetLevel: MdbModalRef<AssetLevelEditComponent>,
     private readonly notificationService: NotificationService,
     private readonly authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.assetLevelId = this.data.assetLevelId;
     this.getAssetLevel(this.assetLevelId);
   }
 
@@ -100,7 +102,7 @@ export class AssetLevelEditComponent implements OnInit {
             'GeneralMessages.successNotificationTitle',
             'AssetLevelEditComponent.' + result.resultKeys
           );
-          this.modalEditAssetLevel.close();
+          this.dialogRef.close(true);
         })
       )
       .subscribe({
@@ -110,7 +112,7 @@ export class AssetLevelEditComponent implements OnInit {
   }
 
   onCancel (): void {
-    this.modalEditAssetLevel.close();
+    this.dialogRef.close(false);
   }
 
   canEditAssetLevel (): boolean {

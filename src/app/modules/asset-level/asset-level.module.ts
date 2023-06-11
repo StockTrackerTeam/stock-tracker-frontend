@@ -18,8 +18,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormSelectModule } from '../../../shared/controls/form-select/form-select.module';
 import { CollapsibleActionBarModule } from '../../../shared/components/collapsible-action-bar/collapsible-action-bar.module';
 import { AssetLevelCreateComponent } from './asset-level-create/asset-level-create.component';
-import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { AssetLevelEditComponent } from './asset-level-edit/asset-level-edit.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CreateEditModalModule } from '../../../shared/modules/create-edit-modal/create-edit-modal.module';
 
 
 
@@ -46,7 +47,8 @@ import { AssetLevelEditComponent } from './asset-level-edit/asset-level-edit.com
     MatIconModule,
     FormSelectModule,
     CollapsibleActionBarModule,
-    MdbModalModule
+    MatDialogModule,
+    CreateEditModalModule
   ]
 })
 export class AssetLevelModule { }
