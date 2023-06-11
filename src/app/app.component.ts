@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
     this.token = this.authService.getCurrentToken();
     if (this.token !== null && this.token !== undefined) {
       this.currentUser = this.authService.getCurrentUser();
-      this.router.navigate(['/users']);
     } else {
       this.router.navigate(['/login']);
     }  

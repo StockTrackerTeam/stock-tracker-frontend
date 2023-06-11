@@ -9,6 +9,7 @@ import { NotificationService } from 'src/shared/services/notification.service';
 import { UserService } from 'src/app/core/rest/services/user.service';
 import { alwaysEnabled, InlineActions } from 'src/shared/components/collapsible-action-bar/collapsible-action-bar.model';
 import { Roles } from 'src/shared/utils/enums';
+import { RoleService } from '../../../core/rest/services/role.service';
 
 @Component({
   selector: 'app-user-list',
@@ -166,7 +167,8 @@ export class UserListComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly translateService: TranslateService,
     private readonly authenticationService: AuthService,
-    private readonly notificationService: NotificationService
+    private readonly notificationService: NotificationService,
+    private readonly roleService: RoleService
   ) {}
 
   ngOnInit (): void {
@@ -187,7 +189,22 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   handleNewUser (): void {
-    this.router.navigate(['users', 'create']);
+    this.roleService.checkIfAnyRoleExists()
+      .pipe(
+        tap(data => {
+          if (!data) {
+            return this.notificationService.failureNotification(
+              'GeneralMessages.errorNotificationTitle',
+              'GeneralMessages.no-roles-in-db'
+            );
+          }
+          this.router.navigate(['users', 'create']);
+        })
+      )
+      .subscribe({
+        next: noop,
+        error: err => this.errorMessage = err
+      })
   }
 
   ngOnDestroy (): void { 
