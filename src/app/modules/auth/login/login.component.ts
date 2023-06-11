@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       username: new FormControl('', {
         validators: [
           Validators.minLength(6),
-          Validators.maxLength(30),
+          Validators.maxLength(20),
           Validators.required
         ],
         updateOn: 'change'

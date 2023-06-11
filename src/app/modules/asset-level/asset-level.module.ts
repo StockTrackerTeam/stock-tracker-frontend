@@ -19,11 +19,15 @@ import { FormSelectModule } from '../../../shared/controls/form-select/form-sele
 import { CollapsibleActionBarModule } from '../../../shared/components/collapsible-action-bar/collapsible-action-bar.module';
 import { AssetLevelCreateComponent } from './asset-level-create/asset-level-create.component';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { AssetLevelEditComponent } from './asset-level-edit/asset-level-edit.component';
+
+
 
 @NgModule({
   declarations: [
     AssetLevelListComponent,
-    AssetLevelCreateComponent
+    AssetLevelCreateComponent,
+    AssetLevelEditComponent
   ],
   imports: [
     CommonModule,

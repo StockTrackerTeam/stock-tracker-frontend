@@ -57,6 +57,7 @@
     "firstname-unsupported-characters": "Nombre no puede contener números o caracteres especiales.",
     "lastname-unsupported-characters": "Apellido no puede contener números o caracteres especiales.",
     "password-not-match": "Las contraseñas no coinciden, por favor intente de nuevo.",
+    "password-validate-password": "La contraseña debe tener al menos una mayúscula, una minúscula y un número.",
     "ok": "El usuario ha sido creado exitosamente!",
     "submit": "Crear",
     "cancel": "Cancelar"
@@ -72,9 +73,12 @@
     "firstName-max-length": "El nombre puede contener un máximo de 60 caracteres.",
     "lastName-min-length": "El apellido debe contener 2 caracteres o más.",
     "lastName-max-length": "El apellido puede contener un máximo de 60 caracteres.",
+    "firstName-space-at-beginning": "El nombre no puede iniciar con un espacio.",
+    "lastName-space-at-beginning": "El apellido no puede iniciar con un espacio.",
     "email": "Ingrese un email valido.",
     "email-not-match": "El email debe coincidir.",
-    "description-max-length": "La descripción del nivel puede contener un máximo de 200 caracteres."
+    "description-max-length": "La descripción del nivel puede contener un máximo de 200 caracteres.",
+    "asset-level-description-same-value": "Para poder editar el nivel de activo, debe cambiar la descripción por una nueva."
   },
   "UserDropdownComponent": {
     "account-settings": "Configuración",
@@ -140,9 +144,19 @@
     "description-is-not-empty": "La descripción del activo no puede estar vacía.",
     "ok": "¡El nivel de activo se creó con éxito!"
   },
+  "AssetLevelEditComponent": {
+    "title": "Editar nivel de activo",
+    "description-field": "Descripción",
+    "submit": "Editar",
+    "cancel": "Cancelar",
+    "description-is-not-empty": "La descripción del activo no puede estar vacía.",
+    "ok": "¡El nivel de activo se editó con éxito!"
+  },
   "GeneralMessages": {
     "successNotificationTitle": "¡Todo salió según lo planeado!",
     "errorNotificationTitle": "¡Hubo un problema!",
-    "errorNotificationMessage": "Por favor, revisa que los campos requeridos estén completados correctamente."
+    "errorNotificationMessage": "Por favor, revisa que los campos requeridos estén completados correctamente.",
+    "accessDenied": "No posee los permisos necesarios para realizar esta acción.",
+    "no-roles-in-db": "No se encontraron roles en la base de datos. Por favor, comuníquese con servicio técnico."
   }
 }

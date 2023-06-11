@@ -9,6 +9,7 @@ import { NotificationService } from 'src/shared/services/notification.service';
 import { UserService } from 'src/app/core/rest/services/user.service';
 import { alwaysEnabled, InlineActions } from 'src/shared/components/collapsible-action-bar/collapsible-action-bar.model';
 import { Roles } from 'src/shared/utils/enums';
+import { RoleService } from '../../../core/rest/services/role.service';
 
 @Component({
   selector: 'app-user-list',
@@ -89,14 +90,22 @@ export class UserListComponent implements OnInit, OnDestroy {
       .pipe(
         tap((result) => {
           this.loading = false;
-          this.onSuccess('GeneralMessages..successNotificationTitle', 'UserListComponent.delete.' + result.resultKeys);
+          this.notificationService.successNotification(
+            'GeneralMessages..successNotificationTitle',
+            'UserListComponent.delete.' + result.resultKeys
+          );
+          this.loading = true;
+          this.getUsers();
         })
       )
       .subscribe({
         next: noop,
         error: (err) => {
           this.loading = false;
-          this.onFailure('GeneralMessages..errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
+          this.notificationService.failureNotification(
+            'GeneralMessages..errorNotificationTitle',
+            'UserListComponent.' + err.resultKeys
+          );
         }
       })
   }
@@ -107,14 +116,22 @@ export class UserListComponent implements OnInit, OnDestroy {
       .pipe(
         tap((result) => {
           this.loading = false;
-          this.onSuccess('GeneralMessages..successNotificationTitle', 'UserListComponent.inactivate.' + result.resultKeys)
+          this.notificationService.successNotification(
+            'GeneralMessages..successNotificationTitle',
+            'UserListComponent.inactivate.' + result.resultKeys
+          );
+          this.loading = true;
+          this.getUsers();
         })
       )
       .subscribe({
         next: noop,
         error: (err) => {
           this.loading = false;
-          this.onFailure('GeneralMessages..errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
+          this.notificationService.failureNotification(
+            'GeneralMessages..errorNotificationTitle',
+            'UserListComponent.' + err.resultKeys
+          );
         }
       })
   }
@@ -125,14 +142,22 @@ export class UserListComponent implements OnInit, OnDestroy {
       .pipe(
         tap((result) => {
           this.loading = false;
-          this.onSuccess('GeneralMessages.successNotificationTitle', 'UserListComponent.activate.' + result.resultKeys)
+          this.notificationService.successNotification(
+            'GeneralMessages.successNotificationTitle',
+            'UserListComponent.activate.' + result.resultKeys
+          );
+          this.loading = true;
+          this.getUsers();
         })
       )
       .subscribe({
         next: noop,
         error: (err) => {
           this.loading = false;
-          this.onFailure('GeneralMessages.errorNotificationTitle', 'UserListComponent.' + err.resultKeys)
+          this.notificationService.failureNotification(
+            'GeneralMessages.errorNotificationTitle',
+            'UserListComponent.' + err.resultKeys
+          );
         }
       })
   }
@@ -142,29 +167,13 @@ export class UserListComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly translateService: TranslateService,
     private readonly authenticationService: AuthService,
-    private readonly notificationService: NotificationService
+    private readonly notificationService: NotificationService,
+    private readonly roleService: RoleService
   ) {}
 
   ngOnInit (): void {
     this.loading = true;
     this.sub = this.getUsers()
-  }
-
-  onSuccess (title: string, message: string): void {
-    const notificationTitle = this.translateService.instant(title);
-    const notificationMessage = this.translateService.instant(message);
-
-    this.notificationService.showSuccess(notificationMessage, notificationTitle);
-
-    this.loading = true;
-    this.getUsers();
-  }
-
-  onFailure (title: string, message: string): void {
-    const notificationTitle = this.translateService.instant(title);
-    const notificationMessage = this.translateService.instant(message);
-
-    this.notificationService.showError(notificationMessage, notificationTitle);
   }
 
   getUsers (): Subscription {
@@ -180,7 +189,22 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   handleNewUser (): void {
-    this.router.navigate(['users', 'create']);
+    this.roleService.checkIfAnyRoleExists()
+      .pipe(
+        tap(data => {
+          if (!data) {
+            return this.notificationService.failureNotification(
+              'GeneralMessages.errorNotificationTitle',
+              'GeneralMessages.no-roles-in-db'
+            );
+          }
+          this.router.navigate(['users', 'create']);
+        })
+      )
+      .subscribe({
+        next: noop,
+        error: err => this.errorMessage = err
+      })
   }
 
   ngOnDestroy (): void { 

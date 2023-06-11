@@ -60,8 +60,14 @@ export class UserSettingsComponent implements OnInit {
 
   buildForm (user: UserEntity): void {
     this.userSettingsForm = this.formBuilder.group({
-      firstName: new FormControl(user.firstName, { updateOn: 'change' }),
-      lastName: new FormControl(user.lastName, { updateOn: 'change' }),
+      firstName: new FormControl({
+        value: user.firstName,
+        disabled: true
+      }, { updateOn: 'change' }),
+      lastName: new FormControl({
+        value: user.lastName,
+        disabled: true
+      }, { updateOn: 'change' }),
       oldPassword: new FormControl(undefined, {
         updateOn: 'change'
       }),
@@ -91,7 +97,10 @@ export class UserSettingsComponent implements OnInit {
         ],
         updateOn: 'change'
       })
-    })
+    });
+
+    
+    this.userSettingsForm.controls['lastName'].disable();
 
     this.userSettingsForm.get('confirmPassword')?.valueChanges
       .pipe(
@@ -179,11 +188,10 @@ export class UserSettingsComponent implements OnInit {
 
   onSubmit (): void {
     if (this.userSettingsForm?.invalid) {
-      const notificationTitle = this.translate.instant('GeneralMessages.errorNotificationTitle');
-      const notificationMessage = this.translate.instant('GeneralMessages.errorNotificationMessage');
-
-      this.notificationService.showError(notificationMessage, notificationTitle);
-      return;
+      return this.notificationService.failureNotification(
+        'GeneralMessages.errorNotificationTitle',
+        'GeneralMessages.errorNotificationMessage'
+      );
     }
 
     this.loading = true;
@@ -212,9 +220,10 @@ export class UserSettingsComponent implements OnInit {
       .pipe(
         tap((result) => {
           this.loading = false;
-          const notificationTitle = this.translate.instant('GeneralMessages.successNotificationTitle');
-          const notificationMessage = this.translate.instant('UserSettingsComponent.' + result.resultKeys);
-          this.notificationService.showSuccess(notificationMessage, notificationTitle);
+          this.notificationService.successNotification(
+            'GeneralMessages.successNotificationTitle',
+            'UserSettingsComponent.' + result.resultKeys
+          );
           this.router.navigate(['/users']);
         })
       )

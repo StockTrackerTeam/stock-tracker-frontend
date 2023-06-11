@@ -79,34 +79,26 @@ export class UserViewComponent implements OnInit, OnDestroy {
     this.userService.changeUserState(this.currentUser.id)
       .pipe(
         tap((result) => {
+          let messageKey = 'UserListComponent.activate.' + result.resultKeys;
+          const titleKey = 'GeneralMessages.successNotificationTitle';
+
           if (this.currentUser.isActive) {
-            return this.onSuccess('GeneralMessages.successNotificationTitle', 'UserListComponent.inactivate.' + result.resultKeys);
+            messageKey = 'UserListComponent.inactivate.' + result.resultKeys;
           }
-          return this.onSuccess('GeneralMessages.successNotificationTitle', 'UserListComponent.activate.' + result.resultKeys);
+          
+          this.notificationService.successNotification(titleKey, messageKey);
+          return this.getUser(this.userId);
         })
       )
       .subscribe({
         next: noop,
         error: (err) => {
-          this.onFailure('GeneralMessages.errorNotificationTitle', 'UserListComponent.' + err.resultKeys);
+          this.notificationService.failureNotification(
+            'GeneralMessages.errorNotificationTitle',
+            'UserListComponent.' + err.resultKeys
+          );
         }
       })
-  }
-
-  onSuccess (title: string, message: string): void {
-    const notificationTitle = this.translateService.instant(title);
-    const notificationMessage = this.translateService.instant(message);
-
-    this.notificationService.showSuccess(notificationMessage, notificationTitle);
-
-    this.getUser(this.userId);
-  }
-
-  onFailure (title: string, message: string): void {
-    const notificationTitle = this.translateService.instant(title);
-    const notificationMessage = this.translateService.instant(message);
-
-    this.notificationService.showError(notificationMessage, notificationTitle);
   }
 
   onCancel (): void {

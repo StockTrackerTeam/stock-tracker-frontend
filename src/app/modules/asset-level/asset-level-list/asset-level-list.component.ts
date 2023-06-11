@@ -7,8 +7,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Roles } from '../../../../shared/utils/enums';
 import { AuthService } from '../../../core/rest/services/auth.service';
 import { NotificationService } from '../../../../shared/services/notification.service';
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { AssetLevelCreateComponent } from '../asset-level-create/asset-level-create.component';
+import { AssetLevelEditComponent } from '../asset-level-edit/asset-level-edit.component';
 
 @Component({
   selector: 'app-asset-level-list',
@@ -26,7 +27,7 @@ export class AssetLevelListComponent implements OnInit {
       show: this.canHandleAssetLevel.bind(this),
       description: this.translateService.instant('AssetLevelListComponent.edit-assetLevel'),
       disableCriteria: alwaysEnabled,
-      onClick: this.handleViewAssetLevel.bind(this)
+      onClick: this.handleEditAssetLevel.bind(this)
     },
     {
       icon: 'delete',
@@ -45,30 +46,56 @@ export class AssetLevelListComponent implements OnInit {
     private readonly modalService: MdbModalService
   ) {}
 
-  private canHandleAssetLevel (): boolean {
+  canHandleAssetLevel (): boolean {
     const admittedRoles = [Roles.ADMIN];
     return this.authService.checkUserPermissions(admittedRoles);
   }
 
-  private handleViewAssetLevel (): void {
-
+  private handleEditAssetLevel (assetLevel: AssetLevelEntity): void {
+    if (this.canHandleAssetLevel()) {
+      this.modalService
+        .open(AssetLevelEditComponent, {
+          data: {assetLevelId: assetLevel.id}
+        })
+        .onClose.subscribe(() => this.getAssetLevels());
+    } else {
+      this.notificationService.failureNotification(
+        'GeneralMessages.errorNotificationTitle',
+        'GeneralMessages.accessDenied'
+      );
+    }
   }
 
   private handleDeleteAssetLevel (AssetLevel: AssetLevelEntity): void {
-    this.assetLevelService.deleteAssetLevel(AssetLevel.id)
-      .pipe(
-        tap((result) => {
-          this.loading = false;
-          this.onSuccess('GeneralMessages.successNotificationTitle', 'AssetLevelListComponent.delete.' + result.resultKeys)
+    if (this.canHandleAssetLevel()) {
+      this.assetLevelService.deleteAssetLevel(AssetLevel.id)
+        .pipe(
+          tap((result) => {
+            this.loading = false;
+            this.notificationService.successNotification(
+              'GeneralMessages.successNotificationTitle',
+              'AssetLevelListComponent.delete.' + result.resultKeys
+            );
+            this.loading = true;
+            this.getAssetLevels();
+          })
+        )
+        .subscribe({
+          next: noop,
+          error: (err) => {
+            this.loading = false;
+            this.notificationService.failureNotification(
+              'GeneralMessages.errorNotificationTitle',
+              'AssetLevelListComponent.' + err.resultKeys
+            );
+          }
         })
-      )
-      .subscribe({
-        next: noop,
-        error: (err) => {
-          this.loading = false;
-          this.onFailure('GeneralMessages.errorNotificationTitle', 'AssetLevelListComponent.' + err.resultKeys)
-        }
-      })
+    } else {
+      this.notificationService.failureNotification(
+        'GeneralMessages.errorNotificationTitle',
+        'GeneralMessages.accessDenied'
+      );
+    }
   }
 
 
@@ -90,26 +117,16 @@ export class AssetLevelListComponent implements OnInit {
       });
   }
 
-  onSuccess (title: string, message: string): void {
-    const notificationTitle = this.translateService.instant(title);
-    const notificationMessage = this.translateService.instant(message);
-
-    this.notificationService.showSuccess(notificationMessage, notificationTitle);
-
-    this.loading = true;
-    this.getAssetLevels();
-  }
-
-  onFailure (title: string, message: string): void {
-    const notificationTitle = this.translateService.instant(title);
-    const notificationMessage = this.translateService.instant(message);
-
-    this.notificationService.showError(notificationMessage, notificationTitle);
-  }
-
   handleNewAssetLevel (): void {
-    this.modalService
-      .open(AssetLevelCreateComponent)
-      .onClose.subscribe(() => this.getAssetLevels());
+    if (this.canHandleAssetLevel()) {
+      this.modalService
+        .open(AssetLevelCreateComponent)
+        .onClose.subscribe(() => this.getAssetLevels());
+    } else {
+      this.notificationService.failureNotification(
+        'GeneralMessages.errorNotificationTitle',
+        'GeneralMessages.accessDenied'
+      );
+    }
   }
 }

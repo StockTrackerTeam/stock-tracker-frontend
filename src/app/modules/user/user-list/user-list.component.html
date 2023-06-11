@@ -58,7 +58,7 @@
                     <span>{{ user.email }}</span>
                   </td>
                   <td class="users-list-container__users-list__item__property__role">
-                    <span>{{ user.role.label }}</span>
+                    <span>{{ user.role && user.role.label ? user.role.label : 'No role' }}</span>
                   </td>
                   <td class="users-list-container__users-list__item__property__status">
                     <span>{{ (user.isActive ? 'UserListComponent.statusActive' : 'UserListComponent.statusInactive') | translate }}</span>
