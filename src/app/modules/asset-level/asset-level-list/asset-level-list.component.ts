@@ -7,9 +7,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Roles } from '../../../../shared/utils/enums';
 import { AuthService } from '../../../core/rest/services/auth.service';
 import { NotificationService } from '../../../../shared/services/notification.service';
-import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { AssetLevelCreateComponent } from '../asset-level-create/asset-level-create.component';
 import { AssetLevelEditComponent } from '../asset-level-edit/asset-level-edit.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-asset-level-list',
@@ -20,6 +20,12 @@ export class AssetLevelListComponent implements OnInit {
   assetLevels: AssetLevelEntity[] = []
   errorMessage!: string;
   loading = false;
+  assetLevelModalConfig = {
+    hasBackdrop: true,
+    backdropClass: 'st-dialog-backdrop',
+    width: `${Math.min(window.innerWidth / 2, 500)}px`,
+    borderRadius: '50%'
+  };
 
   readonly assetLevelActions: InlineActions[] = [
     {
@@ -43,7 +49,7 @@ export class AssetLevelListComponent implements OnInit {
     private readonly translateService: TranslateService,
     private readonly authService: AuthService,
     private readonly notificationService: NotificationService,
-    private readonly modalService: MdbModalService
+    private readonly matDialog: MatDialog
   ) {}
 
   canHandleAssetLevel (): boolean {
@@ -53,11 +59,18 @@ export class AssetLevelListComponent implements OnInit {
 
   private handleEditAssetLevel (assetLevel: AssetLevelEntity): void {
     if (this.canHandleAssetLevel()) {
-      this.modalService
+      this.matDialog
         .open(AssetLevelEditComponent, {
+          ...this.assetLevelModalConfig,
           data: {assetLevelId: assetLevel.id}
         })
-        .onClose.subscribe(() => this.getAssetLevels());
+        .afterClosed()
+        .pipe(
+          tap((result: boolean) => {
+            if (result) this.getAssetLevels();
+          })
+        )
+        .subscribe();
     } else {
       this.notificationService.failureNotification(
         'GeneralMessages.errorNotificationTitle',
@@ -119,9 +132,16 @@ export class AssetLevelListComponent implements OnInit {
 
   handleNewAssetLevel (): void {
     if (this.canHandleAssetLevel()) {
-      this.modalService
-        .open(AssetLevelCreateComponent)
-        .onClose.subscribe(() => this.getAssetLevels());
+      this.matDialog
+        .open(
+          AssetLevelCreateComponent,
+          this.assetLevelModalConfig
+        )
+        .afterClosed()
+        .pipe(
+          tap(() => this.getAssetLevels())
+        )
+        .subscribe();
     } else {
       this.notificationService.failureNotification(
         'GeneralMessages.errorNotificationTitle',

@@ -1,43 +1,20 @@
-<div class="assetLevel-create-container" fxLayout="column">
-  <div fxFlex="50%">
-    <h1 class="page-header">{{ 'AssetLevelCreateComponent.title' | translate }}</h1>
-    <mat-divider class="form-group-divider"></mat-divider>
-  </div>
-
-  <div>
-    <div *ngIf="createForm" [formGroup]="createForm" fxLayout="column" fxFlex="50">
-      <div fxLayout="column" fxFlex="100" style="margin-top: 3%; width: 100%">
-        <app-loading-indicator [isLoading]="loading">
-          <div>
-            <div fxLauout="row">
-              <div class="input-container" fxFlex="50%" style="width: 100%">
-                <mat-form-field class="input" appearance="outline">
-                  <mat-label>{{ 'AssetLevelCreateComponent.description-field' | translate}}</mat-label>
-                  <input matInput type="text" autocomplete="off" formControlName="description">
-                  <app-form-errors
-                    fieldName="{{ 'AssetLevelCreateComponent.description-field' | translate }}"
-                    [control]="createForm.get('description')"
-                    [customErrorMsg]="customDescriptionErrorMsgs"
-                  >
-                  </app-form-errors>
-                </mat-form-field>
-              </div>
-            </div>
-          </div>
-
-          <mat-divider class="form-group-divider"></mat-divider>
-          <div fxLayout="row" fxFlex="50%">
-            <button 
-              stPrimaryBtn
-              (click)="onSubmit()"
-              style="margin-right: 15px;"
-            >
-              {{ 'AssetLevelCreateComponent.submit' | translate }}
-            </button>
-            <button stGhostBtn (click)='onCancel()'>{{ 'AssetLevelCreateComponent.cancel' | translate }}</button>
-          </div>
-        </app-loading-indicator>
-      </div>
+<app-confirm-cancel-modal
+  title="{{ 'AssetLevelCreateComponent.title' | translate }}"
+  (submitEvent)="onSubmit()"
+  (cancelEvent)="onCancel()"
+>
+  <div body *ngIf="createForm" [formGroup]="createForm">
+    <div class="input-container">
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>{{ 'AssetLevelCreateComponent.description-field' | translate}}</mat-label>
+        <textarea rows="3" matInput type="text" autocomplete="off" formControlName="description"></textarea>
+        <app-form-errors
+          fieldName="{{ 'AssetLevelCreateComponent.description-field' | translate }}"
+          [control]="createForm.get('description')"
+          [customErrorMsg]="customDescriptionErrorMsgs"
+        >
+        </app-form-errors>
+      </mat-form-field>
     </div>
   </div>
-</div>
+</app-confirm-cancel-modal>

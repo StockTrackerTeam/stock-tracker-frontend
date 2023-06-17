@@ -3,9 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { NotificationService } from '../../../../shared/services/notification.service';
 import { AssetLevelService } from '../../../core/rest/services/asset-level.service';
 import { noop, tap } from 'rxjs';
-import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { Roles } from '../../../../shared/utils/enums';
 import { AuthService } from '../../../core/rest/services/auth.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-asset-level-create',
@@ -15,6 +15,7 @@ import { AuthService } from '../../../core/rest/services/auth.service';
 export class AssetLevelCreateComponent implements OnInit {
   createForm!: FormGroup;
   loading = false;
+  
   customDescriptionErrorMsgs = [
     {
       key: 'maxlength',
@@ -23,7 +24,7 @@ export class AssetLevelCreateComponent implements OnInit {
   ];
 
   constructor (
-    private readonly modalCreateAssetLevel: MdbModalRef<AssetLevelCreateComponent>,
+    private readonly dialogRef: MatDialogRef<AssetLevelCreateComponent>,
     private readonly formBuilder: FormBuilder,
     private readonly notificationService: NotificationService,
     private readonly assetLevelService: AssetLevelService,
@@ -47,10 +48,10 @@ export class AssetLevelCreateComponent implements OnInit {
   }
 
   onCancel (): void {
-    this.modalCreateAssetLevel.close();
+    this.dialogRef.close(false);
   }
 
-  onSubmit (): void {
+  onSubmit (): void {    
     if (this.canCreateAssetLevel() === false) {
       return this.notificationService.failureNotification(
         'GeneralMessages.errorNotificationTitle',
@@ -76,7 +77,7 @@ export class AssetLevelCreateComponent implements OnInit {
             'GeneralMessages.successNotificationTitle',
             'AssetLevelCreateComponent.' + result.resultKeys
           );
-          this.modalCreateAssetLevel.close();
+          this.dialogRef.close(true);
         })
       )
       .subscribe({
