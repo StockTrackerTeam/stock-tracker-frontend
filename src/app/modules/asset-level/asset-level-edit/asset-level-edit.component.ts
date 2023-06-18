@@ -15,7 +15,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class AssetLevelEditComponent implements OnInit {
   editLevelForm!: FormGroup;
-  assetLevelId!: number;
   currentAssetLevel!: AssetLevelEntity;
   loading = false;
 
@@ -36,8 +35,7 @@ export class AssetLevelEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.assetLevelId = this.data.assetLevelId;
-    this.getAssetLevel(this.assetLevelId);
+    this.getAssetLevel(this.data.assetLevelId);
   }
 
   buildForm (assetLevel: AssetLevelEntity): void {
