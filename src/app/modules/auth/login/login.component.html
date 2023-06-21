@@ -12,13 +12,11 @@
       <mat-form-field class="input" appearance="outline" >
         <mat-label>{{ 'LoginComponent.user-field' | translate }}</mat-label>
         <input matInput class="loginInput" type="text" formControlName="username"/>
-        <app-form-errors fieldName="username" [control]="loginForm.get('username')"></app-form-errors>
       </mat-form-field>
 
       <mat-form-field class="input" appearance="outline" >
         <mat-label>{{ 'LoginComponent.pwd-field' | translate }}</mat-label>
         <input matInput class="loginInput" type="password" formControlName="password"/>
-        <app-form-errors fieldName="password" [control]="loginForm.get('password')"></app-form-errors>
       </mat-form-field>
 
       <mat-checkbox
@@ -31,7 +29,7 @@
 
       <div fxLayout="row" fxLayoutAlign="flex-end" class="actions">
         <button
-          [disabled]="loading" 
+          [disabled]="loginForm.invalid || loading" 
           stPrimaryBtn
           type="submit"
         >

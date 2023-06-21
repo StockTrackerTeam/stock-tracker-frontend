@@ -27,11 +27,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       username: new FormControl('', {
-        validators: [
-          Validators.minLength(6),
-          Validators.maxLength(20),
-          Validators.required
-        ],
+        validators: [Validators.required],
         updateOn: 'change'
       }),
       password: new FormControl('', {
@@ -54,7 +50,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value, this.loginForm.controls['keepSessionOpen'].value)
       .pipe(
         tap((user: UserEntity) => {
-          this.loading = false;   
+          this.loading = false; 
           if (user.roleId === Roles.ADMIN) this.router.navigate(['/users']);
           else this.router.navigate(['']);  // TODO - we should remove this conditional and let the authguard do the role-based redirecting
         })

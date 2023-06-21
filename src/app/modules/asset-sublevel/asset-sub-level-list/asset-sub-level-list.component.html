@@ -1,0 +1,60 @@
+<div class="assetSubLevels-list-container">
+  <h1 class="page-header">{{ 'AssetSubLevelListComponent.title' | translate }}</h1>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="assetSubLevels-list-container__options">
+    <button *ngIf="canHandleAssetSubLevel()" type="button" stPrimaryBtn (click)="handleNewAssetSubLevel()">
+      {{ 'AssetSubLevelListComponent.new-button' | translate }}
+    </button>
+  </div>
+
+  <div fxLayout="row" class="assetSubLevels-list-container__content-block">
+    <div fxFlex>
+      <app-loading-indicator [isLoading]="loading">
+        <ng-container *ngIf="assetSubLevels && assetSubLevels.length > 0; else emptyList">
+          <div class="responsive-table-container">
+            <table stTable class="assetSubLevels-list-container__table">
+              <thead>
+                <tr>
+                  <th width="20px"></th>
+                  <th class="assetSubLevels-list-container__table__header__id">{{ 'AssetSubLevelListComponent.table.id' | translate }}</th>
+                  <th class="assetSubLevels-list-container__table__header__description">{{ 'AssetSubLevelListComponent.table.description' | translate }}</th>
+                  <th class="assetSubLevels-list-container__table__header__description">{{ 'AssetLevelListComponent.table.description' | translate }}</th>
+                  <th class="assetSubLevels-list-container__table__header__actions">{{ 'UserListComponent.table.actions' | translate }}</th> 
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let assetSubLevel of assetSubLevels">
+                  <ng-container *ngIf="assetSubLevel">
+                    <td></td>
+                    <td class="assetSubLevels-list-container__assetSubLevels-list__item__property__id">
+                      <span>{{ assetSubLevel.id }}</span>
+                    </td>
+                    <td class="assetSubLevels-list-container__assetSubLevels-list__item__property__description">
+                      <span>{{ assetSubLevel.description }}</span>
+                    </td>
+                    <td class="assetSubLevels-list-container__assetSubLevels-list__item__property__description">
+                      <span>{{ assetSubLevel.assetLevel && assetSubLevel.assetLevel.description ? assetSubLevel.assetLevel.description : 'No pertenece a un nivel' }}</span>
+                    </td>
+                    <td class="assetSubLevels-table__actions" *ngIf="true">
+                      <app-collapsible-action-bar [row]="assetSubLevel" [inlineActions]="assetSubLevelActions"></app-collapsible-action-bar>
+                    </td>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+
+        <ng-template #emptyList>
+          <ng-template>
+            <ng-container>
+              <div class="assetSubLevels-list-container__empty-list">
+                <p class="assetSubLevels-list-container__empty-list__title">{{ 'AssetLevelListComponent.no-assetLevel-created' | translate }}</p>
+              </div>
+            </ng-container>
+          </ng-template>
+        </ng-template>
+      </app-loading-indicator>
+    </div>
+  </div>
+</div>

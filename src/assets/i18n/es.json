@@ -4,7 +4,8 @@
     "user-field": "Usuario",
     "pwd-field": "Contraseña",
     "submit": "Ingresar",
-    "keep-session-open": "Mantener la sesión iniciada"
+    "keep-session-open": "Mantener la sesión iniciada",
+    "incorrect-data": "Nombre de usuario y/o contraseña incorrectos."
   },
   "UserListComponent": {
     "title": "Usuarios",
@@ -126,8 +127,8 @@
     "title": "Nivel de activo",
     "new-button": "Crear nuevo nivel de activo",
     "table": {
-      "id": "ID",
-      "description": "DESCRIPCION"
+      "id": "NIVEL",
+      "description": "DESCRIPCION DE NIVEL"
     },
     "no-assetLevel-created": "Todavía no se ha creado ningun nivel de activo.",
     "edit-assetLevel": "Editar nivel",
@@ -162,5 +163,14 @@
   "CreateEditModalComponent": {
     "okButton": "Aceptar",
     "cancelButton": "Cancelar"
+  },
+  "AssetSubLevelListComponent": {
+    "title": "Sub-nivel de activo",
+    "new-button": "Crear nuevo sub-nivel de activo",
+    "table": {
+      "id": "SUB-NIVEL",
+      "description": "DESCRIPCION DE SUB-NIVEL"
+    },
+    "no-assetSubLevel-created": "Todavía no se ha creado ningun sub-nivel de activo."
   }
 }

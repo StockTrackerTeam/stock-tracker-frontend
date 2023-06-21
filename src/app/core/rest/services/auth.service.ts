@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { Roles } from 'src/shared/utils/enums';
 import { UserEntity } from '../../models';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../../../shared/services/notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class AuthService {
 
   constructor (
     private readonly http: HttpClient,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly notificationService: NotificationService
   ) {}
 
   login (username: string, password: string, keepSessionOpen: boolean): Observable<any> {
@@ -33,7 +35,13 @@ export class AuthService {
               
           return this.currentUser;       
         }),
-        catchError(err => throwError(() => new Error(err)))
+        catchError(err => {
+          this.notificationService.failureNotification(
+            'GeneralMessages.errorNotificationTitle',
+            'LoginComponent.incorrect-data'
+          );
+          return throwError(() => new Error(err));
+        }),
       )
   }
 
