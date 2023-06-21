@@ -4,7 +4,8 @@
     "user-field": "Usuario",
     "pwd-field": "Contraseña",
     "submit": "Ingresar",
-    "keep-session-open": "Mantener la sesión iniciada"
+    "keep-session-open": "Mantener la sesión iniciada",
+    "incorrect-data": "Nombre de usuario y/o contraseña incorrectos."
   },
   "UserListComponent": {
     "title": "Usuarios",
