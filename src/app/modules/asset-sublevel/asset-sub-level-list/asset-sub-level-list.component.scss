@@ -5,7 +5,7 @@
 
 $content-left-margin: 30px;
 
-.assetLevels-list-container {
+.assetSubLevels-list-container {
   &__interaction {
     &__filter {
       display: 'inline-block';
@@ -94,7 +94,7 @@ $content-left-margin: 30px;
     }
   }
 
-  &__assetLevels-list {
+  &__assetSubLevels-list {
     list-style-type: none;
     padding-left: $content-left-margin;
 

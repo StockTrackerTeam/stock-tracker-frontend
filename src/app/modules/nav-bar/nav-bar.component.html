@@ -29,6 +29,17 @@
         <div class="nav-link-text">{{ 'AssetLevelListComponent.title' | translate }}</div>
       </a>
 
+      <a
+        *ngIf="canAccessAssetSubLevelModule"
+        mat-list-item
+        class="nav-link"
+        [routerLink]="['asset-sublevels']"
+        routerLinkActive="sidebar__nav-link&#45;&#45;active"
+      >
+        <mat-icon>group</mat-icon>
+        <div class="nav-link-text">{{ 'AssetSubLevelListComponent.title' | translate }}</div>
+      </a>
+
       <section class="nav-list-section-footer">
         <span class="copyright"><mat-icon class="copyright-icon">copyright</mat-icon> 2023 StockTracker Project</span>
       </section>

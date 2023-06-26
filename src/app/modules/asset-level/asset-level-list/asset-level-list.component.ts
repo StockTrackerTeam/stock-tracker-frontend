@@ -117,6 +117,7 @@ export class AssetLevelListComponent implements OnInit {
   }
 
   getAssetLevels (): Subscription {
+    this.loading = true;
     return this.assetLevelService.getAssetLevels()
       .pipe(
         tap(data => {
