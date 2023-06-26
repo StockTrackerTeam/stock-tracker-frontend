@@ -19,7 +19,7 @@ export class AssetLevelCreateComponent implements OnInit {
   customDescriptionErrorMsgs = [
     {
       key: 'maxlength',
-      customKey: 'description-max-length'
+      customKey: 'asset-level-description-max-length'
     }
   ];
 

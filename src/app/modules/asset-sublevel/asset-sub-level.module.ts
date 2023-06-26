@@ -18,11 +18,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { CollapsibleActionBarModule } from '../../../shared/components/collapsible-action-bar/collapsible-action-bar.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmCancelModalModule } from '../../../shared/modules/create-edit-modal/confirm-cancel-modal.module';
+import { AssetSubLevelCreateComponent } from './asset-sub-level-create/asset-sub-level-create.component';
+import { FormSelectModule } from '../../../shared/controls/form-select/form-select.module';
 
 
 @NgModule({
   declarations: [
-    AssetSubLevelListComponent
+    AssetSubLevelListComponent,
+    AssetSubLevelCreateComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +44,8 @@ import { ConfirmCancelModalModule } from '../../../shared/modules/create-edit-mo
     MatIconModule,
     CollapsibleActionBarModule,
     MatDialogModule,
-    ConfirmCancelModalModule
+    ConfirmCancelModalModule,
+    FormSelectModule
   ]
 })
 export class AssetSubLevelModule { }
