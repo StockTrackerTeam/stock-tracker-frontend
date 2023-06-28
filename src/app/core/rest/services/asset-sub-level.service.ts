@@ -30,4 +30,26 @@ export class AssetSubLevelService {
         catchError(err => throwError(() => new Error(err)))
       )
   }
+
+  getAssetSubLevel (id: number): Observable<AssetSubLevelEntity> {
+    return this.http.get<any>(`${this.baseUrl}/${this.ASSET_SUB_LEVELS}/${id}`)
+      .pipe(
+        map(response => response.data.result),
+        catchError(err => throwError(() => new Error(err)))
+      )
+  }
+
+  updateAssetSubLevel (id: number, assetSubLevelDTO: AssetSubLevelDTO): Observable<IAssetSubLevelResponse> {
+    return this.http.put<any>(`${this.baseUrl}/${this.ASSET_SUB_LEVELS}/${id}`, assetSubLevelDTO)
+      .pipe(
+        map(response => response)
+      )
+  }
+
+  deleteAssetSubLevel (id: number): Observable<IAssetSubLevelResponse> {
+    return this.http.delete<any>(`${this.baseUrl}/${this.ASSET_SUB_LEVELS}/${id}`)
+      .pipe(
+        map(response => response)
+      )
+  }
 }

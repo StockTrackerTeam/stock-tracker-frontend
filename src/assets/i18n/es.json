@@ -171,6 +171,27 @@
       "id": "SUB-NIVEL",
       "description": "DESCRIPCION DE SUB-NIVEL"
     },
-    "no-assetSubLevel-created": "Todavía no se ha creado ningun sub-nivel de activo."
+    "no-assetSubLevel-created": "Todavía no se ha creado ningun sub-nivel de activo.",
+    "edit-assetSubLevel": "Editar sub-nivel",
+    "delete-assetSubLevel": "Eliminar sub-nivel"
+  },
+  "AssetSubLevelCreateComponent": {
+    "title": "Crear nuevo sub-nivel de activo",
+    "description-field": "Descripción",
+    "assetLevel-field": "Nivel de activo al que pertenece",
+    "submit": "Crear",
+    "cancel": "Cancelar",
+    "description-is-not-empty": "La descripción del sub-nivel no puede estar vacía.",
+    "levelId-is-not-empty": "El nivel del activo al que pertenece no puede estar vacío.",
+    "ok": "¡El nivel de activo se creó con éxito!"
+  },
+  "AssetSubLevelEditComponent": {
+    "title": "Editar sub-nivel de activo",
+    "description-field": "Descripción",
+    "assetLevel-field": "Nivel al que pertenece",
+    "submit": "Editar",
+    "cancel": "Cancelar",
+    "ok": "¡El sub-nivel de activo se editó con éxito!",
+    "asset-sublevel-fields-same-value": "No se ha realizado ningún cambio."
   }
 }

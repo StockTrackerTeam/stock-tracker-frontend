@@ -21,7 +21,7 @@ export class AssetLevelEditComponent implements OnInit {
   customDescriptionErrorMsgs = [
     {
       key: 'maxlength',
-      customKey: 'description-max-length'
+      customKey: 'asset-level-description-max-length'
     }
   ];
 
@@ -86,7 +86,7 @@ export class AssetLevelEditComponent implements OnInit {
       
     }
 
-    if (this.editLevelForm?.invalid) {
+    if (this.editLevelForm?.invalid || this.editLevelForm?.pristine) {
       return this.notificationService.failureNotification(
         'GeneralMessages.errorNotificationTitle',
         'GeneralMessages.errorNotificationMessage'
