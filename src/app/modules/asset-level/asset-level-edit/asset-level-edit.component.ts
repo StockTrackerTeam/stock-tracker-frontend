@@ -83,13 +83,19 @@ export class AssetLevelEditComponent implements OnInit {
         'GeneralMessages.errorNotificationTitle',
         'GeneralMessages.accessDenied'
       );
-      
     }
 
-    if (this.editLevelForm?.invalid || this.editLevelForm?.pristine) {
+    if (this.editLevelForm?.invalid) {
       return this.notificationService.failureNotification(
         'GeneralMessages.errorNotificationTitle',
         'GeneralMessages.errorNotificationMessage'
+      );
+    }
+
+    if (this.editLevelForm?.pristine) {
+      return this.notificationService.failureNotification(
+        'GeneralMessages.errorNotificationTitle',
+        'AssetLevelEditComponent.asset-level-description-same-value'
       );
     }
 

@@ -27,6 +27,8 @@ import { AssetSubLevelEditComponent } from './asset-sub-level-edit/asset-sub-lev
   declarations: [
     AssetSubLevelListComponent,
     AssetSubLevelCreateComponent
+    AssetSubLevelListComponent,
+    AssetSubLevelCreateComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +47,8 @@ import { AssetSubLevelEditComponent } from './asset-sub-level-edit/asset-sub-lev
     MatIconModule,
     CollapsibleActionBarModule,
     MatDialogModule,
-    ConfirmCancelModalModule
+    ConfirmCancelModalModule,
+    FormSelectModule
   ]
 })
 export class AssetSubLevelModule { }

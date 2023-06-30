@@ -78,7 +78,8 @@
     "lastName-space-at-beginning": "El apellido no puede iniciar con un espacio.",
     "email": "Ingrese un email valido.",
     "email-not-match": "El email debe coincidir.",
-    "description-max-length": "La descripción del nivel puede contener un máximo de 200 caracteres.",
+    "asset-level-description-max-length": "La descripción del nivel puede contener un máximo de 200 caracteres.",
+    "asset-sublevel-description-max-length": "La descripción del sub-nivel puede contener un máximo de 200 caracteres.",
     "asset-level-description-same-value": "Para poder editar el nivel de activo, debe cambiar la descripción por una nueva."
   },
   "UserDropdownComponent": {
@@ -142,7 +143,7 @@
     "description-field": "Descripción",
     "submit": "Crear",
     "cancel": "Cancelar",
-    "description-is-not-empty": "La descripción del activo no puede estar vacía.",
+    "description-is-not-empty": "La descripción del nivel no puede estar vacía.",
     "ok": "¡El nivel de activo se creó con éxito!"
   },
   "AssetLevelEditComponent": {
@@ -151,7 +152,8 @@
     "submit": "Editar",
     "cancel": "Cancelar",
     "description-is-not-empty": "La descripción del activo no puede estar vacía.",
-    "ok": "¡El nivel de activo se editó con éxito!"
+    "ok": "¡El nivel de activo se editó con éxito!",
+    "asset-level-description-same-value": "No se ha realizado ningún cambio."
   },
   "GeneralMessages": {
     "successNotificationTitle": "¡Todo salió según lo planeado!",

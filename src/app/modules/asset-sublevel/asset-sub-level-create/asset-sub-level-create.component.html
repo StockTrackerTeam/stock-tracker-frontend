@@ -1,0 +1,34 @@
+<app-confirm-cancel-modal
+  title="{{ 'AssetSubLevelCreateComponent.title' | translate }}"
+  (submitEvent)="onSubmit()"
+  (cancelEvent)="onCancel()"
+>
+  <div body *ngIf="createForm" [formGroup]="createForm">
+    <div class="input-container">
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>{{ 'AssetSubLevelCreateComponent.description-field' | translate}}</mat-label>
+        <textarea rows="3" matInput type="text" autocomplete="off" formControlName="description"></textarea>
+        <app-form-errors
+          fieldName="{{ 'AssetSubLevelCreateComponent.description-field' | translate }}"
+          [control]="createForm.get('description')"
+          [customErrorMsg]="customDescriptionErrorMsgs"
+        >
+        </app-form-errors>
+      </mat-form-field>
+    </div>
+    <app-form-select 
+      *ngIf="assetLevel"
+      [items]="assetLevels$ | async"
+      [formControl]="assetLevel"
+      valueKey="id"
+      optionKey="description"
+    >
+      <mat-label label-content>{{ 'AssetSubLevelCreateComponent.assetLevel-field' | translate }}</mat-label>
+      <app-form-errors
+        error-content fieldName="{{ 'AssetSubLevelCreateComponent.assetLevel-field' | translate }}"
+        [control]="createForm.get('assetLevel')"
+      >
+      </app-form-errors>
+    </app-form-select>
+  </div>
+</app-confirm-cancel-modal>

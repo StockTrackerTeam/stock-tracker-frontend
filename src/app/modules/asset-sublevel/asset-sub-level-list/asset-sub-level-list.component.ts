@@ -20,6 +20,12 @@ export class AssetSubLevelListComponent implements OnInit {
   assetSubLevels: AssetSubLevelEntity[] = [];
   loading = false;
   errorMessage!: string;
+  assetSubLevelModalConfig = {
+    hasBackdrop: true,
+    backdropClass: 'st-dialog-backdrop',
+    width: `${Math.min(window.innerWidth / 2, 500)}px`,
+    borderRadius: '50%'
+  };
 
   readonly assetSubLevelActions: InlineActions[] = [
     {
@@ -41,11 +47,14 @@ export class AssetSubLevelListComponent implements OnInit {
   constructor (
     private readonly assetSubLevelService: AssetSubLevelService,
     private readonly translateService: TranslateService,
-    private readonly notificationService: NotificationService
+    private readonly notificationService: NotificationService,
+    private readonly authService: AuthService,
+    private readonly matDialog: MatDialog
   ) {}
 
   canHandleAssetSubLevel (): boolean {
-    return true
+    const admittedRoles = [Roles.ADMIN];
+    return this.authService.checkUserPermissions(admittedRoles);
   }
 
   handleEditAssetSubLevel (assetSubLevel: AssetSubLevelEntity): void {
@@ -103,7 +112,25 @@ export class AssetSubLevelListComponent implements OnInit {
   }
 
   handleNewAssetSubLevel (): void {
-    alert('Future create');
+    if (this.canHandleAssetSubLevel()) {
+      this.matDialog
+        .open(
+          AssetSubLevelCreateComponent,
+          this.assetSubLevelModalConfig
+        )
+        .afterClosed()
+        .pipe(
+          tap((value) => {
+            if (value) this.getAssetSubLevels();
+          })
+        )
+        .subscribe();
+    } else {
+      this.notificationService.failureNotification(
+        'GeneralMessages.errorNotificationTitle',
+        'GeneralMessages.accessDenied'
+      );
+    }
   }
 
   ngOnInit(): void {
