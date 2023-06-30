@@ -9,6 +9,7 @@ import { Roles } from '../../../../shared/utils/enums';
 import { AuthService } from '../../../core/rest/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AssetSubLevelCreateComponent } from '../asset-sub-level-create/asset-sub-level-create.component';
+import { AssetSubLevelEditComponent } from '../asset-sub-level-edit/asset-sub-level-edit.component';
 
 @Component({
   selector: 'app-asset-sub-level-list',
@@ -30,14 +31,14 @@ export class AssetSubLevelListComponent implements OnInit {
     {
       icon: 'edit',
       show: this.canHandleAssetSubLevel.bind(this),
-      description: this.translateService.instant('AssetLevelListComponent.edit-assetLevel'),
+      description: this.translateService.instant('AssetSubLevelListComponent.edit-assetSubLevel'),
       disableCriteria: alwaysEnabled,
       onClick: this.handleEditAssetSubLevel.bind(this)
     },
     {
       icon: 'delete',
       show: this.canHandleAssetSubLevel.bind(this),
-      description: this.translateService.instant('AssetLevelListComponent.delete-assetLevel'),
+      description: this.translateService.instant('AssetSubLevelListComponent.delete-assetSubLevel'),
       disableCriteria: alwaysEnabled,
       onClick: this.handleDeleteAssetSubLevel.bind(this)
     }
@@ -56,12 +57,58 @@ export class AssetSubLevelListComponent implements OnInit {
     return this.authService.checkUserPermissions(admittedRoles);
   }
 
-  handleEditAssetSubLevel (): void {
-    alert('Future edit');
+  handleEditAssetSubLevel (assetSubLevel: AssetSubLevelEntity): void {
+    if (this.canHandleAssetSubLevel()) {
+      this.matDialog
+        .open(AssetSubLevelEditComponent, {
+          ...this.assetSubLevelModalConfig,
+          data: { assetSubLevelId: assetSubLevel.id}
+        })
+        .afterClosed()
+        .pipe(
+          tap((result: boolean) => {
+            if (result) this.getAssetSubLevels();
+          })
+        )
+        .subscribe();
+    } else {
+      this.notificationService.failureNotification(
+        'GeneralMessages.errorNotificationTitle',
+        'GeneralMessages.accessDenied'
+      );
+    }
   }
 
-  handleDeleteAssetSubLevel (): void {
-    alert('Future delete');
+  handleDeleteAssetSubLevel (assetSubLevel: AssetSubLevelEntity): void {
+    if (this.canHandleAssetSubLevel()) {
+      this.assetSubLevelService.deleteAssetSubLevel(assetSubLevel.id)
+        .pipe(
+          tap((result) => {
+            this.loading = false;
+            this.notificationService.successNotification(
+              'GeneralMessages.successNotificationTitle',
+              'AssetSubLevelListComponent.delete.' + result.resultKeys
+            );
+            this.loading = true;
+            this.getAssetSubLevels();
+          })
+        )
+        .subscribe({
+          next: noop,
+          error: (err) => {
+            this.loading = false;
+            this.notificationService.failureNotification(
+              'GeneralMessages.errorNotificationTitle',
+              'AssetSubLevelListComponent.' + err.resultKeys
+            );
+          }
+        })
+    } else {
+      this.notificationService.failureNotification(
+        'GeneralMessages.errorNotificationTitle',
+        'GeneralMessages.accessDenied'
+      );
+    }
   }
 
   handleNewAssetSubLevel (): void {

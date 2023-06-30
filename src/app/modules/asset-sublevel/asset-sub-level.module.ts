@@ -20,10 +20,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmCancelModalModule } from '../../../shared/modules/create-edit-modal/confirm-cancel-modal.module';
 import { AssetSubLevelCreateComponent } from './asset-sub-level-create/asset-sub-level-create.component';
 import { FormSelectModule } from '../../../shared/controls/form-select/form-select.module';
+import { AssetSubLevelEditComponent } from './asset-sub-level-edit/asset-sub-level-edit.component';
 
 
 @NgModule({
   declarations: [
+    AssetSubLevelListComponent,
+    AssetSubLevelCreateComponent
     AssetSubLevelListComponent,
     AssetSubLevelCreateComponent
   ],
